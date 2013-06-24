@@ -1,0 +1,1521 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plotviz>
+	<plot>
+		<title>colorgrid</title>
+		<pointsize>20</pointsize>
+		<glyph>
+			<visible>0</visible>
+			<scale>1</scale>
+		</glyph>
+		<camera>
+			<focusmode>0</focusmode>
+			<focus x="0" y="0" z="0"/>
+		</camera>
+	</plot>
+	<clusters>
+		<cluster>
+			<key>0</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="0" g="0" b="255" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>1</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="255" g="0" b="0" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>2</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="0" g="255" b="0" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>3</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="255" g="26" b="185" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>4</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="255" g="211" b="0" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>5</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="0" g="132" b="246" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>6</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="0" g="141" b="70" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>7</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="167" g="97" b="62" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>8</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="0" g="255" b="246" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>9</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="62" g="123" b="141" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>10</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="237" g="167" b="255" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>11</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="211" g="255" b="149" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>12</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="185" g="79" b="255" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>13</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="229" g="26" b="88" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>14</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="132" g="132" b="0" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>15</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="0" g="255" b="149" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>16</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="255" g="237" b="255" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>17</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="246" g="132" b="18" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>18</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="202" g="255" b="0" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>19</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="0" g="53" b="193" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>20</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="255" g="202" b="132" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>21</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="158" g="114" b="141" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>22</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="79" g="185" b="18" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>23</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="158" g="193" b="255" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>24</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="149" g="158" b="123" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>25</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="255" g="123" b="176" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>26</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="158" g="9" b="0" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>27</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="255" g="185" b="185" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>28</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="132" g="97" b="202" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>29</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="158" g="0" b="114" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>30</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="132" g="220" b="167" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>31</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="255" g="0" b="246" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>32</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="0" g="211" b="255" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>33</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="255" g="114" b="88" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>34</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="88" g="62" b="53" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>35</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="0" g="62" b="53" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>36</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="220" g="97" b="220" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>37</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="97" g="114" b="176" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>38</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="185" g="202" b="44" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>39</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="18" g="176" b="167" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>40</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="97" g="18" b="0" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>41</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="44" g="0" b="44" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>42</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="88" g="0" b="202" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>43</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="149" g="193" b="202" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>44</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="211" g="158" b="35" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>45</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="132" g="176" b="88" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>46</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="229" g="237" b="185" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>47</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="246" g="211" b="255" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>48</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="141" g="9" b="167" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>49</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="106" g="79" b="0" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>50</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="0" g="0" b="255" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>51</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="255" g="0" b="0" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>52</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="0" g="255" b="0" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>53</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="255" g="26" b="185" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>54</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="255" g="211" b="0" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>55</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="0" g="132" b="246" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>56</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="0" g="141" b="70" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>57</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="167" g="97" b="62" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>58</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="0" g="255" b="246" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>59</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="62" g="123" b="141" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>60</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="237" g="167" b="255" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>61</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="211" g="255" b="149" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>62</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="185" g="79" b="255" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>63</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="229" g="26" b="88" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>64</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="132" g="132" b="0" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>65</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="0" g="255" b="149" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>66</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="255" g="237" b="255" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>67</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="246" g="132" b="18" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>68</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="202" g="255" b="0" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>69</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="0" g="53" b="193" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>70</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="255" g="202" b="132" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>71</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="158" g="114" b="141" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>72</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="79" g="185" b="18" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>73</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="158" g="193" b="255" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>74</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="149" g="158" b="123" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>75</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="255" g="123" b="176" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>76</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="158" g="9" b="0" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>77</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="255" g="185" b="185" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>78</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="132" g="97" b="202" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>79</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="158" g="0" b="114" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>80</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="132" g="220" b="167" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>81</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="255" g="0" b="246" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>82</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="0" g="211" b="255" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>83</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="255" g="114" b="88" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>84</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="88" g="62" b="53" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>85</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="0" g="62" b="53" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>86</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="220" g="97" b="220" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>87</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="97" g="114" b="176" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>88</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="185" g="202" b="44" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>89</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="18" g="176" b="167" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>90</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="97" g="18" b="0" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>91</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="44" g="0" b="44" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>92</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="88" g="0" b="202" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>93</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="149" g="193" b="202" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>94</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="211" g="158" b="35" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>95</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="132" g="176" b="88" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>96</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="229" g="237" b="185" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>97</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="246" g="211" b="255" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>98</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="141" g="9" b="167" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+		<cluster>
+			<key>99</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="106" g="79" b="0" a="255"/>
+			<size>1</size>
+			<shape>3</shape>
+		</cluster>
+	</clusters>
+	<points>
+		<point>
+			<key>0</key>
+			<clusterkey>0</clusterkey>
+			<label>0</label>
+			<location x="0" y="0" z="0"/>
+		</point>
+		<point>
+			<key>1</key>
+			<clusterkey>1</clusterkey>
+			<label>1</label>
+			<location x="0.1000000014901161" y="0" z="0"/>
+		</point>
+		<point>
+			<key>2</key>
+			<clusterkey>2</clusterkey>
+			<label>2</label>
+			<location x="0.2000000029802322" y="0" z="0"/>
+		</point>
+		<point>
+			<key>3</key>
+			<clusterkey>3</clusterkey>
+			<label>3</label>
+			<location x="0.300000011920929" y="0" z="0"/>
+		</point>
+		<point>
+			<key>4</key>
+			<clusterkey>4</clusterkey>
+			<label>4</label>
+			<location x="0.4000000059604645" y="0" z="0"/>
+		</point>
+		<point>
+			<key>5</key>
+			<clusterkey>5</clusterkey>
+			<label>5</label>
+			<location x="0.5" y="0" z="0"/>
+		</point>
+		<point>
+			<key>6</key>
+			<clusterkey>6</clusterkey>
+			<label>6</label>
+			<location x="0.6000000238418579" y="0" z="0"/>
+		</point>
+		<point>
+			<key>7</key>
+			<clusterkey>7</clusterkey>
+			<label>7</label>
+			<location x="0.699999988079071" y="0" z="0"/>
+		</point>
+		<point>
+			<key>8</key>
+			<clusterkey>8</clusterkey>
+			<label>8</label>
+			<location x="0.800000011920929" y="0" z="0"/>
+		</point>
+		<point>
+			<key>9</key>
+			<clusterkey>9</clusterkey>
+			<label>9</label>
+			<location x="0.8999999761581421" y="0" z="0"/>
+		</point>
+		<point>
+			<key>10</key>
+			<clusterkey>10</clusterkey>
+			<label>10</label>
+			<location x="0" y="0.1000000014901161" z="0"/>
+		</point>
+		<point>
+			<key>11</key>
+			<clusterkey>11</clusterkey>
+			<label>11</label>
+			<location x="0.1000000014901161" y="0.1000000014901161" z="0"/>
+		</point>
+		<point>
+			<key>12</key>
+			<clusterkey>12</clusterkey>
+			<label>12</label>
+			<location x="0.2000000029802322" y="0.1000000014901161" z="0"/>
+		</point>
+		<point>
+			<key>13</key>
+			<clusterkey>13</clusterkey>
+			<label>13</label>
+			<location x="0.300000011920929" y="0.1000000014901161" z="0"/>
+		</point>
+		<point>
+			<key>14</key>
+			<clusterkey>14</clusterkey>
+			<label>14</label>
+			<location x="0.4000000059604645" y="0.1000000014901161" z="0"/>
+		</point>
+		<point>
+			<key>15</key>
+			<clusterkey>15</clusterkey>
+			<label>15</label>
+			<location x="0.5" y="0.1000000014901161" z="0"/>
+		</point>
+		<point>
+			<key>16</key>
+			<clusterkey>16</clusterkey>
+			<label>16</label>
+			<location x="0.6000000238418579" y="0.1000000014901161" z="0"/>
+		</point>
+		<point>
+			<key>17</key>
+			<clusterkey>17</clusterkey>
+			<label>17</label>
+			<location x="0.699999988079071" y="0.1000000014901161" z="0"/>
+		</point>
+		<point>
+			<key>18</key>
+			<clusterkey>18</clusterkey>
+			<label>18</label>
+			<location x="0.800000011920929" y="0.1000000014901161" z="0"/>
+		</point>
+		<point>
+			<key>19</key>
+			<clusterkey>19</clusterkey>
+			<label>19</label>
+			<location x="0.8999999761581421" y="0.1000000014901161" z="0"/>
+		</point>
+		<point>
+			<key>20</key>
+			<clusterkey>20</clusterkey>
+			<label>20</label>
+			<location x="0" y="0.2000000029802322" z="0"/>
+		</point>
+		<point>
+			<key>21</key>
+			<clusterkey>21</clusterkey>
+			<label>21</label>
+			<location x="0.1000000014901161" y="0.2000000029802322" z="0"/>
+		</point>
+		<point>
+			<key>22</key>
+			<clusterkey>22</clusterkey>
+			<label>22</label>
+			<location x="0.2000000029802322" y="0.2000000029802322" z="0"/>
+		</point>
+		<point>
+			<key>23</key>
+			<clusterkey>23</clusterkey>
+			<label>23</label>
+			<location x="0.300000011920929" y="0.2000000029802322" z="0"/>
+		</point>
+		<point>
+			<key>24</key>
+			<clusterkey>24</clusterkey>
+			<label>24</label>
+			<location x="0.4000000059604645" y="0.2000000029802322" z="0"/>
+		</point>
+		<point>
+			<key>25</key>
+			<clusterkey>25</clusterkey>
+			<label>25</label>
+			<location x="0.5" y="0.2000000029802322" z="0"/>
+		</point>
+		<point>
+			<key>26</key>
+			<clusterkey>26</clusterkey>
+			<label>26</label>
+			<location x="0.6000000238418579" y="0.2000000029802322" z="0"/>
+		</point>
+		<point>
+			<key>27</key>
+			<clusterkey>27</clusterkey>
+			<label>27</label>
+			<location x="0.699999988079071" y="0.2000000029802322" z="0"/>
+		</point>
+		<point>
+			<key>28</key>
+			<clusterkey>28</clusterkey>
+			<label>28</label>
+			<location x="0.800000011920929" y="0.2000000029802322" z="0"/>
+		</point>
+		<point>
+			<key>29</key>
+			<clusterkey>29</clusterkey>
+			<label>29</label>
+			<location x="0.8999999761581421" y="0.2000000029802322" z="0"/>
+		</point>
+		<point>
+			<key>30</key>
+			<clusterkey>30</clusterkey>
+			<label>30</label>
+			<location x="0" y="0.300000011920929" z="0"/>
+		</point>
+		<point>
+			<key>31</key>
+			<clusterkey>31</clusterkey>
+			<label>31</label>
+			<location x="0.1000000014901161" y="0.300000011920929" z="0"/>
+		</point>
+		<point>
+			<key>32</key>
+			<clusterkey>32</clusterkey>
+			<label>32</label>
+			<location x="0.2000000029802322" y="0.300000011920929" z="0"/>
+		</point>
+		<point>
+			<key>33</key>
+			<clusterkey>33</clusterkey>
+			<label>33</label>
+			<location x="0.300000011920929" y="0.300000011920929" z="0"/>
+		</point>
+		<point>
+			<key>34</key>
+			<clusterkey>34</clusterkey>
+			<label>34</label>
+			<location x="0.4000000059604645" y="0.300000011920929" z="0"/>
+		</point>
+		<point>
+			<key>35</key>
+			<clusterkey>35</clusterkey>
+			<label>35</label>
+			<location x="0.5" y="0.300000011920929" z="0"/>
+		</point>
+		<point>
+			<key>36</key>
+			<clusterkey>36</clusterkey>
+			<label>36</label>
+			<location x="0.6000000238418579" y="0.300000011920929" z="0"/>
+		</point>
+		<point>
+			<key>37</key>
+			<clusterkey>37</clusterkey>
+			<label>37</label>
+			<location x="0.699999988079071" y="0.300000011920929" z="0"/>
+		</point>
+		<point>
+			<key>38</key>
+			<clusterkey>38</clusterkey>
+			<label>38</label>
+			<location x="0.800000011920929" y="0.300000011920929" z="0"/>
+		</point>
+		<point>
+			<key>39</key>
+			<clusterkey>39</clusterkey>
+			<label>39</label>
+			<location x="0.8999999761581421" y="0.300000011920929" z="0"/>
+		</point>
+		<point>
+			<key>40</key>
+			<clusterkey>40</clusterkey>
+			<label>40</label>
+			<location x="0" y="0.4000000059604645" z="0"/>
+		</point>
+		<point>
+			<key>41</key>
+			<clusterkey>41</clusterkey>
+			<label>41</label>
+			<location x="0.1000000014901161" y="0.4000000059604645" z="0"/>
+		</point>
+		<point>
+			<key>42</key>
+			<clusterkey>42</clusterkey>
+			<label>42</label>
+			<location x="0.2000000029802322" y="0.4000000059604645" z="0"/>
+		</point>
+		<point>
+			<key>43</key>
+			<clusterkey>43</clusterkey>
+			<label>43</label>
+			<location x="0.300000011920929" y="0.4000000059604645" z="0"/>
+		</point>
+		<point>
+			<key>44</key>
+			<clusterkey>44</clusterkey>
+			<label>44</label>
+			<location x="0.4000000059604645" y="0.4000000059604645" z="0"/>
+		</point>
+		<point>
+			<key>45</key>
+			<clusterkey>45</clusterkey>
+			<label>45</label>
+			<location x="0.5" y="0.4000000059604645" z="0"/>
+		</point>
+		<point>
+			<key>46</key>
+			<clusterkey>46</clusterkey>
+			<label>46</label>
+			<location x="0.6000000238418579" y="0.4000000059604645" z="0"/>
+		</point>
+		<point>
+			<key>47</key>
+			<clusterkey>47</clusterkey>
+			<label>47</label>
+			<location x="0.699999988079071" y="0.4000000059604645" z="0"/>
+		</point>
+		<point>
+			<key>48</key>
+			<clusterkey>48</clusterkey>
+			<label>48</label>
+			<location x="0.800000011920929" y="0.4000000059604645" z="0"/>
+		</point>
+		<point>
+			<key>49</key>
+			<clusterkey>49</clusterkey>
+			<label>49</label>
+			<location x="0.8999999761581421" y="0.4000000059604645" z="0"/>
+		</point>
+		<point>
+			<key>50</key>
+			<clusterkey>50</clusterkey>
+			<label>50</label>
+			<location x="0" y="0.5" z="0"/>
+		</point>
+		<point>
+			<key>51</key>
+			<clusterkey>51</clusterkey>
+			<label>51</label>
+			<location x="0.1000000014901161" y="0.5" z="0"/>
+		</point>
+		<point>
+			<key>52</key>
+			<clusterkey>52</clusterkey>
+			<label>52</label>
+			<location x="0.2000000029802322" y="0.5" z="0"/>
+		</point>
+		<point>
+			<key>53</key>
+			<clusterkey>53</clusterkey>
+			<label>53</label>
+			<location x="0.300000011920929" y="0.5" z="0"/>
+		</point>
+		<point>
+			<key>54</key>
+			<clusterkey>54</clusterkey>
+			<label>54</label>
+			<location x="0.4000000059604645" y="0.5" z="0"/>
+		</point>
+		<point>
+			<key>55</key>
+			<clusterkey>55</clusterkey>
+			<label>55</label>
+			<location x="0.5" y="0.5" z="0"/>
+		</point>
+		<point>
+			<key>56</key>
+			<clusterkey>56</clusterkey>
+			<label>56</label>
+			<location x="0.6000000238418579" y="0.5" z="0"/>
+		</point>
+		<point>
+			<key>57</key>
+			<clusterkey>57</clusterkey>
+			<label>57</label>
+			<location x="0.699999988079071" y="0.5" z="0"/>
+		</point>
+		<point>
+			<key>58</key>
+			<clusterkey>58</clusterkey>
+			<label>58</label>
+			<location x="0.800000011920929" y="0.5" z="0"/>
+		</point>
+		<point>
+			<key>59</key>
+			<clusterkey>59</clusterkey>
+			<label>59</label>
+			<location x="0.8999999761581421" y="0.5" z="0"/>
+		</point>
+		<point>
+			<key>60</key>
+			<clusterkey>60</clusterkey>
+			<label>60</label>
+			<location x="0" y="0.6000000238418579" z="0"/>
+		</point>
+		<point>
+			<key>61</key>
+			<clusterkey>61</clusterkey>
+			<label>61</label>
+			<location x="0.1000000014901161" y="0.6000000238418579" z="0"/>
+		</point>
+		<point>
+			<key>62</key>
+			<clusterkey>62</clusterkey>
+			<label>62</label>
+			<location x="0.2000000029802322" y="0.6000000238418579" z="0"/>
+		</point>
+		<point>
+			<key>63</key>
+			<clusterkey>63</clusterkey>
+			<label>63</label>
+			<location x="0.300000011920929" y="0.6000000238418579" z="0"/>
+		</point>
+		<point>
+			<key>64</key>
+			<clusterkey>64</clusterkey>
+			<label>64</label>
+			<location x="0.4000000059604645" y="0.6000000238418579" z="0"/>
+		</point>
+		<point>
+			<key>65</key>
+			<clusterkey>65</clusterkey>
+			<label>65</label>
+			<location x="0.5" y="0.6000000238418579" z="0"/>
+		</point>
+		<point>
+			<key>66</key>
+			<clusterkey>66</clusterkey>
+			<label>66</label>
+			<location x="0.6000000238418579" y="0.6000000238418579" z="0"/>
+		</point>
+		<point>
+			<key>67</key>
+			<clusterkey>67</clusterkey>
+			<label>67</label>
+			<location x="0.699999988079071" y="0.6000000238418579" z="0"/>
+		</point>
+		<point>
+			<key>68</key>
+			<clusterkey>68</clusterkey>
+			<label>68</label>
+			<location x="0.800000011920929" y="0.6000000238418579" z="0"/>
+		</point>
+		<point>
+			<key>69</key>
+			<clusterkey>69</clusterkey>
+			<label>69</label>
+			<location x="0.8999999761581421" y="0.6000000238418579" z="0"/>
+		</point>
+		<point>
+			<key>70</key>
+			<clusterkey>70</clusterkey>
+			<label>70</label>
+			<location x="0" y="0.699999988079071" z="0"/>
+		</point>
+		<point>
+			<key>71</key>
+			<clusterkey>71</clusterkey>
+			<label>71</label>
+			<location x="0.1000000014901161" y="0.699999988079071" z="0"/>
+		</point>
+		<point>
+			<key>72</key>
+			<clusterkey>72</clusterkey>
+			<label>72</label>
+			<location x="0.2000000029802322" y="0.699999988079071" z="0"/>
+		</point>
+		<point>
+			<key>73</key>
+			<clusterkey>73</clusterkey>
+			<label>73</label>
+			<location x="0.300000011920929" y="0.699999988079071" z="0"/>
+		</point>
+		<point>
+			<key>74</key>
+			<clusterkey>74</clusterkey>
+			<label>74</label>
+			<location x="0.4000000059604645" y="0.699999988079071" z="0"/>
+		</point>
+		<point>
+			<key>75</key>
+			<clusterkey>75</clusterkey>
+			<label>75</label>
+			<location x="0.5" y="0.699999988079071" z="0"/>
+		</point>
+		<point>
+			<key>76</key>
+			<clusterkey>76</clusterkey>
+			<label>76</label>
+			<location x="0.6000000238418579" y="0.699999988079071" z="0"/>
+		</point>
+		<point>
+			<key>77</key>
+			<clusterkey>77</clusterkey>
+			<label>77</label>
+			<location x="0.699999988079071" y="0.699999988079071" z="0"/>
+		</point>
+		<point>
+			<key>78</key>
+			<clusterkey>78</clusterkey>
+			<label>78</label>
+			<location x="0.800000011920929" y="0.699999988079071" z="0"/>
+		</point>
+		<point>
+			<key>79</key>
+			<clusterkey>79</clusterkey>
+			<label>79</label>
+			<location x="0.8999999761581421" y="0.699999988079071" z="0"/>
+		</point>
+		<point>
+			<key>80</key>
+			<clusterkey>80</clusterkey>
+			<label>80</label>
+			<location x="0" y="0.800000011920929" z="0"/>
+		</point>
+		<point>
+			<key>81</key>
+			<clusterkey>81</clusterkey>
+			<label>81</label>
+			<location x="0.1000000014901161" y="0.800000011920929" z="0"/>
+		</point>
+		<point>
+			<key>82</key>
+			<clusterkey>82</clusterkey>
+			<label>82</label>
+			<location x="0.2000000029802322" y="0.800000011920929" z="0"/>
+		</point>
+		<point>
+			<key>83</key>
+			<clusterkey>83</clusterkey>
+			<label>83</label>
+			<location x="0.300000011920929" y="0.800000011920929" z="0"/>
+		</point>
+		<point>
+			<key>84</key>
+			<clusterkey>84</clusterkey>
+			<label>84</label>
+			<location x="0.4000000059604645" y="0.800000011920929" z="0"/>
+		</point>
+		<point>
+			<key>85</key>
+			<clusterkey>85</clusterkey>
+			<label>85</label>
+			<location x="0.5" y="0.800000011920929" z="0"/>
+		</point>
+		<point>
+			<key>86</key>
+			<clusterkey>86</clusterkey>
+			<label>86</label>
+			<location x="0.6000000238418579" y="0.800000011920929" z="0"/>
+		</point>
+		<point>
+			<key>87</key>
+			<clusterkey>87</clusterkey>
+			<label>87</label>
+			<location x="0.699999988079071" y="0.800000011920929" z="0"/>
+		</point>
+		<point>
+			<key>88</key>
+			<clusterkey>88</clusterkey>
+			<label>88</label>
+			<location x="0.800000011920929" y="0.800000011920929" z="0"/>
+		</point>
+		<point>
+			<key>89</key>
+			<clusterkey>89</clusterkey>
+			<label>89</label>
+			<location x="0.8999999761581421" y="0.800000011920929" z="0"/>
+		</point>
+		<point>
+			<key>90</key>
+			<clusterkey>90</clusterkey>
+			<label>90</label>
+			<location x="0" y="0.8999999761581421" z="0"/>
+		</point>
+		<point>
+			<key>91</key>
+			<clusterkey>91</clusterkey>
+			<label>91</label>
+			<location x="0.1000000014901161" y="0.8999999761581421" z="0"/>
+		</point>
+		<point>
+			<key>92</key>
+			<clusterkey>92</clusterkey>
+			<label>92</label>
+			<location x="0.2000000029802322" y="0.8999999761581421" z="0"/>
+		</point>
+		<point>
+			<key>93</key>
+			<clusterkey>93</clusterkey>
+			<label>93</label>
+			<location x="0.300000011920929" y="0.8999999761581421" z="0"/>
+		</point>
+		<point>
+			<key>94</key>
+			<clusterkey>94</clusterkey>
+			<label>94</label>
+			<location x="0.4000000059604645" y="0.8999999761581421" z="0"/>
+		</point>
+		<point>
+			<key>95</key>
+			<clusterkey>95</clusterkey>
+			<label>95</label>
+			<location x="0.5" y="0.8999999761581421" z="0"/>
+		</point>
+		<point>
+			<key>96</key>
+			<clusterkey>96</clusterkey>
+			<label>96</label>
+			<location x="0.6000000238418579" y="0.8999999761581421" z="0"/>
+		</point>
+		<point>
+			<key>97</key>
+			<clusterkey>97</clusterkey>
+			<label>97</label>
+			<location x="0.699999988079071" y="0.8999999761581421" z="0"/>
+		</point>
+		<point>
+			<key>98</key>
+			<clusterkey>98</clusterkey>
+			<label>98</label>
+			<location x="0.800000011920929" y="0.8999999761581421" z="0"/>
+		</point>
+		<point>
+			<key>99</key>
+			<clusterkey>99</clusterkey>
+			<label>99</label>
+			<location x="0.8999999761581421" y="0.8999999761581421" z="0"/>
+		</point>
+	</points>
+	<edges/>
+</plotviz>
+

@@ -1,0 +1,24 @@
+<RCC>
+  <qresource prefix="/">
+    <file>Icons/pqSaveAnimation24.png</file>
+    <file>Icons/pqThreshold24.png</file>
+    <file>Icons/salsa.png</file>
+    <file>Icons/pviz.png</file>
+    <file>Icons/pqPickCenter24.png</file>
+    <file>Icons/pqZMinus24.png</file>
+    <file>Icons/pqResetCamera32.png</file>
+    <file>Icons/pqEnterCenter24.png</file>
+    <file>Icons/pqSelectSurfPoints24.png</file>
+    <file>Icons/pqIsosurface24.png</file>
+    <file>Icons/pqCaptureScreenshot24.png</file>
+    <file>Icons/pqVcrPlay32.png</file>
+    <file>Icons/pqVcrPause32.png</file>
+    <file>Icons/pqSave32.png</file>
+    <file>Icons/pqUpdate32.png</file>
+    <file>Icons/pqConnect32.png</file>
+    <file>Icons/pvizHDF32.png</file>
+    <file>Icons/pqOpen16.png</file>
+    <file>Icons/pqOpen24.png</file>
+    <file>Icons/pqOpen32.png</file>
+  </qresource>
+</RCC>

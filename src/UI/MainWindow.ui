@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1024</width>
+    <height>768</height>
+   </rect>
+  </property>
+  <property name="acceptDrops">
+   <bool>true</bool>
+  </property>
+  <property name="windowTitle">
+   <string>PlotViz</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="margin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QMdiArea" name="mdiArea">
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAsNeeded</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAsNeeded</enum>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1024</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionOpenDataFile"/>
+    <addaction name="actionSaveAs"/>
+    <addaction name="actionSaveAnimation"/>
+    <addaction name="actionConnect"/>
+    <addaction name="actionSaveScreen"/>
+    <addaction name="actionOpenDirectory"/>
+    <addaction name="actionBrokerConnect"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionHelp"/>
+    <addaction name="actionAbout"/>
+   </widget>
+   <widget class="QMenu" name="menuWindow">
+    <property name="title">
+     <string>Window</string>
+    </property>
+    <addaction name="actionCascadeSubWindows"/>
+    <addaction name="actionTileSubWindows"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="menuTool">
+    <property name="title">
+     <string>Tool</string>
+    </property>
+    <addaction name="actionPlay"/>
+    <addaction name="actionSelectionMode"/>
+    <addaction name="actionShowHalfSphere"/>
+    <addaction name="actionResetCamera"/>
+    <addaction name="actionPickCenter"/>
+    <addaction name="actionSelectNeighbor"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
+    <addaction name="actionFullScreen"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuView"/>
+   <addaction name="menuTool"/>
+   <addaction name="menuWindow"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionOpenDataFile"/>
+   <addaction name="actionSaveAs"/>
+   <addaction name="actionConnect"/>
+   <addaction name="actionUpdateFromServer"/>
+   <addaction name="actionPlay"/>
+   <addaction name="actionSelectionMode"/>
+   <addaction name="actionShowHalfSphere"/>
+   <addaction name="actionResetCamera"/>
+   <addaction name="actionPickCenter"/>
+   <addaction name="actionSelectNeighbor"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QDockWidget" name="dwTree">
+   <property name="features">
+    <set>QDockWidget::AllDockWidgetFeatures</set>
+   </property>
+   <property name="windowTitle">
+    <string>Layers</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dwTreeContents">
+    <layout class="QVBoxLayout" name="dwTreeContentsLayout">
+     <property name="margin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QSplitter" name="splitter">
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <widget class="QTreeView" name="tvTree">
+        <property name="selectionMode">
+         <enum>QAbstractItemView::ExtendedSelection</enum>
+        </property>
+        <attribute name="headerHighlightSections">
+         <bool>true</bool>
+        </attribute>
+        <attribute name="headerShowSortIndicator" stdset="0">
+         <bool>false</bool>
+        </attribute>
+       </widget>
+       <widget class="QtTreePropertyBrowser" name="tpProperty" native="true"/>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="dwPreferences">
+   <property name="windowTitle">
+    <string>Features</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dwPreferencesContents">
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <property name="margin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QtTreePropertyBrowser" name="tpPreferences" native="true"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="dwTransforms">
+   <property name="minimumSize">
+    <size>
+     <width>249</width>
+     <height>220</height>
+    </size>
+   </property>
+   <property name="windowTitle">
+    <string>Transforms</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dwTransformsContents">
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <property name="margin">
+      <number>6</number>
+     </property>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QComboBox" name="cbTransformItem"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btAdd">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Add</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QScrollArea" name="scrollArea">
+       <property name="widgetResizable">
+        <bool>true</bool>
+       </property>
+       <widget class="QWidget" name="scrollAreaWidgetContents">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>235</width>
+          <height>567</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <property name="margin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QtGroupBoxPropertyBrowser" name="gpTransforms" native="true"/>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDialogButtonBox" name="bbTransforms">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="standardButtons">
+        <set>QDialogButtonBox::Abort|QDialogButtonBox::Apply|QDialogButtonBox::Reset</set>
+       </property>
+       <property name="centerButtons">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <action name="actionOpenDataFile">
+   <property name="icon">
+    <iconset resource="../pviz.qrc">
+     <normaloff>:/Icons/pqOpen32.png</normaloff>:/Icons/pqOpen32.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open</string>
+   </property>
+   <property name="toolTip">
+    <string>Open</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionConnect">
+   <property name="icon">
+    <iconset resource="../pviz.qrc">
+     <normaloff>:/Icons/pqConnect32.png</normaloff>:/Icons/pqConnect32.png</iconset>
+   </property>
+   <property name="text">
+    <string>Connect</string>
+   </property>
+   <property name="toolTip">
+    <string>Connect</string>
+   </property>
+  </action>
+  <action name="actionUpdateFromServer">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../pviz.qrc">
+     <normaloff>:/Icons/pqUpdate32.png</normaloff>:/Icons/pqUpdate32.png</iconset>
+   </property>
+   <property name="text">
+    <string>Update From Server</string>
+   </property>
+   <property name="toolTip">
+    <string>Update from server</string>
+   </property>
+  </action>
+  <action name="actionSaveAs">
+   <property name="icon">
+    <iconset resource="../pviz.qrc">
+     <normaloff>:/Icons/pqSave32.png</normaloff>:/Icons/pqSave32.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save As</string>
+   </property>
+   <property name="toolTip">
+    <string>Save As</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionPlay">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../pviz.qrc">
+     <normaloff>:/Icons/pqVcrPlay32.png</normaloff>
+     <normalon>:/Icons/pqVcrPause32.png</normalon>
+     <disabledon>:/Icons/pqVcrPause32.png</disabledon>
+     <activeoff>:/Icons/pqVcrPlay32.png</activeoff>
+     <activeon>:/Icons/pqVcrPause32.png</activeon>:/Icons/pqVcrPlay32.png</iconset>
+   </property>
+   <property name="text">
+    <string>Play</string>
+   </property>
+   <property name="toolTip">
+    <string>Play</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionSaveScreen">
+   <property name="icon">
+    <iconset resource="../pviz.qrc">
+     <normaloff>:/Icons/pqCaptureScreenshot24.png</normaloff>:/Icons/pqCaptureScreenshot24.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save Screen</string>
+   </property>
+   <property name="toolTip">
+    <string>Save Screen</string>
+   </property>
+  </action>
+  <action name="actionShowHalfSphere">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../pviz.qrc">
+     <normaloff>:/Icons/pqIsosurface24.png</normaloff>:/Icons/pqIsosurface24.png</iconset>
+   </property>
+   <property name="text">
+    <string>Show Half Sphere</string>
+   </property>
+   <property name="toolTip">
+    <string>Show Half Sphere</string>
+   </property>
+  </action>
+  <action name="actionSelectionMode">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../pviz.qrc">
+     <normaloff>:/Icons/pqSelectSurfPoints24.png</normaloff>:/Icons/pqSelectSurfPoints24.png</iconset>
+   </property>
+   <property name="text">
+    <string>Selection Mode</string>
+   </property>
+   <property name="toolTip">
+    <string>Selection Mode</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+V</string>
+   </property>
+  </action>
+  <action name="actionCascadeSubWindows">
+   <property name="text">
+    <string>Cascade Windows</string>
+   </property>
+   <property name="toolTip">
+    <string>Cascade Windows</string>
+   </property>
+  </action>
+  <action name="actionTileSubWindows">
+   <property name="text">
+    <string>Tile Windows</string>
+   </property>
+   <property name="toolTip">
+    <string>Tile Windows</string>
+   </property>
+  </action>
+  <action name="actionResetCamera">
+   <property name="icon">
+    <iconset resource="../pviz.qrc">
+     <normaloff>:/Icons/pqZMinus24.png</normaloff>:/Icons/pqZMinus24.png</iconset>
+   </property>
+   <property name="text">
+    <string>Reset Camera</string>
+   </property>
+   <property name="toolTip">
+    <string>Reset Camera</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actionPickCenter">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../pviz.qrc">
+     <normaloff>:/Icons/pqPickCenter24.png</normaloff>:/Icons/pqPickCenter24.png</iconset>
+   </property>
+   <property name="text">
+    <string>PIck Center</string>
+   </property>
+   <property name="toolTip">
+    <string>Pick Center</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionSelectNeighbor">
+   <property name="icon">
+    <iconset resource="../pviz.qrc">
+     <normaloff>:/Icons/pqThreshold24.png</normaloff>:/Icons/pqThreshold24.png</iconset>
+   </property>
+   <property name="text">
+    <string>Select Neighbors</string>
+   </property>
+  </action>
+  <action name="actionOpenDirectory">
+   <property name="text">
+    <string>Open Directory</string>
+   </property>
+  </action>
+  <action name="actionBrokerConnect">
+   <property name="text">
+    <string>Broker Connect</string>
+   </property>
+   <property name="toolTip">
+    <string>Broker Connect</string>
+   </property>
+  </action>
+  <action name="actionFullScreen">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Full Screen</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="actionHelp">
+   <property name="text">
+    <string>Help</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
+   </property>
+  </action>
+  <action name="actionSaveAnimation">
+   <property name="icon">
+    <iconset resource="../pviz.qrc">
+     <normaloff>:/Icons/pqSaveAnimation24.png</normaloff>:/Icons/pqSaveAnimation24.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save Animation</string>
+   </property>
+   <property name="toolTip">
+    <string>Save Animation</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>QtTreePropertyBrowser</class>
+   <extends>QWidget</extends>
+   <header>qttreepropertybrowser.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QtGroupBoxPropertyBrowser</class>
+   <extends>QWidget</extends>
+   <header>qtgroupboxpropertybrowser.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../pviz.qrc"/>
+ </resources>
+ <connections/>
+</ui>

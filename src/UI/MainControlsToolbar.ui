@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainControlsToolbar</class>
+ <widget class="QToolBar" name="MainControlsToolbar">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>350</width>
+    <height>45</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Main Controls</string>
+  </property>
+  <property name="orientation">
+   <enum>Qt::Horizontal</enum>
+  </property>
+  <action name="actionOpenFile">
+   <property name="icon">
+    <iconset resource="../pviz.qrc">
+     <normaloff>:/Icons/pqOpen32.png</normaloff>:/Icons/pqOpen32.png</iconset>
+   </property>
+   <property name="text">
+    <string>OpenFile</string>
+   </property>
+   <property name="toolTip">
+    <string>Open</string>
+   </property>
+  </action>
+  <addaction name="actionOpenFile"/>
+ </widget>
+ <resources>
+  <include location="../pviz.qrc"/>
+ </resources>
+ <connections/>
+</ui>
