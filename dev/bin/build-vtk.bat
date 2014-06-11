@@ -1,0 +1,32 @@
+@ECHO off
+
+REM ========================================
+REM Check/Get/Set Env Variables
+REM ========================================
+CALL build-comm.bat %*
+IF ERRORLEVEL 1 GOTO :EOF
+
+REM ========================================
+REM Main
+REM ========================================
+
+IF NOT EXIST %PVIZ3DEV_VTK_WORKDIR% (
+	mkdir %PVIZ3DEV_VTK_WORKDIR%
+)
+cd %PVIZ3DEV_VTK_WORKDIR%
+
+IF NOT EXIST %PVIZ3DEV_VTK_SRC_DIR% (
+    7z x -o%PVIZ3DEV_VTK_SRC_DIR% %PVIZ3DEV_WORKSPACE%\Tools\vtk-%PVIZ3DEV_VTK_VER%.zip
+	REM move vtk-%PVIZ3DEV_VTK_VER% %PVIZ3DEV_VTK_SRC_DIR%
+)
+
+IF NOT EXIST %PVIZ3DEV_VTK_BUILD_DIR% (
+    mkdir %PVIZ3DEV_VTK_BUILD_DIR%
+)
+cd %PVIZ3DEV_VTK_BUILD_DIR%
+
+REM -DCMAKE_PREFIX_PATH:PATH=%PVIZ3DEV_QT_DIR% 
+cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE:STRING=%PVIZ3DEV_TYPE% -DBUILD_SHARED_LIBS:BOOL=ON -DVTK_USE_QT:BOOL=ON -DVTK_USE_QVTK_QTOPENGL:BOOL=OFF -DCMAKE_INSTALL_PREFIX=%PVIZ3DEV_VTK_DIR% -DCMAKE_PREFIX_PATH:PATH=%PVIZ3DEV_QT_DIR% %PVIZ3DEV_VTK_SRC_DIR%
+
+nmake
+nmake install
