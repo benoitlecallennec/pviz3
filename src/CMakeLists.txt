@@ -9,6 +9,9 @@ set(PVIZ3_VERSION_PATCH "21")
 
 FIND_PACKAGE(VTK REQUIRED)
 INCLUDE(${VTK_USE_FILE}) # include UseVTK.cmake
+message(VTK_INCLUDE_DIRS = ${VTK_INCLUDE_DIRS})
+message(VTK_LIBRARIES = ${VTK_LIBRARIES})
+message(VTK_RUNTIME_LIBRARY_DIRS = ${VTK_RUNTIME_LIBRARY_DIRS})
 
 ## Try not to use OpenMP. It's error-prone
 ## But, it
@@ -187,7 +190,7 @@ SET(SRCS
   pvizsync.h pvizsync.cxx
   pvizinteractorstyle.h pvizinteractorstyle.cxx
   vtkInteractorStyleRubberBand2Pick.h vtkInteractorStyleRubberBand2Pick.cxx
-  vtkCubeAxes2Actor.h vtkCubeAxes2Actor.cxx
+  ##vtkCubeAxes2Actor.h vtkCubeAxes2Actor.cxx
   pvizExtractSelectedPolyDataIds.h pvizExtractSelectedPolyDataIds.cxx
   #PvizPoint.cpp PvizPoint.h
   #PvizCluster.cpp PvizCluster.h
@@ -251,13 +254,14 @@ ADD_EXECUTABLE(pviz3 WIN32 MACOSX_BUNDLE
   )
 
 TARGET_LINK_LIBRARIES(pviz3 
-  QVTK 
+  ##QVTK #This is for VTK 5.8
   QtSolutions_PropertyBrowser
   pvizmodel
   ##nbclient
   ${QT_LIBRARIES}
   ${Boost_LIBRARIES} 
   ${Protobuf_LIBRARIES}
+  ${VTK_LIBRARIES} # For VTK 6.1
   )
 
 IF (APPLE)
@@ -324,7 +328,7 @@ IF (WIN32)
 ENDIF (WIN32)
 
 IF (APPLE)
-  FILE(GLOB VTK_REDIST_FILES ${VTK_LIBRARY_DIRS}/*.dylib)
+  FILE(GLOB VTK_REDIST_FILES ${VTK_RUNTIME_LIBRARY_DIRS}/*.dylib)
   SET(VTK_REDIST_DIR pviz3.app/Contents/Libraries)
   SET(QT_REDIST_DIR pviz3.app/Contents/Frameworks)
   SET(QT_REDIST_PLUGINS_DIR pviz3.app/Contents/Plugins)
@@ -432,17 +436,18 @@ ELSE()
   SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -F/Library/Frameworks")
 ENDIF()
 
-FIND_PACKAGE(Subversion)
-IF(SUBVERSION_FOUND)
-  Subversion_WC_INFO(${PROJECT_SOURCE_DIR} PVIZ3)
-  SET(PVIZ3_REVISION ${PVIZ3_WC_REVISION})
-  MESSAGE("Current revision is ${PVIZ3_WC_REVISION}")
-  ##MESSAGE(PVIZ3_REVISION ${PVIZ3_REVISION})
-  ##Subversion_WC_LOG(${PROJECT_SOURCE_DIR} PVIZ3)
-  ##MESSAGE("Last changed log is ${PVIZ3_LAST_CHANGED_LOG}")
-ELSE()
-  SET(PVIZ3_REVISION 0000)
-ENDIF(SUBVERSION_FOUND)
+##FIND_PACKAGE(Subversion)
+##IF(SUBVERSION_FOUND)
+##  Subversion_WC_INFO(${PROJECT_SOURCE_DIR} PVIZ3)
+##  SET(PVIZ3_REVISION ${PVIZ3_WC_REVISION})
+##  MESSAGE("Current revision is ${PVIZ3_WC_REVISION}")
+##  ##MESSAGE(PVIZ3_REVISION ${PVIZ3_REVISION})
+##  ##Subversion_WC_LOG(${PROJECT_SOURCE_DIR} PVIZ3)
+##  ##MESSAGE("Last changed log is ${PVIZ3_LAST_CHANGED_LOG}")
+##ELSE()
+##  SET(PVIZ3_REVISION 0000)
+##ENDIF(SUBVERSION_FOUND)
+SET(PVIZ3_REVISION 0000)
 
 ##message(CMAKE_CURRENT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/version.h.in ${CMAKE_CURRENT_BINARY_DIR}/version.h)

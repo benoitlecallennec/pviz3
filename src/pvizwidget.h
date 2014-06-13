@@ -453,7 +453,8 @@ protected:
     vtkSmartPointer<vtkActor2D> labelActor;
     //vtkSmartPointer<vtkActor2D> hoverLabelActor;
     vtkSmartPointer<vtkTextActor> titleActor;
-    vtkSmartPointer<vtkCubeAxes2Actor> cubeAxesActor;
+    //vtkSmartPointer<vtkCubeAxes2Actor> cubeAxesActor;
+    vtkSmartPointer<vtkCubeAxesActor> cubeAxesActor;
     
     //vtkSmartPointer<pvizAxisActor> xAxisActor;
     //vtkSmartPointer<pvizAxesActor> scaleAxesActor;

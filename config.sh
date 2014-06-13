@@ -50,11 +50,16 @@ case $CTYPE in
         FC=`which ftn`
         ##FCFLAGS="-g -O3 -cpp -Wconversion -pedantic -fbacktrace -fbounds-check -fno-range-check -I$HDF5_DIR/include/44"
         ;;
+    "osx")
+        CXX=clang++
+        CC=clang
+        FC=gfortran
+        ;;
     *) usage; exit 1;
         ;;
 esac
 
-CMAKE_PREFIX_PATH=$QT_HOME:$VTK_HOME:$BOOST_HOME:$PROTOBUF_HOME:$ACTIVEMQCPP_HOME:$APR_HOME:$APU_HOME:$PATH:$ACTIVEMQCPP_HOME/include/activemq-cpp-3.4.1
+CMAKE_PREFIX_PATH=$QT_HOME:$VTK_HOME:$BOOST_HOME:$PROTOBUF_HOME:$ACTIVEMQCPP_HOME:$APR_HOME:$APU_HOME:$PATH:$ACTIVEMQCPP_HOME/include/activemq-cpp-3.8.2
 cmake -G "$GENERATOR" \
 -DCMAKE_BUILD_TYPE:STRING=$BUILD_TYPE \
 -DCMAKE_INSTALL_PREFIX:PATH=\$ENV{PWD}/install \
@@ -64,7 +69,10 @@ cmake -G "$GENERATOR" \
 -DCMAKE_CXX_COMPILER:FILEPATH=$CXX \
 -DCMAKE_CXX_FLAGS_RELEASE:STRING="$CXXFLAGS" \
 -DCMAKE_CXX_FLAGS_DEBUG:STRING="-g" \
--DVTK_DIR:PATH=$VTK_HOME/lib/vtk-5.8 \
--DActivemqcpp_INCLUDE_DIR:PATH=$ACTIVEMQCPP_HOME/include/activemq-cpp-3.4.1 \
+-DVTK_DIR:PATH=$VTK_HOME/lib/cmake/vtk-6.1 \
+-DActivemqcpp_INCLUDE_DIR:PATH=$ACTIVEMQCPP_HOME/include/activemq-cpp-3.8.2 \
+-DCMAKE_OSX_SYSROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk \
+-DCMAKE_OSX_DEPLOYMENT_TARGET=10.9 \
+-DCMAKE_OSX_ARCHITECTURES=x86_64 \
 ..
 
