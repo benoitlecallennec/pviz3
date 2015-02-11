@@ -127,8 +127,9 @@ listenURI("topic2")
     connect(watcher, SIGNAL(finished()), 
             this, SLOT(checkDirFinished()));
     
-    
+#ifdef USE_ACTIVEMQ    
     activemq::library::ActiveMQCPP::initializeLibrary();
+#endif
     
     QString location = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
     QFileInfo info = QFileInfo(location + "/PVIZ3/pviz3.ini");
@@ -153,8 +154,10 @@ MainWindow::~MainWindow()
         stopThreadWork = false;
         future->waitForFinished();
     }
-    
+
+#ifdef USE_ACTIVEMQ    
     activemq::library::ActiveMQCPP::shutdownLibrary();
+#endif
     
 	qDebug() << QDateTime::currentDateTime().toString() << "... Done. ";
 }
@@ -1755,7 +1758,8 @@ void MainWindow::ConnectToNBServer()
 }
 
 void MainWindow::ConnectToActiveMQServer()
-{    
+{
+#ifdef USE_ACTIVEMQ    
 	PvizWidget *pviz = new PvizWidget();
     connect(pviz, SIGNAL(OnCenterPicked()), this, SLOT(UnpickCenter()));
     connect(pviz, SIGNAL(OnSelected()), this, SLOT(SetSelectionMode()));
@@ -1823,6 +1827,7 @@ void MainWindow::ConnectToActiveMQServer()
 	pviz->SetInteractorMode(PvizWidget::PLAY_MODE);
 	ui->actionPlay->setChecked(true);
 	ui->actionSelectionMode->setChecked(false);
+#endif
 }
 
 /*

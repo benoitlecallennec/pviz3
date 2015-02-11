@@ -59,6 +59,7 @@
 #define SUCCESS 0
 #define FAILURE -1
 
+#ifdef USE_ACTIVEMQ
 #include <message.pb.h>
 #include <decaf/lang/Thread.h>
 #include <decaf/lang/Runnable.h>
@@ -78,10 +79,6 @@
 #include <cms/ExceptionListener.h>
 #include <cms/MessageListener.h>
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <iostream>
-
 using namespace activemq;
 using namespace activemq::core;
 using namespace activemq::transport;
@@ -89,8 +86,13 @@ using namespace decaf::lang;
 using namespace decaf::util;
 using namespace decaf::util::concurrent;
 using namespace cms;
-using namespace std;
+#endif
 
+#include <stdlib.h>
+#include <stdio.h>
+#include <iostream>
+
+using namespace std;
 
 class PvizSync;
 
@@ -98,10 +100,14 @@ class PvizSync;
 //static bool isFirstPositionMessage = true;
 //static int modelStatus = 0;
 
+#ifdef USE_ACTIVEMQ
 class PvizWidget : public QVTKWidget, 
 public ExceptionListener,
 public MessageListener,
 public DefaultTransportListener 
+#else
+class PvizWidget : public QVTKWidget
+#endif
 {
 	Q_OBJECT
 public:
@@ -341,8 +347,9 @@ public:
     void SortClusterById(bool descending);
     void SortClusterByLabel(bool descending);
 
+#ifdef USE_ACTIVEMQ    
     virtual void onMessage( const Message* message ) throw();
-    
+
     // registered as an ExceptionListener with the connection.
     virtual void onException( const CMSException& ex AMQCPP_UNUSED ) {
         printf("CMS Exception occurred.  Shutting down client.\n");
@@ -356,7 +363,7 @@ public:
     virtual void transportResumed() {
         std::cout << "The Connection's Transport has been Restored." << std::endl;
     }
-    
+#endif
 	void SetFocusMode(FocusMode_t mode);
 	FocusMode_t GetFocusMode();
     
@@ -475,7 +482,8 @@ protected:
     bool sortNondefaultFirst;
     
     LegendLocation_t legendPosition;
-    
+
+#ifdef USE_ACTIVEMQ    
     // NB Client
     //ServiceClient *serviceClient;
     //void onEvent(NBEvent *nbEvent);
@@ -493,12 +501,13 @@ protected:
     //std::string destURI;
     //std::string listenURI;
     //bool clientAck;
+#endif
     long long timestamp;
     
     bool isFirstLabelMessage;
     bool isFirstPositionMessage;
     int modelStatus;
-    
+
     FocusMode_t focusMode_;
     QString fileName_;
     double focus[3];

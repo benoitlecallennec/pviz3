@@ -360,6 +360,7 @@ selectedNeighbors(vtkSmartPointer<vtkIdList>::New()),
 defaultColor(QColor(119, 136, 153)), // slate gray
 defaultScale(0.0),
 legendPosition(UPPERLEFT),
+#ifdef USE_ACTIVEMQ
 connection(NULL),
 session(NULL),
 sendTopic(NULL),
@@ -368,6 +369,7 @@ consumer(NULL),
 producer(NULL),
 isFirstLabelMessage(true),
 isFirstPositionMessage(true),
+#endif
 modelStatus(0),
 focusMode_(AUTO)
 {
@@ -477,7 +479,7 @@ PvizWidget::~PvizWidget() throw()
     qDebug() << "PvizWidget ... destroying";
     
     if (model != NULL) delete model;
-    
+#ifdef USE_ACTIVEMQ
     //*************************************************
     // Always close destination, consumers and producers before
     // you destroy their sessions and connection.
@@ -534,6 +536,7 @@ PvizWidget::~PvizWidget() throw()
     }
     catch (CMSException& e) {}
     connection = NULL;
+#endif
 }
 
 int PvizWidget::SaveAsVTK(QString filename)
@@ -1535,6 +1538,7 @@ void PvizWidget::ConnectToActiveMQServer(QString brokerURI,
                                          QString destURI,
                                          QString listenURI)
 {
+#ifdef USE_ACTIVEMQ
     connection = NULL;
     session = NULL;
     consumer = NULL;
@@ -1619,9 +1623,10 @@ void PvizWidget::ConnectToActiveMQServer(QString brokerURI,
     catch (exception& e) {
 		qDebug() << "Exception : " << e.what();
     }
-    
+#endif
 }
 
+#ifdef USE_ACTIVEMQ
 void PvizWidget::onMessage( const Message* message ) throw() 
 {
     static int count = 0;
@@ -1921,6 +1926,7 @@ void PvizWidget::onEvent(NBEvent *nbEvent)
     cout<<endl<<"----------------------------------------------------- "<<endl;
 }
 */
+#endif
 
 void PvizWidget::updateModel()
 {
