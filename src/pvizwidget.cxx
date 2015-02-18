@@ -352,7 +352,8 @@ savedPointsExist(false),
 labelActor(vtkSmartPointer<vtkActor2D>::New()),
 //hoverLabelActor(vtkSmartPointer<vtkActor2D>::New()),
 titleActor(vtkSmartPointer<vtkTextActor>::New()),
-cubeAxesActor(vtkSmartPointer<vtkCubeAxes2Actor>::New()),
+//cubeAxesActor(vtkSmartPointer<vtkCubeAxes2Actor>::New()),
+cubeAxesActor(vtkSmartPointer<vtkCubeAxesActor>::New()),
 //scaleAxesActor(vtkSmartPointer<pvizAxesActor>::New()),
 numOfNeighbors_(15),
 appendNeighbors(false),
@@ -543,7 +544,7 @@ int PvizWidget::SaveAsVTK(QString filename)
 {
 	VTK_CREATE(vtkPolyDataWriter, pdw);
 	//pdw->SetInput(c2p->GetPolyDataOutput());
-	pdw->SetInput(plot);
+	pdw->SetInputData(plot);
 	pdw->SetFileName(filename.toAscii().data());
 	pdw->Write();
 	
@@ -983,8 +984,8 @@ void PvizWidget::BuildSubplot()
 	//VTK_CREATE(vtkExtractSelectedPolyDataIds, ex);
 	VTK_CREATE(pvizExtractSelectedPolyDataIds, ex);
 	//vtkExtractSelectedPolyDataIds* subplot = vtkExtractSelectedPolyDataIds::New();
-	ex->SetInput(0, plot);
-	ex->SetInput(1, sel);
+	ex->SetInputData(0, plot);
+	ex->SetInputData(1, sel);
 	//ex->PreserveTopologyOn();
 	//ex->PRESERVES_TOPOLOGY();
 	//selFilter->SetInputConnection(0,plot->GetProducerPort());
@@ -1009,7 +1010,7 @@ void PvizWidget::BuildPlot()
     
 	//VTK_CREATE(vtkPolyDataMapper, plotMapper);
 	VTK_CREATE(vtkPolyDataMapper, plotMapper);
-	plotMapper->SetInput(cleansubplot->GetOutput());
+	plotMapper->SetInputData(cleansubplot->GetOutput());
 	plotMapper->ScalarVisibilityOn();
 	//plotMapper->SetScalarModeToUseCellFieldData();
 	//plotMapper->SelectColorArray(CLUSTER_ID_NAME);
@@ -1049,12 +1050,12 @@ void PvizWidget::BuildLabels()
 	
 	VTK_CREATE(vtkExtractSelection, ex2);
 	
-	ex2->SetInput(0, plot);
-	ex2->SetInput(1, sel2);
+	ex2->SetInputData(0, plot);
+	ex2->SetInputData(1, sel2);
 	ex2->Update();
 	
 	VTK_CREATE(vtkLabeledDataMapper, labelMapper);
-	labelMapper->SetInput(ex2->GetOutput());
+	labelMapper->SetInputData(ex2->GetOutput());
 	labelMapper->SetLabelModeToLabelFieldData();
 	labelMapper->SetFieldDataName(POINT_LABEL_NAME);
 	//labelMapper->GetLabelTextProperty()->ShadowOff();
@@ -1096,8 +1097,8 @@ void PvizWidget::BuildGlyph()
 	//sel->RemoveNode(selectCellForGlyph);
 	
 	VTK_CREATE(pvizExtractSelectedPolyDataIds, ex);
-	ex->SetInput(0, plot);
-	ex->SetInput(1, sel);
+	ex->SetInputDataConnection(0, plot);
+	ex->SetInputData(1, sel);
 	//ex->PreserveTopologyOn();
 	//ex->PRESERVES_TOPOLOGY();
 	//selFilter->SetInputConnection(0,plot->GetProducerPort());
@@ -1171,7 +1172,7 @@ void PvizWidget::BuildGlyph()
     gs13->SetRadius(r);
     //gs13->ReleaseDataFlagOn();
     
-	glyph->SetInput(cleansubplotForGlyph->GetOutput());
+	glyph->SetInputData(cleansubplotForGlyph->GetOutput());
     
 	glyph->SetSourceConnection(0, gs00->GetOutputPort());
 	glyph->SetSourceConnection(1, gs01->GetOutputPort());
@@ -1200,7 +1201,7 @@ void PvizWidget::BuildGlyph()
 	//glyph->SetInputArrayToProcess(1, 0, 0, vtkDataObject::FIELD_ASSOCIATION_POINTS, CLUSTER_ID_NAME);
 	
 	VTK_CREATE(vtkPolyDataMapper, glyphMapper);
-	glyphMapper->SetInput(glyph->GetOutput());
+	glyphMapper->SetInputData(glyph->GetOutput());
 	
 	// Color by cluster id
 	glyphMapper->SetColorModeToMapScalars();
@@ -1286,7 +1287,7 @@ void PvizWidget::BuildGrid()
 	grid->SetVerts(gridPolys);
 	
 	VTK_CREATE(vtkPolyDataMapper, gridMapper);
-	gridMapper->SetInput(grid);
+	gridMapper->SetInputData(grid);
 	
 	VTK_CREATE(vtkActor, gridActor);
 	gridActor->SetMapper(gridMapper);
@@ -1377,7 +1378,7 @@ void PvizWidget::BuildAxes()
 	linesPolyData->GetCellData()->SetScalars(colors);
 	// Visualize
 	VTK_CREATE(vtkPolyDataMapper, axesMapper);
-	axesMapper->SetInput(linesPolyData);
+	axesMapper->SetInputData(linesPolyData);
 	
 	//renderer->ResetCamera();
 	ResetCamera();
@@ -1406,7 +1407,7 @@ void PvizWidget::BuildAxes()
     cubeAxesActor->SetXTitle("");
     cubeAxesActor->SetYTitle("");
     cubeAxesActor->SetZTitle("");
-    cubeAxesActor->SetLabelScaling(false, 0, 0, 0);
+    //cubeAxesActor->SetLabelScaling(false, 0, 0, 0);
     renderer->AddActor(cubeAxesActor);    
     
     
@@ -2394,13 +2395,14 @@ bool PvizWidget::GetCubeAxesDrawZGridlines()
 
 void PvizWidget::SetCubeAxesLabelScaleFactor(double factor)
 {
-    cubeAxesActor->SetLabelScaleFactor(factor);
+    //cubeAxesActor->SetLabelScaleFactor(factor);
 	this->update();	
 }
 
 double PvizWidget::GetCubeAxesLabelScaleFactor()
 {
-    return cubeAxesActor->GetLabelScaleFactor();
+    //return cubeAxesActor->GetLabelScaleFactor();
+    return 1.0;
 }
 
 /*
@@ -2902,7 +2904,7 @@ int PvizWidget::SaveScreen(QString filename)
 	//vtkSmartPointer<vtkPNGWriter> writer = vtkSmartPointer<vtkPNGWriter>::New();
 	VTK_CREATE(vtkPNGWriter, writer);
 	writer->SetFileName(filename.toAscii().data());
-	writer->SetInput(windowToImageFilter->GetOutput());
+	writer->SetInputData(windowToImageFilter->GetOutput());
 	writer->Write();
 	
 	return SUCCESS;
@@ -3003,7 +3005,7 @@ void PvizWidget::AreaPickerCallBack(vtkObject* caller, unsigned long eventId, vo
 	
 	vtkSmartPointer<vtkExtractGeometry> ex = vtkSmartPointer<vtkExtractGeometry>::New();
 	ex->SetImplicitFunction(frustum);
-	ex->SetInput(self->cleansubplot->GetOutput());
+	ex->SetInputData(self->cleansubplot->GetOutput());
 	//ex->Update();
 	
 	VTK_CREATE(vtkVertexGlyphFilter, glyphFilter);
@@ -3496,7 +3498,7 @@ void PvizWidget::PlotTransform(vtkSmartPointer<vtkTransform> transform)
 	PlotSaveBeforeTransform();
 	
 	vtkSmartPointer<vtkTransformFilter> transformFilter = vtkSmartPointer<vtkTransformFilter>::New();
-	transformFilter->SetInput(plot);
+	transformFilter->SetInputData(plot);
 	transformFilter->SetTransform(transform);
 	transformFilter->Update();
 	

@@ -89,26 +89,26 @@ IF (APPLE)
   add_definitions(-DDARWIN)
   add_definitions(-DSIGPROCMASK_SETS_THREAD_MASK)
 
-  ## Activemq-CPP
-  find_path(Activemqcpp_INCLUDE_DIR activemq/library/ActiveMQCPP.h $ENV{ACTIVEMQCPP_HOME}/include/activemq-cpp-3.4.0)
-  find_library(Activemqcpp_LIBRARIES NAMES activemq-cpp PATHS $ENV{ACTIVEMQCPP_HOME}/lib)
-  include_directories(${Activemqcpp_INCLUDE_DIR})
-  message(Activemqcpp_INCLUDE_DIR = ${Activemqcpp_INCLUDE_DIR})
-  message(Activemqcpp_LIBRARIES = ${Activemqcpp_LIBRARIES})
-
-  ## APR
-  find_path(Apr_INCLUDE_DIR apr.h $ENV{APR_HOME}/include/apr-1)
-  find_library(Apr_LIBRARIES NAMES apr-1 PATHS $ENV{APR_HOME}/lib)
-  message(Apr_INCLUDE_DIR = ${Apr_INCLUDE_DIR})
-  message(Apr_LIBRARIES = ${Apr_LIBRARIES})
-  include_directories(${Apr_INCLUDE_DIR})
-
-  ## APR-UTIL
-  find_path(Apu_INCLUDE_DIR apu.h $ENV{APU_HOME}/include/apr-1)
-  find_library(Apu_LIBRARIES NAMES aprutil-1 PATHS $ENV{APU_HOME}/lib)
-  message(Apu_INCLUDE_DIR = ${Apu_INCLUDE_DIR})
-  message(Apu_LIBRARIES = ${Apu_LIBRARIES})
-  include_directories(${Apu_INCLUDE_DIR})
+  #### Activemq-CPP
+  ##find_path(Activemqcpp_INCLUDE_DIR activemq/library/ActiveMQCPP.h $ENV{ACTIVEMQCPP_HOME}/include/activemq-cpp-3.4.0)
+  ##find_library(Activemqcpp_LIBRARIES NAMES activemq-cpp PATHS $ENV{ACTIVEMQCPP_HOME}/lib)
+  ##include_directories(${Activemqcpp_INCLUDE_DIR})
+  ##message(Activemqcpp_INCLUDE_DIR = ${Activemqcpp_INCLUDE_DIR})
+  ##message(Activemqcpp_LIBRARIES = ${Activemqcpp_LIBRARIES})
+  ##
+  #### APR
+  ##find_path(Apr_INCLUDE_DIR apr.h $ENV{APR_HOME}/include/apr-1)
+  ##find_library(Apr_LIBRARIES NAMES apr-1 PATHS $ENV{APR_HOME}/lib)
+  ##message(Apr_INCLUDE_DIR = ${Apr_INCLUDE_DIR})
+  ##message(Apr_LIBRARIES = ${Apr_LIBRARIES})
+  ##include_directories(${Apr_INCLUDE_DIR})
+  ##
+  #### APR-UTIL
+  ##find_path(Apu_INCLUDE_DIR apu.h $ENV{APU_HOME}/include/apr-1)
+  ##find_library(Apu_LIBRARIES NAMES aprutil-1 PATHS $ENV{APU_HOME}/lib)
+  ##message(Apu_INCLUDE_DIR = ${Apu_INCLUDE_DIR})
+  ##message(Apu_LIBRARIES = ${Apu_LIBRARIES})
+  ##include_directories(${Apu_INCLUDE_DIR})
 ELSEIF (WIN32)
   add_definitions(-DWIN32)
   add_definitions(-DWIN32_LEAN_AND_MEAN)
@@ -187,7 +187,7 @@ SET(SRCS
   pvizsync.h pvizsync.cxx
   pvizinteractorstyle.h pvizinteractorstyle.cxx
   vtkInteractorStyleRubberBand2Pick.h vtkInteractorStyleRubberBand2Pick.cxx
-  vtkCubeAxes2Actor.h vtkCubeAxes2Actor.cxx
+  #vtkCubeAxes2Actor.h vtkCubeAxes2Actor.cxx
   pvizExtractSelectedPolyDataIds.h pvizExtractSelectedPolyDataIds.cxx
   #PvizPoint.cpp PvizPoint.h
   #PvizCluster.cpp PvizCluster.h
@@ -251,25 +251,26 @@ ADD_EXECUTABLE(pviz3 WIN32 MACOSX_BUNDLE
   )
 
 TARGET_LINK_LIBRARIES(pviz3 
-  QVTK 
+  ##QVTK 
   QtSolutions_PropertyBrowser
   pvizmodel
   ##nbclient
   ${QT_LIBRARIES}
   ${Boost_LIBRARIES} 
-  ${Protobuf_LIBRARIES}
+  ##${Protobuf_LIBRARIES}
+  ${VTK_LIBRARIES}
   )
 
 IF (APPLE)
   target_link_libraries (pviz3 
-    /opt/pviz3dev/lib/libactivemq-cpp.a
-    /opt/local/lib/libapr-1.a
-    /opt/local/lib/libaprutil-1.a
-    /opt/local/lib/db46/libdb-4.6.a
-    /opt/local/lib/libexpat.a
-    /opt/local/lib/libiconv.a
-    -lssl
-    -lcrypto
+    ##/opt/pviz3dev/lib/libactivemq-cpp.a
+    ##/opt/local/lib/libapr-1.a
+    ##/opt/local/lib/libaprutil-1.a
+    ##/opt/local/lib/db46/libdb-4.6.a
+    ##/opt/local/lib/libexpat.a
+    ##/opt/local/lib/libiconv.a
+    ##-lssl
+    ##-lcrypto
     -lpthread
     -lz
     )
