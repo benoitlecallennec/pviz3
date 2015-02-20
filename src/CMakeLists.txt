@@ -5,13 +5,14 @@ cmake_minimum_required(VERSION 2.8)
 
 set(PVIZ3_VERSION_MAJOR "0")
 set(PVIZ3_VERSION_MINOR "8")
-set(PVIZ3_VERSION_PATCH "21") 
+set(PVIZ3_VERSION_PATCH "22") 
 
 FIND_PACKAGE(VTK REQUIRED)
 INCLUDE(${VTK_USE_FILE}) # include UseVTK.cmake
-message(VTK_INCLUDE_DIRS = ${VTK_INCLUDE_DIRS})
-message(VTK_LIBRARIES = ${VTK_LIBRARIES})
-message(VTK_RUNTIME_LIBRARY_DIRS = ${VTK_RUNTIME_LIBRARY_DIRS})
+message(VTK_INCLUDE_DIRS= ${VTK_INCLUDE_DIRS})
+message(VTK_LIBRARY_DIRS= ${VTK_LIBRARY_DIRS})
+message(VTK_LIBRARIES= ${VTK_LIBRARIES})
+message(VTK_RUNTIME_LIBRARY_DIRS= ${VTK_RUNTIME_LIBRARY_DIRS})
 
 ## Try not to use OpenMP. It's error-prone
 ## But, it
@@ -92,26 +93,26 @@ IF (APPLE)
   add_definitions(-DDARWIN)
   add_definitions(-DSIGPROCMASK_SETS_THREAD_MASK)
 
-  ## Activemq-CPP
-  find_path(Activemqcpp_INCLUDE_DIR activemq/library/ActiveMQCPP.h $ENV{ACTIVEMQCPP_HOME}/include/activemq-cpp-3.4.0)
-  find_library(Activemqcpp_LIBRARIES NAMES activemq-cpp PATHS $ENV{ACTIVEMQCPP_HOME}/lib)
-  include_directories(${Activemqcpp_INCLUDE_DIR})
-  message(Activemqcpp_INCLUDE_DIR = ${Activemqcpp_INCLUDE_DIR})
-  message(Activemqcpp_LIBRARIES = ${Activemqcpp_LIBRARIES})
-
-  ## APR
-  find_path(Apr_INCLUDE_DIR apr.h $ENV{APR_HOME}/include/apr-1)
-  find_library(Apr_LIBRARIES NAMES apr-1 PATHS $ENV{APR_HOME}/lib)
-  message(Apr_INCLUDE_DIR = ${Apr_INCLUDE_DIR})
-  message(Apr_LIBRARIES = ${Apr_LIBRARIES})
-  include_directories(${Apr_INCLUDE_DIR})
-
-  ## APR-UTIL
-  find_path(Apu_INCLUDE_DIR apu.h $ENV{APU_HOME}/include/apr-1)
-  find_library(Apu_LIBRARIES NAMES aprutil-1 PATHS $ENV{APU_HOME}/lib)
-  message(Apu_INCLUDE_DIR = ${Apu_INCLUDE_DIR})
-  message(Apu_LIBRARIES = ${Apu_LIBRARIES})
-  include_directories(${Apu_INCLUDE_DIR})
+  #### Activemq-CPP
+  ##find_path(Activemqcpp_INCLUDE_DIR activemq/library/ActiveMQCPP.h $ENV{ACTIVEMQCPP_HOME}/include/activemq-cpp-3.4.0)
+  ##find_library(Activemqcpp_LIBRARIES NAMES activemq-cpp PATHS $ENV{ACTIVEMQCPP_HOME}/lib)
+  ##include_directories(${Activemqcpp_INCLUDE_DIR})
+  ##message(Activemqcpp_INCLUDE_DIR = ${Activemqcpp_INCLUDE_DIR})
+  ##message(Activemqcpp_LIBRARIES = ${Activemqcpp_LIBRARIES})
+  ##
+  #### APR
+  ##find_path(Apr_INCLUDE_DIR apr.h $ENV{APR_HOME}/include/apr-1)
+  ##find_library(Apr_LIBRARIES NAMES apr-1 PATHS $ENV{APR_HOME}/lib)
+  ##message(Apr_INCLUDE_DIR = ${Apr_INCLUDE_DIR})
+  ##message(Apr_LIBRARIES = ${Apr_LIBRARIES})
+  ##include_directories(${Apr_INCLUDE_DIR})
+  ##
+  #### APR-UTIL
+  ##find_path(Apu_INCLUDE_DIR apu.h $ENV{APU_HOME}/include/apr-1)
+  ##find_library(Apu_LIBRARIES NAMES aprutil-1 PATHS $ENV{APU_HOME}/lib)
+  ##message(Apu_INCLUDE_DIR = ${Apu_INCLUDE_DIR})
+  ##message(Apu_LIBRARIES = ${Apu_LIBRARIES})
+  ##include_directories(${Apu_INCLUDE_DIR})
 ELSEIF (WIN32)
   add_definitions(-DWIN32)
   add_definitions(-DWIN32_LEAN_AND_MEAN)
@@ -151,16 +152,14 @@ ELSEIF (WIN32)
 ENDIF()
 
 IF (APPLE)
-  ## Protobuf
-  find_path(Protobuf_INCLUDE_DIR google/protobuf/service.h $ENV{PROTOBUF_HOME}/include)
-  SET(CMAKE_FIND_LIBRARY_PREFIXES )
-  find_library(Protobuf_LIBRARIES NAMES libprotobuf.a protobuf PATHS $ENV{PROTOBUF_HOME}/lib)
-  include_directories(${Protobuf_INCLUDE_DIR})
-  message(Protobuf_INCLUDE_DIR = ${Protobuf_INCLUDE_DIR})
-  message(Protobuf_LIBRARIES = ${Protobuf_LIBRARIES})
-ENDIF()
-
-IF (WIN32)
+  #### Protobuf
+  ##find_path(Protobuf_INCLUDE_DIR google/protobuf/service.h $ENV{PROTOBUF_HOME}/include)
+  ##SET(CMAKE_FIND_LIBRARY_PREFIXES )
+  ##find_library(Protobuf_LIBRARIES NAMES libprotobuf.a protobuf PATHS $ENV{PROTOBUF_HOME}/lib)
+  ##include_directories(${Protobuf_INCLUDE_DIR})
+  ##message(Protobuf_INCLUDE_DIR = ${Protobuf_INCLUDE_DIR})
+  ##message(Protobuf_LIBRARIES = ${Protobuf_LIBRARIES})
+ELSEIF (WIN32)
   ## Protobuf
   find_path(Protobuf_INCLUDE_DIR google/protobuf/service.h $ENV{PROTOBUF_HOME}/include)
   find_library(Protobuf_LIBRARIES NAMES libprotobuf PATHS $ENV{PROTOBUF_HOME}/lib)
@@ -190,14 +189,14 @@ SET(SRCS
   pvizsync.h pvizsync.cxx
   pvizinteractorstyle.h pvizinteractorstyle.cxx
   vtkInteractorStyleRubberBand2Pick.h vtkInteractorStyleRubberBand2Pick.cxx
-  ##vtkCubeAxes2Actor.h vtkCubeAxes2Actor.cxx
+  #vtkCubeAxes2Actor.h vtkCubeAxes2Actor.cxx
   pvizExtractSelectedPolyDataIds.h pvizExtractSelectedPolyDataIds.cxx
   #PvizPoint.cpp PvizPoint.h
   #PvizCluster.cpp PvizCluster.h
   #PvizModel.cpp PvizModel.h
   aboutdialog.cpp
   helpdialog.cpp
-  message.pb.cc message.pb.h
+  #message.pb.cc message.pb.h
   )
 
 SET(UIS 
@@ -254,32 +253,30 @@ ADD_EXECUTABLE(pviz3 WIN32 MACOSX_BUNDLE
   )
 
 TARGET_LINK_LIBRARIES(pviz3 
-  ##QVTK #This is for VTK 5.8
+  ##QVTK 
   QtSolutions_PropertyBrowser
   pvizmodel
   ##nbclient
   ${QT_LIBRARIES}
   ${Boost_LIBRARIES} 
-  ${Protobuf_LIBRARIES}
-  ${VTK_LIBRARIES} # For VTK 6.1
+  ##${Protobuf_LIBRARIES}
+  ${VTK_LIBRARIES}
   )
 
 IF (APPLE)
   target_link_libraries (pviz3 
-    /opt/pviz3dev/lib/libactivemq-cpp.a
-    /opt/local/lib/libapr-1.a
-    /opt/local/lib/libaprutil-1.a
-    /opt/local/lib/db46/libdb-4.6.a
-    /opt/local/lib/libexpat.a
-    /opt/local/lib/libiconv.a
-    -lssl
-    -lcrypto
+    ##/opt/pviz3dev/lib/libactivemq-cpp.a
+    ##/opt/local/lib/libapr-1.a
+    ##/opt/local/lib/libaprutil-1.a
+    ##/opt/local/lib/db46/libdb-4.6.a
+    ##/opt/local/lib/libexpat.a
+    ##/opt/local/lib/libiconv.a
+    ##-lssl
+    ##-lcrypto
     -lpthread
     -lz
     )
-ENDIF()
-
-IF (WIN32)
+ELSEIF (WIN32)
   ## Console mode
   target_link_libraries (pviz3 
     ##-subsystem:console
@@ -314,17 +311,19 @@ IF (WIN32)
   INSTALL(FILES ${QT_REDIST_FILES} DESTINATION bin)
   INSTALL(FILES ${VTK_REDIST_FILES} DESTINATION bin)
   INSTALL(FILES ${WIN_REDIST_FILES} DESTINATION bin)
+
+  IF (USE_ACTIVEMQ)  
+    ## Activemq-CPP
+    FILE(TO_CMAKE_PATH $ENV{ACTIVEMQCPP_HOME}/bin Activemqcpp_REDIST_DIR)
+    FILE(GLOB Activemq_REDIST_FILES ${Activemqcpp_REDIST_DIR}/*.dll)
+    INSTALL(FILES ${Activemq_REDIST_FILES} DESTINATION bin)
+    message(Activemq_REDIST_FILES ${Activemq_REDIST_FILES})
   
-  ## Activemq-CPP
-  FILE(TO_CMAKE_PATH $ENV{ACTIVEMQCPP_HOME}/bin Activemqcpp_REDIST_DIR)
-  FILE(GLOB Activemq_REDIST_FILES ${Activemqcpp_REDIST_DIR}/*.dll)
-  INSTALL(FILES ${Activemq_REDIST_FILES} DESTINATION bin)
-  message(Activemq_REDIST_FILES ${Activemq_REDIST_FILES})
-  
-  FILE(TO_CMAKE_PATH $ENV{APR_HOME}/bin Apr_REDIST_DIR)
-  FILE(GLOB Apr_REDIST_FILES ${Apr_REDIST_DIR}/*.dll)
-  INSTALL(FILES ${Apr_REDIST_FILES} DESTINATION bin) 
-  message(Apr_REDIST_FILES ${Apr_REDIST_FILES})
+    FILE(TO_CMAKE_PATH $ENV{APR_HOME}/bin Apr_REDIST_DIR)
+    FILE(GLOB Apr_REDIST_FILES ${Apr_REDIST_DIR}/*.dll)
+    INSTALL(FILES ${Apr_REDIST_FILES} DESTINATION bin) 
+    message(Apr_REDIST_FILES ${Apr_REDIST_FILES})
+  ENDIF ()
 ENDIF (WIN32)
 
 IF (APPLE)
@@ -367,8 +366,8 @@ IF (APPLE)
   INSTALL(CODE "EXECUTE_PROCESS(COMMAND ${PROJECT_SOURCE_DIR}/etc/install_name.sh)")
   INSTALL(CODE "EXECUTE_PROCESS(COMMAND chmod -R g+rX,o+rX ${CMAKE_INSTALL_PREFIX}/pviz3.app)")
   INSTALL(CODE "EXECUTE_PROCESS(COMMAND find ${CMAKE_INSTALL_PREFIX}/pviz3.app -type l -exec chmod -h g+rX,o+rX {} \;)")
-  INSTALL(CODE "EXECUTE_PROCESS(COMMAND chmod -R g+rX,o+rX _CPack_Packages)")
-  INSTALL(CODE "EXECUTE_PROCESS(COMMAND find _CPack_Packages -type l -exec chmod -h g+rX,o+rX {} \;)")
+  #INSTALL(CODE "EXECUTE_PROCESS(COMMAND chmod -R g+rX,o+rX _CPack_Packages)")
+  #INSTALL(CODE "EXECUTE_PROCESS(COMMAND find _CPack_Packages -type l -exec chmod -h g+rX,o+rX {} \;)")
 ENDIF (APPLE)
 
 SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "PlotViz")
