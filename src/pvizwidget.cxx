@@ -56,6 +56,7 @@
 #include <vtkExtractSelection.h>
 #include <vtkUnstructuredGrid.h>
 #include <vtkExtractSelectedPolyDataIds.h>
+#include <vtkExtractSelectedIds.h>
 #include <vtkInformation.h>
 #include <vtkCleanPolyData.h>
 #include <vtkFollower.h>
@@ -298,6 +299,46 @@ Data :
 If type == 0, N class ID. I.e, C_1 | C_2 | ... C_N where C_n is integer
 If type == 1, N XYZ positions. I.e., X_1 | Y_1 | Z_1 | X_2 | Y_2 | Z_2 | X_3 | .... | Z_N, where numbers are double
  */
+
+void FindAllData(vtkPolyData* polydata)
+{
+    std::cout << "Normals: " << polydata->GetPointData()->GetNormals() << std::endl;
+    
+    vtkIdType numberOfPointArrays = polydata->GetPointData()->GetNumberOfArrays();
+    std::cout << "Number of PointData arrays: " << numberOfPointArrays << std::endl;
+    
+    vtkIdType numberOfCellArrays = polydata->GetCellData()->GetNumberOfArrays();
+    std::cout << "Number of CellData arrays: " << numberOfCellArrays << std::endl;
+    
+    std::cout << "Type table/key: " << std::endl;;
+    //more values can be found in <VTK_DIR>/Common/vtkSetGet.h
+    std::cout << VTK_UNSIGNED_CHAR << " unsigned char" << std::endl;
+    std::cout << VTK_UNSIGNED_INT << " unsigned int" << std::endl;
+    std::cout << VTK_FLOAT << " float" << std::endl;
+    std::cout << VTK_DOUBLE << " double" << std::endl;
+    
+    for(vtkIdType i = 0; i < numberOfPointArrays; i++)
+    {
+        // The following two lines are equivalent
+        //arrayNames.push_back(polydata->GetPointData()->GetArray(i)->GetName());
+        //arrayNames.push_back(polydata->GetPointData()->GetArrayName(i));
+        //int dataTypeID = polydata->GetPointData()->GetArray(i)->GetDataType();
+        //std::cout << "Array " << i << ": " << polydata->GetPointData()->GetArrayName(i)
+        //<< " (type: " << dataTypeID << ")" << std::endl;
+        std::cout << "Array " << i << ": " << polydata->GetPointData()->GetArrayName(i) << std::endl;
+    }
+    
+    for(vtkIdType i = 0; i < numberOfCellArrays; i++)
+    {
+        // The following two lines are equivalent
+        //polydata->GetPointData()->GetArray(i)->GetName();
+        //polydata->GetPointData()->GetArrayName(i);
+        //int dataTypeID = polydata->GetCellData()->GetArray(i)->GetDataType();
+        //std::cout << "Array " << i << ": " << polydata->GetCellData()->GetArrayName(i)
+        //<< " (type: " << dataTypeID << ")" << std::endl;
+        std::cout << "Array " << i << ": " << polydata->GetCellData()->GetArrayName(i) << std::endl;
+    }
+}
 
 PvizWidget::PvizWidget(QWidget* p, Qt::WFlags f)
 : QVTKWidget(p, f), 
@@ -544,7 +585,11 @@ int PvizWidget::SaveAsVTK(QString filename)
 {
 	VTK_CREATE(vtkPolyDataWriter, pdw);
 	//pdw->SetInput(c2p->GetPolyDataOutput());
-	pdw->SetInputData(plot);
+#if VTK_MAJOR_VERSION <= 5
+	pdw->SetInput(plot);
+#else
+    pdw->SetInputData(plot);
+#endif
 	pdw->SetFileName(filename.toAscii().data());
 	pdw->Write();
 	
@@ -984,8 +1029,13 @@ void PvizWidget::BuildSubplot()
 	//VTK_CREATE(vtkExtractSelectedPolyDataIds, ex);
 	VTK_CREATE(pvizExtractSelectedPolyDataIds, ex);
 	//vtkExtractSelectedPolyDataIds* subplot = vtkExtractSelectedPolyDataIds::New();
-	ex->SetInputData(0, plot);
-	ex->SetInputData(1, sel);
+#if VTK_MAJOR_VERSION <= 5
+	ex->SetInput(0, plot);
+	ex->SetInput(1, sel);
+#else
+    ex->SetInputData(0, plot);
+    ex->SetInputData(1, sel);
+#endif
 	//ex->PreserveTopologyOn();
 	//ex->PRESERVES_TOPOLOGY();
 	//selFilter->SetInputConnection(0,plot->GetProducerPort());
@@ -1010,7 +1060,11 @@ void PvizWidget::BuildPlot()
     
 	//VTK_CREATE(vtkPolyDataMapper, plotMapper);
 	VTK_CREATE(vtkPolyDataMapper, plotMapper);
-	plotMapper->SetInputData(cleansubplot->GetOutput());
+#if VTK_MAJOR_VERSION <= 5
+	plotMapper->SetInput(cleansubplot->GetOutput());
+#else
+    plotMapper->SetInputConnection(cleansubplot->GetOutputPort());
+#endif
 	plotMapper->ScalarVisibilityOn();
 	//plotMapper->SetScalarModeToUseCellFieldData();
 	//plotMapper->SelectColorArray(CLUSTER_ID_NAME);
@@ -1050,12 +1104,21 @@ void PvizWidget::BuildLabels()
 	
 	VTK_CREATE(vtkExtractSelection, ex2);
 	
-	ex2->SetInputData(0, plot);
-	ex2->SetInputData(1, sel2);
+#if VTK_MAJOR_VERSION <= 5
+	ex2->SetInput(0, plot);
+	ex2->SetInput(1, sel2);
+#else
+    ex2->SetInputData(0, plot);
+    ex2->SetInputData(1, sel2);
+#endif
 	ex2->Update();
 	
 	VTK_CREATE(vtkLabeledDataMapper, labelMapper);
-	labelMapper->SetInputData(ex2->GetOutput());
+#if VTK_MAJOR_VERSION <= 5
+	labelMapper->SetInput(ex2->GetOutput());
+#else
+    labelMapper->SetInputConnection(ex2->GetOutputPort());
+#endif
 	labelMapper->SetLabelModeToLabelFieldData();
 	labelMapper->SetFieldDataName(POINT_LABEL_NAME);
 	//labelMapper->GetLabelTextProperty()->ShadowOff();
@@ -1096,18 +1159,27 @@ void PvizWidget::BuildGlyph()
 	sel->AddNode(selectCellForGlyph);
 	//sel->RemoveNode(selectCellForGlyph);
 	
-	VTK_CREATE(pvizExtractSelectedPolyDataIds, ex);
-	ex->SetInputDataConnection(0, plot);
-	ex->SetInputData(1, sel);
+    VTK_CREATE(pvizExtractSelectedPolyDataIds, ex);
+    //VTK_CREATE(vtkExtractSelectedPolyDataIds, ex);
+    //VTK_CREATE(vtkExtractSelectedIds, ex);
+#if VTK_MAJOR_VERSION <= 5
+    ex->SetInput(0, plot);
+    ex->SetInput(1, sel);
+#else
+    ex->SetInputData(0, plot);
+    ex->SetInputData(1, sel);
+#endif
 	//ex->PreserveTopologyOn();
 	//ex->PRESERVES_TOPOLOGY();
 	//selFilter->SetInputConnection(0,plot->GetProducerPort());
 	ex->Update();
     // Don't use ReleaseDataFlagOn(). Picking will not work.
+    //FindAllData(plot);
 	
 	//VTK_CREATE(vtkCleanPolyData, cleansubplotForGlyph);
 	VTK_ASSIGN(vtkCleanPolyData, cleansubplotForGlyph);
-	cleansubplotForGlyph->SetInputConnection(ex->GetOutputPort());
+    cleansubplotForGlyph->SetInputConnection(ex->GetOutputPort());
+    //cleansubplotForGlyph->SetInputData(plot);
 	cleansubplotForGlyph->PointMergingOff();
 	cleansubplotForGlyph->ConvertLinesToPointsOff();
 	cleansubplotForGlyph->ConvertPolysToLinesOff();
@@ -1121,8 +1193,9 @@ void PvizWidget::BuildGlyph()
         double range[2];
         plot->GetPoints()->GetData()->GetRange(range, i);
         double len_ = range[1] - range[0];
-        if ((len_ != 0.0) && (len_ < len)) {
-	  len = len_;
+        if ((len_ != 0.0) && (len_ < len))
+        {
+            len = len_;
         }
     }
 
@@ -1172,7 +1245,13 @@ void PvizWidget::BuildGlyph()
     gs13->SetRadius(r);
     //gs13->ReleaseDataFlagOn();
     
-	glyph->SetInputData(cleansubplotForGlyph->GetOutput());
+#if VTK_MAJOR_VERSION <= 5
+    glyph->SetInput(cleansubplotForGlyph->GetOutput());
+#else
+    //glyph->SetInputData(plot);
+    //glyph->SetInputData(ex->GetOutput());
+    glyph->SetInputData(cleansubplotForGlyph->GetOutput());
+#endif
     
 	glyph->SetSourceConnection(0, gs00->GetOutputPort());
 	glyph->SetSourceConnection(1, gs01->GetOutputPort());
@@ -1199,10 +1278,15 @@ void PvizWidget::BuildGlyph()
 	glyph->SetInputArrayToProcess(1, 0, 0, vtkDataObject::FIELD_ASSOCIATION_POINTS, SHAPE_ID_NAME);
 	//glyph->SetInputArrayToProcess(3, 0, 0, vtkDataObject::FIELD_ASSOCIATION_POINTS, CLUSTER_ID_NAME);
 	//glyph->SetInputArrayToProcess(1, 0, 0, vtkDataObject::FIELD_ASSOCIATION_POINTS, CLUSTER_ID_NAME);
+    glyph->Update();
 	
 	VTK_CREATE(vtkPolyDataMapper, glyphMapper);
-	glyphMapper->SetInputData(glyph->GetOutput());
-	
+#if VTK_MAJOR_VERSION <= 5
+	glyphMapper->SetInput(glyph->GetOutput());
+#else
+    glyphMapper->SetInputConnection(glyph->GetOutputPort());
+#endif
+    
 	// Color by cluster id
 	glyphMapper->SetColorModeToMapScalars();
 	glyphMapper->SelectColorArray(CLUSTER_ID_NAME);
@@ -1224,6 +1308,7 @@ void PvizWidget::BuildGlyph()
     areaPicker->AddPickList(glyphActor);
 	qDebug() << "glyphActor added ... done.";
     
+    //SetGlyphVisible(TRUE);
     SetGlyphVisible(glyphVisible);
     
     /*
@@ -1287,7 +1372,11 @@ void PvizWidget::BuildGrid()
 	grid->SetVerts(gridPolys);
 	
 	VTK_CREATE(vtkPolyDataMapper, gridMapper);
-	gridMapper->SetInputData(grid);
+#if VTK_MAJOR_VERSION <= 5
+	gridMapper->SetInput(grid);
+#else
+    gridMapper->SetInputData(grid);
+#endif
 	
 	VTK_CREATE(vtkActor, gridActor);
 	gridActor->SetMapper(gridMapper);
@@ -1378,7 +1467,11 @@ void PvizWidget::BuildAxes()
 	linesPolyData->GetCellData()->SetScalars(colors);
 	// Visualize
 	VTK_CREATE(vtkPolyDataMapper, axesMapper);
-	axesMapper->SetInputData(linesPolyData);
+#if VTK_MAJOR_VERSION <= 5
+	axesMapper->SetInput(linesPolyData);
+#else
+    axesMapper->SetInputData(linesPolyData);
+#endif
 	
 	//renderer->ResetCamera();
 	ResetCamera();
@@ -2303,6 +2396,9 @@ void PvizWidget::refresh()
 	this->plot->Modified();
 	this->UpdateLines();
 	this->update();
+    // Not sure any performance implication due to frequent refreshing
+    if (this->cleansubplotForGlyph) this->cleansubplotForGlyph->Update();
+    if (this->cleansubplot) this->cleansubplot->Update();
 }
 
 void PvizWidget::SetAxesVisible(bool b)
@@ -2904,7 +3000,11 @@ int PvizWidget::SaveScreen(QString filename)
 	//vtkSmartPointer<vtkPNGWriter> writer = vtkSmartPointer<vtkPNGWriter>::New();
 	VTK_CREATE(vtkPNGWriter, writer);
 	writer->SetFileName(filename.toAscii().data());
-	writer->SetInputData(windowToImageFilter->GetOutput());
+#if VTK_MAJOR_VERSION <= 5
+	writer->SetInput(windowToImageFilter->GetOutput());
+#else
+    writer->SetInputData(windowToImageFilter->GetOutput());
+#endif
 	writer->Write();
 	
 	return SUCCESS;
@@ -3005,7 +3105,11 @@ void PvizWidget::AreaPickerCallBack(vtkObject* caller, unsigned long eventId, vo
 	
 	vtkSmartPointer<vtkExtractGeometry> ex = vtkSmartPointer<vtkExtractGeometry>::New();
 	ex->SetImplicitFunction(frustum);
-	ex->SetInputData(self->cleansubplot->GetOutput());
+#if VTK_MAJOR_VERSION <= 5
+	ex->SetInput(self->cleansubplot->GetOutput());
+#else
+    ex->SetInputData(self->cleansubplot->GetOutput());
+#endif
 	//ex->Update();
 	
 	VTK_CREATE(vtkVertexGlyphFilter, glyphFilter);
@@ -3498,7 +3602,11 @@ void PvizWidget::PlotTransform(vtkSmartPointer<vtkTransform> transform)
 	PlotSaveBeforeTransform();
 	
 	vtkSmartPointer<vtkTransformFilter> transformFilter = vtkSmartPointer<vtkTransformFilter>::New();
-	transformFilter->SetInputData(plot);
+#if VTK_MAJOR_VERSION <= 5
+	transformFilter->SetInput(plot);
+#else
+    transformFilter->SetInputData(plot);
+#endif
 	transformFilter->SetTransform(transform);
 	transformFilter->Update();
 	

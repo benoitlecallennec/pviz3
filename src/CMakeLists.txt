@@ -5,10 +5,14 @@ cmake_minimum_required(VERSION 2.8)
 
 set(PVIZ3_VERSION_MAJOR "0")
 set(PVIZ3_VERSION_MINOR "8")
-set(PVIZ3_VERSION_PATCH "21") 
+set(PVIZ3_VERSION_PATCH "22") 
 
 FIND_PACKAGE(VTK REQUIRED)
 INCLUDE(${VTK_USE_FILE}) # include UseVTK.cmake
+message(VTK_INCLUDE_DIRS= ${VTK_INCLUDE_DIRS})
+message(VTK_LIBRARY_DIRS= ${VTK_LIBRARY_DIRS})
+message(VTK_LIBRARIES= ${VTK_LIBRARIES})
+message(VTK_RUNTIME_LIBRARY_DIRS= ${VTK_RUNTIME_LIBRARY_DIRS})
 
 ## Try not to use OpenMP. It's error-prone
 ## But, it
@@ -148,16 +152,14 @@ ELSEIF (WIN32)
 ENDIF()
 
 IF (APPLE)
-  ## Protobuf
-  find_path(Protobuf_INCLUDE_DIR google/protobuf/service.h $ENV{PROTOBUF_HOME}/include)
-  SET(CMAKE_FIND_LIBRARY_PREFIXES )
-  find_library(Protobuf_LIBRARIES NAMES libprotobuf.a protobuf PATHS $ENV{PROTOBUF_HOME}/lib)
-  include_directories(${Protobuf_INCLUDE_DIR})
-  message(Protobuf_INCLUDE_DIR = ${Protobuf_INCLUDE_DIR})
-  message(Protobuf_LIBRARIES = ${Protobuf_LIBRARIES})
-ENDIF()
-
-IF (WIN32)
+  #### Protobuf
+  ##find_path(Protobuf_INCLUDE_DIR google/protobuf/service.h $ENV{PROTOBUF_HOME}/include)
+  ##SET(CMAKE_FIND_LIBRARY_PREFIXES )
+  ##find_library(Protobuf_LIBRARIES NAMES libprotobuf.a protobuf PATHS $ENV{PROTOBUF_HOME}/lib)
+  ##include_directories(${Protobuf_INCLUDE_DIR})
+  ##message(Protobuf_INCLUDE_DIR = ${Protobuf_INCLUDE_DIR})
+  ##message(Protobuf_LIBRARIES = ${Protobuf_LIBRARIES})
+ELSEIF (WIN32)
   ## Protobuf
   find_path(Protobuf_INCLUDE_DIR google/protobuf/service.h $ENV{PROTOBUF_HOME}/include)
   find_library(Protobuf_LIBRARIES NAMES libprotobuf PATHS $ENV{PROTOBUF_HOME}/lib)
@@ -274,9 +276,7 @@ IF (APPLE)
     -lpthread
     -lz
     )
-ENDIF()
-
-IF (WIN32)
+ELSEIF (WIN32)
   ## Console mode
   target_link_libraries (pviz3 
     ##-subsystem:console
@@ -312,22 +312,22 @@ IF (WIN32)
   INSTALL(FILES ${VTK_REDIST_FILES} DESTINATION bin)
   INSTALL(FILES ${WIN_REDIST_FILES} DESTINATION bin)
 
-IF (USE_ACTIVEMQ)  
-  ## Activemq-CPP
-  FILE(TO_CMAKE_PATH $ENV{ACTIVEMQCPP_HOME}/bin Activemqcpp_REDIST_DIR)
-  FILE(GLOB Activemq_REDIST_FILES ${Activemqcpp_REDIST_DIR}/*.dll)
-  INSTALL(FILES ${Activemq_REDIST_FILES} DESTINATION bin)
-  message(Activemq_REDIST_FILES ${Activemq_REDIST_FILES})
-
-  FILE(TO_CMAKE_PATH $ENV{APR_HOME}/bin Apr_REDIST_DIR)
-  FILE(GLOB Apr_REDIST_FILES ${Apr_REDIST_DIR}/*.dll)
-  INSTALL(FILES ${Apr_REDIST_FILES} DESTINATION bin) 
-  message(Apr_REDIST_FILES ${Apr_REDIST_FILES})
-ENDIF ()
+  IF (USE_ACTIVEMQ)  
+    ## Activemq-CPP
+    FILE(TO_CMAKE_PATH $ENV{ACTIVEMQCPP_HOME}/bin Activemqcpp_REDIST_DIR)
+    FILE(GLOB Activemq_REDIST_FILES ${Activemqcpp_REDIST_DIR}/*.dll)
+    INSTALL(FILES ${Activemq_REDIST_FILES} DESTINATION bin)
+    message(Activemq_REDIST_FILES ${Activemq_REDIST_FILES})
+  
+    FILE(TO_CMAKE_PATH $ENV{APR_HOME}/bin Apr_REDIST_DIR)
+    FILE(GLOB Apr_REDIST_FILES ${Apr_REDIST_DIR}/*.dll)
+    INSTALL(FILES ${Apr_REDIST_FILES} DESTINATION bin) 
+    message(Apr_REDIST_FILES ${Apr_REDIST_FILES})
+  ENDIF ()
 ENDIF (WIN32)
 
 IF (APPLE)
-  FILE(GLOB VTK_REDIST_FILES ${VTK_LIBRARY_DIRS}/*.dylib)
+  FILE(GLOB VTK_REDIST_FILES ${VTK_RUNTIME_LIBRARY_DIRS}/*.dylib)
   SET(VTK_REDIST_DIR pviz3.app/Contents/Libraries)
   SET(QT_REDIST_DIR pviz3.app/Contents/Frameworks)
   SET(QT_REDIST_PLUGINS_DIR pviz3.app/Contents/Plugins)
@@ -366,8 +366,8 @@ IF (APPLE)
   INSTALL(CODE "EXECUTE_PROCESS(COMMAND ${PROJECT_SOURCE_DIR}/etc/install_name.sh)")
   INSTALL(CODE "EXECUTE_PROCESS(COMMAND chmod -R g+rX,o+rX ${CMAKE_INSTALL_PREFIX}/pviz3.app)")
   INSTALL(CODE "EXECUTE_PROCESS(COMMAND find ${CMAKE_INSTALL_PREFIX}/pviz3.app -type l -exec chmod -h g+rX,o+rX {} \;)")
-  INSTALL(CODE "EXECUTE_PROCESS(COMMAND chmod -R g+rX,o+rX _CPack_Packages)")
-  INSTALL(CODE "EXECUTE_PROCESS(COMMAND find _CPack_Packages -type l -exec chmod -h g+rX,o+rX {} \;)")
+  #INSTALL(CODE "EXECUTE_PROCESS(COMMAND chmod -R g+rX,o+rX _CPack_Packages)")
+  #INSTALL(CODE "EXECUTE_PROCESS(COMMAND find _CPack_Packages -type l -exec chmod -h g+rX,o+rX {} \;)")
 ENDIF (APPLE)
 
 SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "PlotViz")
