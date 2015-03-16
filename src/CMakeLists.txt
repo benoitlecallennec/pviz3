@@ -36,7 +36,7 @@ INCLUDE(${QT_USE_FILE})  # include UseQt4.cmake
 set(Boost_USE_STATIC_LIBS   ON)
 set(Boost_USE_MULTITHREADED ON)
 
-IF (APPLE)
+IF (APPLE OR UNIX)
   find_package(Boost 1.44 REQUIRED COMPONENTS system signals filesystem iostreams program_options)
 ELSE ()
   find_package(Boost 1.44 REQUIRED COMPONENTS system signals filesystem iostreams program_options zlib)

@@ -1,4 +1,6 @@
 #include "pvizcomm.h"
+#include <stdio.h>
+#include <stdarg.h>
 
 std::string
 format (const char *fmt, ...)

@@ -15,7 +15,7 @@ target_link_libraries (pvizmodeldemo pvizmodel)
 set(Boost_USE_STATIC_LIBS   ON)
 set(Boost_USE_MULTITHREADED ON)
 
-IF (APPLE)
+IF (APPLE OR UNIX)
   find_package(Boost 1.44 REQUIRED COMPONENTS system signals filesystem iostreams)
   target_link_libraries (pvizmodeldemo z)
 ELSE ()
@@ -26,8 +26,10 @@ include_directories (${Boost_INCLUDE_DIRS})
 target_link_libraries (pvizmodeldemo ${Boost_LIBRARIES})
 
 ## Protobuf
+IF (PVIZRPC_CLIENT_ENABLE)
 find_path(Protobuf_INCLUDE_DIR google/protobuf/service.h $ENV{PROTOBUF_HOME}/include)
 find_library(Protobuf_LIBRARIES NAMES protobuf PATHS $ENV{PROTOBUF_HOME}/lib)
 include_directories(${Protobuf_INCLUDE_DIR})
+ENDIF ()
 
 

@@ -110,6 +110,5 @@ if (PVIZRPC_CLIENT_ENABLE)
 endif(PVIZRPC_CLIENT_ENABLE)
 
 target_link_libraries (pvizmodel 
-  ${Protobuf_LIBRARIES}
   ${Boost_LIBRARIES}
   )
