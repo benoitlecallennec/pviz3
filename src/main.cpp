@@ -52,6 +52,7 @@ int main(int argc, char *argv[])
     bool enableConnectToServer = false;
     bool enableTileWindows = false;
     bool enableFullscreen = false;
+    int colormap = 0;
     // Using toStdString() cause an error. Instead, using toAscii()
     std::string logfile = std::string(QDesktopServices::storageLocation(QDesktopServices::DataLocation).toAscii().data()) + "/PVIZ3/pviz3.log";
     
@@ -62,9 +63,10 @@ int main(int argc, char *argv[])
 		("help,h", "produce help message")
 		("input-file,i", po::value< std::vector<std::string> >(&input_files), "input file")
 		("directory-open,d", po::value< std::string >(&directory_name), "directory open")
-		("connect,c", "connect to server")
+		("connect", "connect to server")
 		("tile", "tile windows")
-		("fullscreen", "fullscreen")
+        ("fullscreen", "fullscreen")
+        ("colormap,c", po::value< int>(&colormap), "colormap")
         ("logfile", po::value< std::string >(&logfile), "logfile")
         ;
 
@@ -97,7 +99,7 @@ int main(int argc, char *argv[])
         {
             enableFullscreen = true;
         }
-	}
+    }
     catch(std::exception& e)
     {
         cout << e.what() << "\n";
@@ -142,6 +144,8 @@ int main(int argc, char *argv[])
     
     if (enableTileWindows)
         w.TileSubWindows();
+    
+    w.SetColorMap(colormap);
     
     //QString location = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
     //QFileInfo info = QFileInfo(location + "/PVIZ3/pviz3.ini");

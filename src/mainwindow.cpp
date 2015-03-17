@@ -2698,6 +2698,11 @@ void MainWindow::FullScreen()
     }
 }
 
+void MainWindow::SetColorMap(int map)
+{
+    idToFeature["colormap.type"]->setValue(map);
+}
+
 void MainWindow::OnCameraFocusChanged(PvizWidget* pviz, double *pos)
 {
     //qDebug() << "OnClusterColorChanged ... notified:" << color;

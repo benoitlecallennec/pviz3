@@ -177,6 +177,7 @@ public Q_SLOTS:
     void checkDirFinished();
     void TileSubWindows();
     void FullScreen();
+    void SetColorMap(int map);
 	QModelIndexList getSelectedRows();
 protected:
 	void statusMessage(QString msg);
