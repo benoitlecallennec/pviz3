@@ -42,10 +42,9 @@ install_id ()
   done
 }
 
-FILES=$1
-if [ x"$FILES" == "x" ]; then
-  FILES=`find install _CPack_Packages -name "pviz3" -or -name "lib*.dylib" -type f -or -name "Qt*" -type f -or -name "phonon" -type f | grep -v -e "Headers" -e "prl"`
-fi
+PREFIX=$1
+FILES=`find $PREFIX _CPack_Packages -name "pviz3" -or -name "lib*.dylib" -type f -or -name "Qt*" -type f -or -name "phonon" -type f | grep -v -e "Headers" -e "prl"`
+
 for f in $FILES; do
   install_id $f
   install_names $f
