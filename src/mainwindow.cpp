@@ -12,6 +12,7 @@
 
 #include <vtkRenderWindow.h>
 #include <vtkTransform.h>
+
 #ifdef _WIN32 
 #include  "Windows.h"
 #endif
@@ -1751,7 +1752,6 @@ void MainWindow::ConnectToNBServer()
     connect(pviz, SIGNAL(OnCameraFocusChanged(PvizWidget*, double *pos)), this, SLOT(OnCameraFocusChanged(PvizWidget*, double *pos)));
     
 	pviz->setMinimumSize(200, 200);
-    
     qDebug() << "PvizWidget created : " << pviz;
     
     /*

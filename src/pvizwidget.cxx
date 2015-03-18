@@ -446,7 +446,8 @@ focusMode_(AUTO)
 	interactor->SetPicker(cellPicker);
 	
 	// Initialize must be called prior to creating timer events.
-	interactor->Initialize();
+    interactor->Initialize();
+    
 	// Sign up to receive TimerEvent
 	VTK_CREATE(vtkCallbackCommand, cb1);
 	cb1->SetCallback(PvizWidget::InteractorTimerEvent);
@@ -493,10 +494,13 @@ focusMode_(AUTO)
 	//widget->SetInteractor( this->GetInteractor() );
 	orientationMarker->SetViewport( 0.0, 0.0, 0.2, 0.2 );
 	orientationMarker->SetEnabled( 1 );
-	orientationMarker->InteractiveOff();
+    
+    // Disabled due to OpenGL Error report on VTK 6.1
+    // Ref: http://www.vtk.org/Wiki/VTK/OpenGL_Errors
+    //orientationMarker->InteractiveOff();
 	
-	this->update();
-	this->GetRenderWindow()->Render();
+	//this->update();
+	//this->GetRenderWindow()->Render();
 	
 	model = new PvizModel();
 	
@@ -955,7 +959,7 @@ void PvizWidget::loadModel()
 	
 	//------------------------------
 	// Title
-	//------------------------------    
+	//------------------------------
     titleActor->SetInput ( model->title.c_str() );
     titleActor->SetTextScaleModeToViewport();
     //titleActor->SetTextScaleModeToProp();
@@ -968,8 +972,6 @@ void PvizWidget::loadModel()
     titleActor->GetTextProperty()->SetJustificationToCentered();    
     titleActor->GetTextProperty()->SetFontSize ( 12 );
 
-    qDebug() << titleActor->GetWidth();
-
     titleActor->UseBorderAlignOn();
     if (GetTitle() == "")
         titleActor->SetVisibility(false);
@@ -980,8 +982,8 @@ void PvizWidget::loadModel()
 	// Render
 	//------------------------------
 	//renderer->ResetCamera();
-	renderer->Render();
-	this->GetRenderWindow()->Render();
+	//renderer->Render();
+	//this->GetRenderWindow()->Render();
     
     emit OnModelLoaded(this);
     
@@ -2170,20 +2172,20 @@ QColor PvizWidget::GetModelClusterColor(unsigned int cid)
 void PvizWidget::UpdateLines()
 {
 	if (!cleansubplot) 
-	{
 		return;
-	}
+    
 	cleansubplot->Update();
 	
 	QMap<unsigned int, PvizLine*> lines_(model->lines);
 	vtkUnsignedIntArray *pids = vtkUnsignedIntArray::SafeDownCast(cleansubplot->GetOutput()->GetPointData()->GetArray(POINT_ID_NAME));
     
-    if (!pids) return;
+    if (!pids)
+        return;
 	
-    qDebug() << "GetNumberOfLines: " << cleansubplot->GetOutput()->GetNumberOfLines();
-    qDebug() << "GetNumberOfCells: " << cleansubplot->GetOutput()->GetNumberOfCells();
-    if (!lineVisible) return;
-	// Build lines
+    if (!lineVisible)
+        return;
+
+    // Build lines
 	VTK_CREATE(vtkCellArray, lines);
 	
 	foreach(PvizLine* line, lines_)
@@ -2604,7 +2606,7 @@ void PvizWidget::SetGlyphVisible(bool b)
 	if (glyphVisible)
 	{
 		renderer->AddObserver(vtkCommand::EndEvent, cbGlyph);
-		renderer->Render();
+		//renderer->Render();
 	}
 	else
 	{
@@ -2865,7 +2867,8 @@ void PvizWidget::BuildLegend()
 	
 	VTK_CREATE(vtkCubeSource, source);
 	vtkSmartPointer<vtkPolyData> sym = source->GetOutput();
-	
+    source->Update();
+    
 	i = 0;
 	foreach(PvizCluster* cluster, clusters_)
 	{
@@ -2895,7 +2898,7 @@ void PvizWidget::BuildLegend()
 		}
 	}
 	
-        SetLegendPosition(legendPosition);
+    SetLegendPosition(legendPosition);
 	legendActor->BorderOn();
     //legendActor->BorderOff();
 	legendActor->LockBorderOn();
