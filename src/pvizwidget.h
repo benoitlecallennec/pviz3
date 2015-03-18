@@ -219,8 +219,10 @@ public:
 	void SetColorMap(ColorMap_t type);
 	ColorMap_t GetColorMap();
 	
-	void SetPlotVisible(bool b);
-	bool GetPlotVisible();
+    void SetPlotVisible(bool b);
+    bool GetPlotVisible();
+    void SetLineVisible(bool b);
+    bool GetLineVisible();
 	void SetPlotLineWidth(unsigned int width);
 	unsigned int GetPlotLineWidth();
 	void SetPlotPointSize(unsigned int size);
@@ -386,6 +388,7 @@ protected:
     bool cubeAxesVisible;
     bool cubeAxesResizeOnSelection;
 	bool plotVisible;
+    bool lineVisible;
 	bool glyphVisible;
 	bool glyphAutoOrientation;
 	bool legendVisible;

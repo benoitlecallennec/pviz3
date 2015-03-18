@@ -343,7 +343,8 @@ PvizWidget::PvizWidget(QWidget* p, Qt::WFlags f)
 : QVTKWidget(p, f), 
 axesVisible(true), 
 cubeAxesVisible(false),
-plotVisible(true), 
+plotVisible(true),
+lineVisible(true),
 glyphVisible(false), 
 glyphAutoOrientation(false), 
 legendVisible(false), 
@@ -2179,6 +2180,9 @@ void PvizWidget::UpdateLines()
     
     if (!pids) return;
 	
+    qDebug() << "GetNumberOfLines: " << cleansubplot->GetOutput()->GetNumberOfLines();
+    qDebug() << "GetNumberOfCells: " << cleansubplot->GetOutput()->GetNumberOfCells();
+    if (!lineVisible) return;
 	// Build lines
 	VTK_CREATE(vtkCellArray, lines);
 	
@@ -2541,6 +2545,21 @@ bool PvizWidget::GetPlotVisible()
 	return plotVisible;
 }
 
+void PvizWidget::SetLineVisible(bool b)
+{
+    plotVisible = b;
+    if (plotActor.GetPointer())
+    {
+        lineVisible = b;
+    }
+    this->refresh();
+}
+
+bool PvizWidget::GetLineVisible()
+{
+    return lineVisible;
+}
+
 void PvizWidget::SetPlotLineWidth(unsigned int width)
 {
 	plotLineWidth = width;
@@ -2548,7 +2567,7 @@ void PvizWidget::SetPlotLineWidth(unsigned int width)
 	{
 		plotActor->GetProperty()->SetLineWidth(plotLineWidth);
 	}
-	this->update();	
+	this->update();
 }
 
 unsigned int PvizWidget::GetPlotLineWidth()

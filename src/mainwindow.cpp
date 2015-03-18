@@ -609,10 +609,14 @@ void MainWindow::featureValueChanged(QtProperty *property, const QVariant &value
 			child->SetColorMap((PvizWidget::ColorMap_t)value.toInt());
 			RefreshTreeColor();
 		}
-		else if (id == QLatin1String("plot.visible"))
-		{
-			child->SetPlotVisible(value.toBool());
-		}
+        else if (id == QLatin1String("plot.visible"))
+        {
+            child->SetPlotVisible(value.toBool());
+        }
+        else if (id == QLatin1String("line.visible"))
+        {
+            child->SetLineVisible(value.toBool());
+        }
 		else if (id == QLatin1String("plot.linewidth"))
 		{
 			child->SetPlotLineWidth(value.toInt());
@@ -1440,10 +1444,14 @@ void MainWindow::buildFeatureTree_AddPlotFeature()
     QtProperty *root = groupManager->addProperty("Plot");
 	
     QtVariantProperty *property;
-	property = vman2->addProperty(QVariant::Bool, tr("Visible"));
+	property = vman2->addProperty(QVariant::Bool, tr("Points"));
 	//property->setValue(ui->pvizWidget->GetPlotVisible());	
 	property->setValue(true);	
-	addFeature(root, property, QLatin1String("plot.visible"));
+    addFeature(root, property, QLatin1String("plot.visible"));
+
+    property = vman2->addProperty(QVariant::Bool, tr("Lines"));
+    property->setValue(true);
+    addFeature(root, property, QLatin1String("line.visible"));
 	
 	property = vman2->addProperty(QVariant::Int, tr("Line Width"));
 	//property->setValue(ui->pvizWidget->GetPlotLineWidth());
@@ -2026,7 +2034,8 @@ void MainWindow::updateFeature(PvizWidget *pviz)
 	//idToFeature["scaleaxes.zaxis.labelscale"]->setValue(pviz->GetScaleAxesLabelScale(2));
 	idToFeature["background.color"]->setValue(pviz->GetBackgroundColor());
 	idToFeature["colormap.type"]->setValue(pviz->GetColorMap());
-	idToFeature["plot.visible"]->setValue(pviz->GetPlotVisible());
+    idToFeature["plot.visible"]->setValue(pviz->GetPlotVisible());
+    idToFeature["line.visible"]->setValue(pviz->GetLineVisible());
 	idToFeature["plot.linewidth"]->setValue(pviz->GetPlotLineWidth());
 	idToFeature["plot.pointsize"]->setValue(pviz->GetPlotPointSize());
 	idToFeature["glyph.visible"]->setValue(pviz->GetGlyphVisible());
