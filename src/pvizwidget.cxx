@@ -351,8 +351,8 @@ legendVisible(false),
 fpsVisible(false), 
 labelVisible(false),
 plotLineWidth(2), 
-plotPointSize(2), 
-glyphScaleFactor(1.0), 
+plotPointSize(2),
+glyphScaleFactor(1.0),
 legendHeightFactor(0.3), 
 legendWidthFactor(0.3),
 playTimerDuration_(50), 
@@ -4177,3 +4177,23 @@ void PvizWidget::setHoverTimerActivate(bool b)
     }
 }
 
+void PvizWidget::ApplyJitter(double factor)
+{
+    vtkUnsignedIntArray *pids = vtkUnsignedIntArray::SafeDownCast(plot->GetPointData()->GetArray(POINT_ID_NAME));
+    vtkPoints *points = plot->GetPoints();
+    
+    QMap<unsigned int, PvizPoint*> points_(model->points);
+    foreach(PvizPoint* point, points_)
+    {
+        vtkIdType pidx = pids->LookupValue(point->id);
+        
+        double p[3];
+        points->GetPoint(pidx, p);
+        for (int i = 0; i < 3; i++)
+            p[i] = point->position[i] + vtkMath::Gaussian(0.0, factor);
+        
+        points->SetPoint(pidx, p);
+    }
+    
+    refresh();
+}

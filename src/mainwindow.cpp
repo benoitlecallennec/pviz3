@@ -625,6 +625,10 @@ void MainWindow::featureValueChanged(QtProperty *property, const QVariant &value
 		{
 			child->SetPlotPointSize(value.toInt());
 		}
+        else if (id == QLatin1String("plot.jitter"))
+        {
+            child->ApplyJitter(value.toDouble());
+        }
 		else if (id == QLatin1String("glyph.visible"))
 		{
 			child->SetGlyphVisible(value.toBool());
@@ -1466,7 +1470,14 @@ void MainWindow::buildFeatureTree_AddPlotFeature()
     property->setAttribute(QLatin1String("minimum"), 1);
     property->setAttribute(QLatin1String("maximum"), 50);
 	addFeature(root, property, QLatin1String("plot.pointsize"));
-	
+
+    property = vman2->addProperty(QVariant::Double, tr("Jitter"));
+    property->setValue(0);
+    property->setAttribute(QLatin1String("minimum"), 0);
+    property->setAttribute(QLatin1String("maximum"), 1);
+    property->setAttribute(QLatin1String("singleStep"), 0.01);
+    addFeature(root, property, QLatin1String("plot.jitter"));
+
     ui->tpPreferences->addProperty(root);
 }
 
@@ -2037,7 +2048,8 @@ void MainWindow::updateFeature(PvizWidget *pviz)
     idToFeature["plot.visible"]->setValue(pviz->GetPlotVisible());
     idToFeature["line.visible"]->setValue(pviz->GetLineVisible());
 	idToFeature["plot.linewidth"]->setValue(pviz->GetPlotLineWidth());
-	idToFeature["plot.pointsize"]->setValue(pviz->GetPlotPointSize());
+    idToFeature["plot.pointsize"]->setValue(pviz->GetPlotPointSize());
+    idToFeature["plot.jitter"]->setValue(0.0);
 	idToFeature["glyph.visible"]->setValue(pviz->GetGlyphVisible());
 	idToFeature["glyph.scalefactor"]->setValue(pviz->GetGlyphScaleFactor());
 	idToFeature["glyph.autoorientation"]->setValue(pviz->GetGlyphAutoOrientation());

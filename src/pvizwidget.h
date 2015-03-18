@@ -227,6 +227,7 @@ public:
 	unsigned int GetPlotLineWidth();
 	void SetPlotPointSize(unsigned int size);
 	unsigned int GetPlotPointSize();
+    void ApplyJitter(double factor);
 	void SetGlyphVisible(bool b);
 	bool GetGlyphVisible();
 	void SetGlyphScaleFactor(double factor);
@@ -381,7 +382,6 @@ public:
 
 	//void SetPickDelta(int delta);
 	//int GetPickDelta();
-    
 	void RefreshAll();
 protected:
 	bool axesVisible;
@@ -397,7 +397,7 @@ protected:
 	
 	unsigned int plotLineWidth;
 	unsigned int plotPointSize;
-	double glyphScaleFactor;
+    double glyphScaleFactor;
 	double legendHeightFactor;
 	double legendWidthFactor;
 	double cameraClippingDistance_;
