@@ -297,6 +297,9 @@ public:
 
     void SetColorbarVisible(bool b);
     bool GetColorbarVisible();
+    void SetColorbarNumberOfLabels(int num);
+    int GetColorbarNumberOfLabels();
+    
     
 	double GetCameraFocusX();
 	double GetCameraFocusY();
@@ -400,16 +403,20 @@ protected:
     bool lineVisible;
 	bool glyphVisible;
 	bool glyphAutoOrientation;
-	bool legendVisible;
-    bool colorbarVisible;
 	bool fpsVisible;
     bool labelVisible;
 	
 	unsigned int plotLineWidth;
 	unsigned int plotPointSize;
     double glyphScaleFactor;
+
+    bool legendVisible;
 	double legendHeightFactor;
 	double legendWidthFactor;
+
+    bool colorbarVisible;
+    int colorbarNumberOfLabels;
+
 	double cameraClippingDistance_;
 	int playTimer_;
 	int playTimerDuration_;

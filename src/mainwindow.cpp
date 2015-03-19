@@ -665,6 +665,10 @@ void MainWindow::featureValueChanged(QtProperty *property, const QVariant &value
         {
             child->SetColorbarVisible(value.toBool());
         }
+        else if (id == QLatin1String("colorbar.numlabels"))
+        {
+            child->SetColorbarNumberOfLabels(value.toInt());
+        }
 		else if (id == QLatin1String("fps.visible"))
 		{
 			child->SetFPSVisible(value.toDouble());
@@ -1570,6 +1574,10 @@ void MainWindow::buildFeatureTree_AddColorbarFeature()
     property->setValue(false);
     addFeature(root, property, QLatin1String("colorbar.visible"));
     
+    property = vman2->addProperty(QVariant::Int, tr("Num. of Labels"));
+    property->setValue(2);
+    property->setAttribute(QLatin1String("minimum"), 2);
+    addFeature(root, property, QLatin1String("colorbar.numlabels"));
     ui->tpPreferences->addProperty(root);
 }
 
@@ -2083,6 +2091,7 @@ void MainWindow::updateFeature(PvizWidget *pviz)
 	idToFeature["legend.heightfactor"]->setValue(pviz->GetLegendHeightFactor());
 	idToFeature["legend.widthfactor"]->setValue(pviz->GetLegendWidthFactor());
     idToFeature["colorbar.visible"]->setValue(pviz->GetColorbarVisible());
+    idToFeature["colorbar.numlabels"]->setValue(pviz->GetColorbarNumberOfLabels());
 	idToFeature["fps.visible"]->setValue(pviz->GetFPSVisible());
 	idToFeature["camera.sync"]->setValue(pviz->GetUseSyncCamera());
 	idToFeature["camera.focusmode"]->setValue(pviz->GetFocusMode());

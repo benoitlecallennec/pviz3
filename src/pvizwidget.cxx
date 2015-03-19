@@ -362,16 +362,17 @@ plotVisible(true),
 lineVisible(true),
 glyphVisible(false), 
 glyphAutoOrientation(false), 
-legendVisible(false),
-colorbarVisible(false),
-fpsVisible(false), 
+fpsVisible(false),
 labelVisible(false),
-plotLineWidth(2), 
+plotLineWidth(2),
 plotPointSize(2),
 glyphScaleFactor(1.0),
-legendHeightFactor(0.3), 
+legendVisible(false),
+legendHeightFactor(0.3),
 legendWidthFactor(0.3),
-playTimerDuration_(50), 
+colorbarVisible(false),
+colorbarNumberOfLabels(5),
+playTimerDuration_(50),
 hoverTimerDuration_(500), 
 colorMap_(CUSTOM), 
 visibleMode_(FULL), 
@@ -411,7 +412,6 @@ labelActor(vtkSmartPointer<vtkActor2D>::New()),
 titleActor(vtkSmartPointer<vtkTextActor>::New()),
 //cubeAxesActor(vtkSmartPointer<vtkCubeAxes2Actor>::New()),
 cubeAxesActor(vtkSmartPointer<vtkCubeAxesActor>::New()),
-orientationMarker(vtkSmartPointer<vtkOrientationMarkerWidget>::New()),
 colorbarActor(vtkSmartPointer<vtkScalarBarActor>::New()),
 //scaleAxesActor(vtkSmartPointer<pvizAxesActor>::New()),
 numOfNeighbors_(15),
@@ -504,7 +504,7 @@ focusMode_(AUTO)
 	axesActor->GetYAxisCaptionActor2D()->GetCaptionTextProperty()->ShadowOff();
 	axesActor->GetZAxisCaptionActor2D()->GetCaptionTextProperty()->ShadowOff();
 	
-	//VTK_CREATE(vtkOrientationMarkerWidget, widget);	
+	VTK_ASSIGN(vtkOrientationMarkerWidget, orientationMarker);
 	//widget->SetOutlineColor( 0.9300, 0.5700, 0.1300 );
 	orientationMarker->SetOrientationMarker( axesActor );
 	orientationMarker->SetInteractor( this->GetRenderWindow()->GetInteractor() );
@@ -3090,6 +3090,19 @@ void PvizWidget::SetColorbarVisible(bool b)
 bool PvizWidget::GetColorbarVisible()
 {
     return colorbarVisible;
+}
+
+void PvizWidget::SetColorbarNumberOfLabels(int num)
+{
+    colorbarNumberOfLabels = num;
+    colorbarActor->SetNumberOfLabels(colorbarNumberOfLabels);
+    
+    this->update();
+}
+
+int PvizWidget::GetColorbarNumberOfLabels()
+{
+    return colorbarNumberOfLabels;
 }
 
 int PvizWidget::SaveScreen(QString filename)
