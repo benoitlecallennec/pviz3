@@ -34,6 +34,8 @@
 #include <vtkConeSource.h>
 #include <vtkSphereSource.h>
 #include <vtkCylinderSource.h>
+#include <vtkScalarBarActor.h>
+#include <vtkScalarBarWidget.h>
 
 #include <QVTKWidget.h>
 #include "pvizmodel.h"
@@ -115,7 +117,11 @@ public:
 	enum ColorMap_t {
         MATLAB_DISTINCT, SALSA_CUSTOM, 
         COLORBREW_SET1, COLORBREW_PAIRED,
-		RAINBOW, RAINBOW_R, COOL2WARM, COOL2WARM_R, EXPERIMENTAL,
+		RAINBOW, RAINBOW_R,
+        COOL2WARM, COOL2WARM_R,
+        JET, JET_R,
+        HSV, HOT,
+        EXPERIMENTAL,
         CUSTOM
 	};
     
@@ -288,7 +294,10 @@ public:
 	double GetLegendHeightFactor();
 	void SetLegendWidthFactor(double width);
 	double GetLegendWidthFactor();
-	
+
+    void SetColorbarVisible(bool b);
+    bool GetColorbarVisible();
+    
 	double GetCameraFocusX();
 	double GetCameraFocusY();
 	double GetCameraFocusZ();
@@ -392,6 +401,7 @@ protected:
 	bool glyphVisible;
 	bool glyphAutoOrientation;
 	bool legendVisible;
+    bool colorbarVisible;
 	bool fpsVisible;
     bool labelVisible;
 	
@@ -466,6 +476,7 @@ protected:
     vtkSmartPointer<vtkTextActor> titleActor;
     //vtkSmartPointer<vtkCubeAxes2Actor> cubeAxesActor;
     vtkSmartPointer<vtkCubeAxesActor> cubeAxesActor;
+    vtkSmartPointer<vtkScalarBarActor> colorbarActor;
     
     //vtkSmartPointer<pvizAxisActor> xAxisActor;
     //vtkSmartPointer<pvizAxesActor> scaleAxesActor;

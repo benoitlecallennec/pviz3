@@ -103,7 +103,8 @@ public:
 	void buildFeatureTree_AddColorMapFeature();
 	void buildFeatureTree_AddPlotFeature();
 	void buildFeatureTree_AddGlyphFeature();
-	void buildFeatureTree_AddLegendFeature();
+    void buildFeatureTree_AddLegendFeature();
+    void buildFeatureTree_AddColorbarFeature();
 	void buildFeatureTree_AddFPSFeature();
 	void buildFeatureTree_AddCameraLinkFeature();
     void buildFeatureTree_AddLabelFeature();

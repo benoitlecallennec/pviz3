@@ -270,6 +270,21 @@ float salsa17[][3] = {
     RGB_F(255,  255, 255)
 };
 
+double black[3]       = { 0.0, 0.0, 0.0 };
+double white[3]       = { 1.0, 1.0, 1.0 };
+double red[3]         = { 1.0, 0.3, 0.3 };
+double red_pure[3]    = { 1.0, 0.0, 0.0 };
+double green[3]       = { 0.3, 1.0, 0.3 };
+double green_pure[3]  = { 0.0, 1.0, 0.0 };
+double blue[3]        = { 0.3, 0.3, 1.0 };
+double blue_pure[3]   = { 0.0, 0.0, 1.0 };
+double yellow[3]      = { 1.0, 1.0, 0.3 };
+double yellow_pure[3] = { 1.0, 1.0, 0.0 };
+double magenta[3]     = { 1.0, 0.3, 1.0 };
+double cyan[3]        = { 0.3, 1.0, 1.0 };
+double orange[3]      = { 1.0, 0.5, 0.0 };
+double violet[3]      = { 2.0 / 3.0, 0.0, 1.0 };
+
 QColor PvizToQColor(PvizColor pvizcol)
 {
     return QColor((QRgb)pvizcol.ui_color);
@@ -347,7 +362,8 @@ plotVisible(true),
 lineVisible(true),
 glyphVisible(false), 
 glyphAutoOrientation(false), 
-legendVisible(false), 
+legendVisible(false),
+colorbarVisible(false),
 fpsVisible(false), 
 labelVisible(false),
 plotLineWidth(2), 
@@ -395,6 +411,8 @@ labelActor(vtkSmartPointer<vtkActor2D>::New()),
 titleActor(vtkSmartPointer<vtkTextActor>::New()),
 //cubeAxesActor(vtkSmartPointer<vtkCubeAxes2Actor>::New()),
 cubeAxesActor(vtkSmartPointer<vtkCubeAxesActor>::New()),
+orientationMarker(vtkSmartPointer<vtkOrientationMarkerWidget>::New()),
+colorbarActor(vtkSmartPointer<vtkScalarBarActor>::New()),
 //scaleAxesActor(vtkSmartPointer<pvizAxesActor>::New()),
 numOfNeighbors_(15),
 appendNeighbors(false),
@@ -487,14 +505,13 @@ focusMode_(AUTO)
 	axesActor->GetZAxisCaptionActor2D()->GetCaptionTextProperty()->ShadowOff();
 	
 	//VTK_CREATE(vtkOrientationMarkerWidget, widget);	
-	orientationMarker = vtkSmartPointer<vtkOrientationMarkerWidget>::New();
 	//widget->SetOutlineColor( 0.9300, 0.5700, 0.1300 );
 	orientationMarker->SetOrientationMarker( axesActor );
 	orientationMarker->SetInteractor( this->GetRenderWindow()->GetInteractor() );
 	//widget->SetInteractor( this->GetInteractor() );
 	orientationMarker->SetViewport( 0.0, 0.0, 0.2, 0.2 );
 	orientationMarker->SetEnabled( 1 );
-    
+
     // Disabled due to OpenGL Error report on VTK 6.1
     // Ref: http://www.vtk.org/Wiki/VTK/OpenGL_Errors
     //orientationMarker->InteractiveOff();
@@ -621,6 +638,10 @@ void PvizWidget::SaveToModel()
                 case RAINBOW_R:
                 case COOL2WARM:
                 case COOL2WARM_R:
+                case JET:
+                case JET_R:
+                case HSV:
+                case HOT:
                 case EXPERIMENTAL:
                     cf->GetColor(cluster->id, rgba);
                     break;
@@ -978,7 +999,14 @@ void PvizWidget::loadModel()
     
     renderer->AddActor2D ( titleActor );
     
-	//------------------------------
+    colorbarActor->SetLookupTable(lut);
+    colorbarActor->SetLabelFormat("%g");
+    colorbarActor->SetWidth(0.08);
+    colorbarActor->SetPosition(0.9, 0.1);
+    colorbarActor->SetVisibility(colorbarVisible);
+    renderer->AddActor2D ( colorbarActor );
+    
+    //------------------------------
 	// Render
 	//------------------------------
 	//renderer->ResetCamera();
@@ -2152,6 +2180,10 @@ QColor PvizWidget::GetModelClusterColor(unsigned int cid)
         case RAINBOW_R:
         case COOL2WARM:
         case COOL2WARM_R:
+        case JET:
+        case JET_R:
+        case HSV:
+        case HOT:
         case EXPERIMENTAL:
         {
             cf->GetColor(cid, rgba);
@@ -2663,6 +2695,14 @@ void PvizWidget::ApplyColorMap(ColorMap_t type)
 	double cidsRange[2];
 	cids->GetRange(cidsRange);
 
+    double r0 = cidsRange[0];
+    double r1 = cidsRange[1];
+    double rd = r1 - r0;
+    double p1, p2, p3, p4;
+
+    cf->RemoveAllPoints();
+    bool iscfon = false;
+    
     switch(type)
     {
         case CUSTOM:
@@ -2680,57 +2720,74 @@ void PvizWidget::ApplyColorMap(ColorMap_t type)
         }
             break;
         case RAINBOW:
+            iscfon = true;
+            cf->SetColorSpaceToHSV();
+            cf->HSVWrapOff();
+            cf->AddRGBPoint(r0,            red[0], red[1], red[2]);
+            cf->AddRGBPoint(r0 + rd * 0.5, green[0], green[1], green[2]);
+            cf->AddRGBPoint(r1,            blue[0], blue[1], blue[2]);
+            break;
         case RAINBOW_R:
+            iscfon = true;
+            cf->SetColorSpaceToHSV();
+            cf->HSVWrapOff();
+            cf->AddRGBPoint(r1,            red[0], red[1], red[2]);
+            cf->AddRGBPoint(r0 + rd * 0.5, green[0], green[1], green[2]);
+            cf->AddRGBPoint(r0,            blue[0], blue[1], blue[2]);
+            break;
         case COOL2WARM:
+            iscfon = true;
+            cf->SetColorSpaceToDiverging();
+            cf->AddRGBPoint(r0, 0.230, 0.299, 0.754);
+            cf->AddRGBPoint(r1, 0.706, 0.016, 0.150);
+            break;
         case COOL2WARM_R:
+            iscfon = true;
+            cf->SetColorSpaceToDiverging();
+            cf->AddRGBPoint(r0, 0.706, 0.016, 0.150);
+            cf->AddRGBPoint(r1, 0.230, 0.299, 0.754);
+            break;
+        case JET:
+            iscfon = true;
+            cf->SetColorSpaceToHSV();
+            cf->HSVWrapOff();
+            cf->AddRGBPoint(r0,            blue_pure[0], blue_pure[1], blue_pure[2]);
+            cf->AddRGBPoint(r0 + rd * 0.5, green_pure[0], green_pure[1], green_pure[2]);
+            cf->AddRGBPoint(r1,            red_pure[0], red_pure[1], red_pure[2]);
+            break;
+        case JET_R:
+            iscfon = true;
+            cf->SetColorSpaceToHSV();
+            cf->HSVWrapOff();
+            cf->AddRGBPoint(r1,            blue_pure[0], blue_pure[1], blue_pure[2]);
+            cf->AddRGBPoint(r0 + rd * 0.5, green_pure[0], green_pure[1], green_pure[2]);
+            cf->AddRGBPoint(r0,            red_pure[0], red_pure[1], red_pure[2]);
+            break;
+        case HSV:
+            iscfon = true;
+            cf->SetColorSpaceToHSV();
+            cf->AddHSVPoint(r0, 0.0, 1.0, 1.0);
+            cf->AddHSVPoint(r0 + rd * 0.5, 0.5, 1.0, 1.0);
+            cf->AddHSVPoint(r1, 0.999999, 1.0, 1.0);
+            break;
+        case HOT:
+            iscfon = true;
+            cf->SetColorSpaceToRGB();
+            p1 = 0.0 / 8.0;
+            p2 = 3.0 / 8.0;
+            p3 = 6.0 / 8.0;
+            p4 = 8.0 / 8.0;
+            cf->AddRGBPoint(r0,           0, 0, 0);
+            cf->AddRGBPoint(r0 + rd * p2, 1, 0, 0);
+            cf->AddRGBPoint(r0 + rd * p3, 1, 1, 0);
+            cf->AddRGBPoint(r1,           1, 1, 1);
+            break;
         case EXPERIMENTAL:
-        {
-            switch (type) 
-            {
-                case RAINBOW:
-                    cf->SetColorSpaceToHSV();
-                    cf->HSVWrapOff();
-                    cf->AddHSVPoint(cidsRange[0], 0.0, 1.0, 1.0);
-                    cf->AddHSVPoint(cidsRange[1], 0.66667, 1.0, 1.0);
-                    break;
-                case RAINBOW_R:
-                    cf->SetColorSpaceToHSV();
-                    cf->HSVWrapOff();
-                    cf->AddHSVPoint(cidsRange[0], 0.66667, 1.0, 1.0);
-                    cf->AddHSVPoint(cidsRange[1], 0.0, 1.0, 1.0);			
-                    break;
-                case COOL2WARM:
-                    cf->SetColorSpaceToDiverging();
-                    cf->AddRGBPoint(cidsRange[0], 0.230, 0.299, 0.754);
-                    cf->AddRGBPoint(cidsRange[1], 0.706, 0.016, 0.150);
-                    break;
-                case COOL2WARM_R:
-                    cf->SetColorSpaceToDiverging();
-                    cf->AddRGBPoint(cidsRange[0], 0.706, 0.016, 0.150);
-                    cf->AddRGBPoint(cidsRange[1], 0.230, 0.299, 0.754);
-                    break;
-                case EXPERIMENTAL:
-                    cf->SetColorSpaceToDiverging();
-                    cf->HSVWrapOff();
-                    cf->AddHSVPoint(cidsRange[0], 0.0, 1.0, 1.0);
-                    cf->AddHSVPoint(cidsRange[1], 0.66667, 1.0, 1.0);
-                    break;
-                default:
-                    return;
-                    break;
-            }
-            
-            foreach(PvizCluster* cluster, clusters_)
-            {
-                //vtkIdType cidx = cids->LookupValue(cluster->id);
-                
-                double rgb[3];
-                cf->GetColor(cluster->id, rgb);
-                vtkIdType idx = lut->GetIndex(cluster->id);
-                lut->SetTableValue(idx, rgb[0], rgb[1], rgb[2]);
-                //cluster->color.setRgbF(rgb[0], rgb[1], rgb[2]);
-            }
-        }
+            iscfon = true;
+            cf->SetColorSpaceToDiverging();
+            cf->HSVWrapOff();
+            cf->AddHSVPoint(r0, 0.0, 1.0, 1.0);
+            cf->AddHSVPoint(r1, 0.66667, 1.0, 1.0);
             break;
         case COLORBREW_SET1:
         {
@@ -2802,13 +2859,24 @@ void PvizWidget::ApplyColorMap(ColorMap_t type)
         default:
             break;
     }
-    
+
+    if (iscfon)
+    {
+        for (int i = r0; i <= r1; i++)
+        {
+            double rgb[3];
+            cf->GetColor(i, rgb);
+            vtkIdType idx = lut->GetIndex(i);
+            lut->SetTableValue(idx, rgb[0], rgb[1], rgb[2]);
+        }
+    }
+
     foreach(PvizCluster* cluster, clusters_)
     {
         if (cluster->IsDefault())
         {
-            vtkIdType idx = lut->GetIndex(cluster->id);	
-            lut->SetTableValue(idx, 
+            vtkIdType idx = lut->GetIndex(cluster->id);
+            lut->SetTableValue(idx,
                                defaultColor.redF(), 
                                defaultColor.greenF(), 
                                defaultColor.blueF(), 
@@ -2942,6 +3010,7 @@ bool PvizWidget::GetLegendVisible()
 	return legendVisible;
 }
 
+
 void PvizWidget::SetLegendHeightFactor(double height)
 {
 	legendHeightFactor = height;
@@ -3008,6 +3077,19 @@ void PvizWidget::SetLegendPosition(LegendLocation_t loc)
 PvizWidget::LegendLocation_t PvizWidget::GetLegendPosition()
 {
     return legendPosition;
+}
+
+void PvizWidget::SetColorbarVisible(bool b)
+{
+    colorbarVisible = b;
+    colorbarActor->SetVisibility(colorbarVisible);
+    
+    this->update();
+}
+
+bool PvizWidget::GetColorbarVisible()
+{
+    return colorbarVisible;
 }
 
 int PvizWidget::SaveScreen(QString filename)

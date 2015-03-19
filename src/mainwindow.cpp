@@ -12,6 +12,8 @@
 
 #include <vtkRenderWindow.h>
 #include <vtkTransform.h>
+#include <vtkMath.h>
+#include <time.h>
 
 #ifdef _WIN32 
 #include  "Windows.h"
@@ -142,6 +144,7 @@ listenURI("topic2")
     ui->tpPreferences->setSplitterPosition(120);
     
     setAcceptDrops(TRUE);
+    vtkMath::RandomSeed(time(NULL));
 }
 
 MainWindow::~MainWindow()
@@ -658,6 +661,10 @@ void MainWindow::featureValueChanged(QtProperty *property, const QVariant &value
 		{
 			child->SetLegendWidthFactor(value.toDouble());
 		}
+        else if (id == QLatin1String("colorbar.visible"))
+        {
+            child->SetColorbarVisible(value.toBool());
+        }
 		else if (id == QLatin1String("fps.visible"))
 		{
 			child->SetFPSVisible(value.toDouble());
@@ -1238,7 +1245,8 @@ void MainWindow::buildFeatureTree()
 	buildFeatureTree_AddColorMapFeature();
 	buildFeatureTree_AddPlotFeature();
 	buildFeatureTree_AddGlyphFeature();
-	buildFeatureTree_AddLegendFeature();
+    buildFeatureTree_AddLegendFeature();
+    buildFeatureTree_AddColorbarFeature();
 	buildFeatureTree_AddFPSFeature();
 	buildFeatureTree_AddCameraLinkFeature();
 	buildFeatureTree_AddLabelFeature();
@@ -1431,7 +1439,11 @@ void MainWindow::buildFeatureTree_AddColorMapFeature()
     enumNames 
     << "Matlab distinct (50)" << "Salsa custom (17)" 
     << "ColorBrewer Set1 (9)" << "ColorBrewer Paired (12)"
-    << "Rainbow" << "Rainbow (rev)" << "Cool2warm" << "Cool2warm (rev)" << "Experimental" 
+    << "Rainbow" << "Rainbow (rev)"
+    << "Cool2warm" << "Cool2warm (rev)"
+    << "Jet" << "Jet (rev)"
+    << "HSV (cyclic)" << "Hot"
+    << "Experimental"
     << "Custom";
     property->setAttribute(QLatin1String("enumNames"), enumNames);
 		
@@ -1544,6 +1556,20 @@ void MainWindow::buildFeatureTree_AddLegendFeature()
     property->setAttribute(QLatin1String("singleStep"), 0.01);
 	addFeature(root, property, QLatin1String("legend.widthfactor"));
 	
+    ui->tpPreferences->addProperty(root);
+}
+
+void MainWindow::buildFeatureTree_AddColorbarFeature()
+{
+    QtGroupPropertyManager *groupManager = new QtGroupPropertyManager(this);
+    QtProperty *root = groupManager->addProperty("Colorbar");
+    
+    QtVariantProperty *property;
+    property = vman2->addProperty(QVariant::Bool, tr("Visible"));
+    //property->setValue(ui->pvizWidget->GetLegendVisible());
+    property->setValue(false);
+    addFeature(root, property, QLatin1String("colorbar.visible"));
+    
     ui->tpPreferences->addProperty(root);
 }
 
@@ -2056,6 +2082,7 @@ void MainWindow::updateFeature(PvizWidget *pviz)
 	idToFeature["legend.visible"]->setValue(pviz->GetLegendVisible());
 	idToFeature["legend.heightfactor"]->setValue(pviz->GetLegendHeightFactor());
 	idToFeature["legend.widthfactor"]->setValue(pviz->GetLegendWidthFactor());
+    idToFeature["colorbar.visible"]->setValue(pviz->GetColorbarVisible());
 	idToFeature["fps.visible"]->setValue(pviz->GetFPSVisible());
 	idToFeature["camera.sync"]->setValue(pviz->GetUseSyncCamera());
 	idToFeature["camera.focusmode"]->setValue(pviz->GetFocusMode());
