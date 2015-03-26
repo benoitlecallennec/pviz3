@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
     bool enableConnectToServer = false;
     bool enableTileWindows = false;
     bool enableFullscreen = false;
-    int colormap = 9;
+    int colormap = 13;
     // Using toStdString() cause an error. Instead, using toAscii()
     std::string logfile = std::string(QDesktopServices::storageLocation(QDesktopServices::DataLocation).toAscii().data()) + "/PVIZ3/pviz3.log";
     
