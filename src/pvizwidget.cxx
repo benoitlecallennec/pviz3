@@ -1530,8 +1530,8 @@ void PvizWidget::BuildAxes()
     cubeAxesActor->SetXTitle("");
     cubeAxesActor->SetYTitle("");
     cubeAxesActor->SetZTitle("");
-    //cubeAxesActor->SetLabelScaling(false, 0, 0, 0);
-    renderer->AddActor(cubeAxesActor);    
+    cubeAxesActor->SetFlyModeToOuterEdges();
+    renderer->AddActor(cubeAxesActor);
     
     
     /*
