@@ -71,23 +71,23 @@ if (PVIZRPC_CLIENT_ENABLE)
   )
   include_directories (${CMAKE_CURRENT_BINARY_DIR})
   list(APPEND ${CMAKE_PROJECT_NAME}_SRCS ${Pvizrpc_OUTFILES})
+
+  IF (APPLE)
+    ## Protobuf
+    find_path(Protobuf_INCLUDE_DIR google/protobuf/service.h $ENV{PROTOBUF_HOME}/include)
+    find_library(Protobuf_LIBRARIES NAMES protobuf PATHS $ENV{PROTOBUF_HOME}/lib)
+    include_directories(${Protobuf_INCLUDE_DIR})
+  ENDIF()
+  
+  IF (WIN32)
+    ## Protobuf
+    find_path(Protobuf_INCLUDE_DIR google/protobuf/service.h $ENV{PROTOBUF_HOME}/include)
+    find_library(Protobuf_LIBRARIES NAMES libprotobuf PATHS $ENV{PROTOBUF_HOME}/lib)
+    message(Protobuf_INCLUDE_DIR = ${Protobuf_INCLUDE_DIR})
+    message(Protobuf_LIBRARIES = ${Protobuf_LIBRARIES})
+    include_directories(${Protobuf_INCLUDE_DIR})
+  ENDIF()
 endif(PVIZRPC_CLIENT_ENABLE)
-
-IF (APPLE)
-  ## Protobuf
-  find_path(Protobuf_INCLUDE_DIR google/protobuf/service.h $ENV{PROTOBUF_HOME}/include)
-  find_library(Protobuf_LIBRARIES NAMES protobuf PATHS $ENV{PROTOBUF_HOME}/lib)
-  include_directories(${Protobuf_INCLUDE_DIR})
-ENDIF()
-
-IF (WIN32)
-  ## Protobuf
-  find_path(Protobuf_INCLUDE_DIR google/protobuf/service.h $ENV{PROTOBUF_HOME}/include)
-  find_library(Protobuf_LIBRARIES NAMES libprotobuf PATHS $ENV{PROTOBUF_HOME}/lib)
-  message(Protobuf_INCLUDE_DIR = ${Protobuf_INCLUDE_DIR})
-  message(Protobuf_LIBRARIES = ${Protobuf_LIBRARIES})
-  include_directories(${Protobuf_INCLUDE_DIR})
-ENDIF()
 
 # SHARED doesn't work in Windows
 add_library (pvizmodel STATIC 

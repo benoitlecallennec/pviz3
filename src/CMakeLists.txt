@@ -121,6 +121,7 @@ ELSEIF (WIN32)
   add_definitions(-DAMQCPP_DLL)
   add_definitions(-DDECAF_DLL)
 
+  if (ACTIVEMQ_CLIENT_ENABLE)
   ## Activemq-CPP
   find_path(Activemqcpp_INCLUDE_DIR activemq/library/ActiveMQCPP.h $ENV{ACTIVEMQCPP_HOME}/include)
   find_library(Activemqcpp_LIBRARIES NAMES activemq-cpp PATHS $ENV{ACTIVEMQCPP_HOME}/lib)
@@ -144,7 +145,7 @@ ELSEIF (WIN32)
   message(Apu_INCLUDE_DIR = ${Apu_INCLUDE_DIR})
   message(Apu_LIBRARIES = ${Apu_LIBRARIES})
   include_directories(${Apu_INCLUDE_DIR})
-
+  endif()
 ENDIF()
 
 IF (APPLE)
@@ -156,12 +157,12 @@ IF (APPLE)
   ##message(Protobuf_INCLUDE_DIR = ${Protobuf_INCLUDE_DIR})
   ##message(Protobuf_LIBRARIES = ${Protobuf_LIBRARIES})
 ELSEIF (WIN32)
-  ## Protobuf
-  find_path(Protobuf_INCLUDE_DIR google/protobuf/service.h $ENV{PROTOBUF_HOME}/include)
-  find_library(Protobuf_LIBRARIES NAMES libprotobuf PATHS $ENV{PROTOBUF_HOME}/lib)
-  message(Protobuf_INCLUDE_DIR = ${Protobuf_INCLUDE_DIR})
-  message(Protobuf_LIBRARIES = ${Protobuf_LIBRARIES})
-  include_directories(${Protobuf_INCLUDE_DIR})
+  #### Protobuf
+  ##find_path(Protobuf_INCLUDE_DIR google/protobuf/service.h $ENV{PROTOBUF_HOME}/include)
+  ##find_library(Protobuf_LIBRARIES NAMES libprotobuf PATHS $ENV{PROTOBUF_HOME}/lib)
+  ##message(Protobuf_INCLUDE_DIR = ${Protobuf_INCLUDE_DIR})
+  ##message(Protobuf_LIBRARIES = ${Protobuf_LIBRARIES})
+  ##include_directories(${Protobuf_INCLUDE_DIR})
 ENDIF()
 
 # support for out-of-source build
@@ -278,12 +279,12 @@ ELSEIF (WIN32)
     ##-subsystem:console
     )
   target_link_libraries (pviz3 
-    ${Activemqcpp_LIBRARIES}
-	${Apr_LIBRARIES}
-	${Apu_LIBRARIES}
+    ##${Activemqcpp_LIBRARIES}
+	##${Apr_LIBRARIES}
+	##${Apu_LIBRARIES}
 	##${Apriconv_LIBRARIES}
-	odbc32.lib
-	odbccp32.lib
+	##odbc32.lib
+	##odbccp32.lib
     )
 ENDIF()
 

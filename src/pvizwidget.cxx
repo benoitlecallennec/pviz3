@@ -3135,8 +3135,13 @@ int PvizWidget::SaveAsMovie(QString filename)
 	windowToImageFilter->SetInput(this->GetRenderWindow());
 	
 	VTK_CREATE(vtkAVIWriter, w);
+	w->SetCompressorFourCC("MSVC");
 	w->SetFileName(filename.toAscii().data());
+#if VTK_MAJOR_VERSION <= 5
 	w->SetInput(windowToImageFilter->GetOutput());
+#else
+	w->SetInputData(windowToImageFilter->GetOutput());
+#endif
 	w->SetRate(20);
 	qDebug() << "Rate : " << w->GetRate();
 	qDebug() << "Quality : " << w->GetQuality();
