@@ -5,6 +5,7 @@
 #include <cmath>
 #include <QCloseEvent>
 #include <QDateTime>
+#include <QFileInfo>
 
 #include <vtkCamera.h>
 #include <vtkCellArray.h>
@@ -3130,10 +3131,10 @@ int PvizWidget::SaveScreen(QString filename)
 
 int PvizWidget::SaveAsMovie(QString filename)
 {
-#ifdef _WIN32 
 	VTK_CREATE(vtkWindowToImageFilter, windowToImageFilter);
 	windowToImageFilter->SetInput(this->GetRenderWindow());
 	
+#ifdef _WIN32
 	VTK_CREATE(vtkAVIWriter, w);
 	w->SetCompressorFourCC("MSVC");
 	w->SetFileName(filename.toAscii().data());
@@ -3156,6 +3157,23 @@ int PvizWidget::SaveAsMovie(QString filename)
 	}
 	w->End();
 	qDebug() << "Saved animation : " << filename;
+#else
+    VTK_CREATE(vtkPNGWriter, w);
+    QFileInfo fi(filename);
+    QString base = fi.completeBaseName();
+    QString fname;
+    for (int i = 0; i < 360; ++i)
+    {
+        this->GetRenderWindow()->Render();
+        renderer->GetActiveCamera()->Azimuth(-1);
+        windowToImageFilter->Modified();
+
+        fname.sprintf("%s.%03d.png", fi.completeBaseName().toAscii().data(), i);
+        w->SetFileName(fname.toAscii().data());
+        w->SetInputConnection(windowToImageFilter->GetOutputPort());
+        w->Write();
+    }
+    qDebug() << "Saved animation : " << fname;
 #endif
     return SUCCESS;
 }

@@ -263,9 +263,15 @@ void MainWindow::SaveAnimation()
         fileName = child->GetFileName();
     }
     
+#ifdef _WIN32
 	fileName = QFileDialog::getSaveFileName(this, tr("Save Animation"),
                                             QFileInfo(QFileInfo(fileName).dir(), QFileInfo(fileName).completeBaseName()).filePath(),
                                             tr("AVI (*.avi)"));
+#else
+    fileName = QFileDialog::getSaveFileName(this, tr("Save Animation"),
+                                            QFileInfo(QFileInfo(fileName).dir(), QFileInfo(fileName).completeBaseName()).filePath(),
+                                            tr("PNG file (*.png);; All files (*.*)"));
+#endif
 	
     if (fileName.isEmpty())
 	{
