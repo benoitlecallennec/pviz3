@@ -27,7 +27,8 @@
 #include "signalslib.hpp"
 #endif
 
-#include <QtConcurrentRun>
+//#include <QtConcurrentRun>
+#include <QtConcurrent>
 #include <QFuture>
 #include <QFutureWatcher>
 #include <QSettings>

@@ -149,7 +149,8 @@ public:
 	};
     
 	//! constructor
-	PvizWidget(QWidget* parent = NULL, Qt::WFlags f = 0);
+	//PvizWidget(QWidget* parent = NULL, Qt::WFlags f = 0);
+	PvizWidget(QWidget* parent = NULL, QFlag f = 0);
 	~PvizWidget() throw();
 		
     void SaveToModel();

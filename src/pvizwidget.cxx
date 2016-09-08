@@ -97,6 +97,11 @@
 //#include <map>
 //#include <omp.h>
 
+#ifdef Q_OS_OSX
+#include "osxHelper.h"
+#endif
+
+
 #define VTK_CREATE(type, name) vtkSmartPointer<type> name = vtkSmartPointer<type>::New()
 #define VTK_ASSIGN(type, name) name = vtkSmartPointer<type>::New()
 #define VTK_INIT(type, name) name(vtkSmartPointer<type>::New())
@@ -355,7 +360,7 @@ void FindAllData(vtkPolyData* polydata)
     }
 }
 
-PvizWidget::PvizWidget(QWidget* p, Qt::WFlags f)
+PvizWidget::PvizWidget(QWidget* p, QFlag f)
 : QVTKWidget(p, f), 
 axesVisible(true), 
 cubeAxesVisible(false),
@@ -434,6 +439,9 @@ isFirstPositionMessage(true),
 modelStatus(0),
 focusMode_(AUTO)
 {
+#ifdef Q_OS_OSX
+    disableGLHiDPI(this->winId());
+#endif
     this->setFocusPolicy(Qt::WheelFocus);
     
     connect(this, SIGNAL(OnModelCreated()), this, SLOT(loadModel()));
@@ -612,7 +620,7 @@ int PvizWidget::SaveAsVTK(QString filename)
 #else
     pdw->SetInputData(plot);
 #endif
-	pdw->SetFileName(filename.toAscii().data());
+	pdw->SetFileName(filename.toLatin1().data());
 	pdw->Write();
 	
 	return SUCCESS;
@@ -717,7 +725,7 @@ int PvizWidget::SaveAsXML(QString filename)
 {
     SaveToModel();
 	
-	model->saveXmlDataFile(filename.toAscii().data());	
+	model->saveXmlDataFile(filename.toLatin1().data());	
 	
 	return SUCCESS;
 }
@@ -726,7 +734,7 @@ int PvizWidget::SaveAsTXT(QString filename)
 {
     SaveToModel();
 	
-	model->saveSimpleDataFile(filename.toAscii().data());	
+	model->saveSimpleDataFile(filename.toLatin1().data());	
 	
 	return SUCCESS;
 }
@@ -734,21 +742,21 @@ int PvizWidget::SaveAsTXT(QString filename)
 void PvizWidget::LoadCompressedDataFile(QString filename)
 {
     fileName_ = filename;
-	model->loadCompressedDataFile(filename.toAscii().data());
+	model->loadCompressedDataFile(filename.toLatin1().data());
 	loadModel();
 }
 
 void PvizWidget::LoadXmlDataFile(QString filename)
 {
     fileName_ = filename;
-	model->loadXmlDataFile(filename.toAscii().data());	
+	model->loadXmlDataFile(filename.toLatin1().data());	
 	loadModel();
 }
 
 void PvizWidget::LoadSimpleDataFile(QString filename)
 {
     fileName_ = filename;
-	model->loadSimpleDataFile(filename.toAscii().data());	
+	model->loadSimpleDataFile(filename.toLatin1().data());	
 	loadModel();
 }
 
@@ -757,7 +765,7 @@ void PvizWidget::ReloadSimpleDataFile(QString filename)
     PvizModel* model_ = new PvizModel();
     try
     {
-        model_->loadSimpleDataFile(filename.toAscii().data());
+        model_->loadSimpleDataFile(filename.toLatin1().data());
     }
     catch (int e)
     {
@@ -797,7 +805,7 @@ void PvizWidget::LoadHDF5DataFile(QString filename)
 {
     fileName_ = filename;
 #ifdef PVIZMODEL_USE_HDF5
-	model->loadHDF5DataFile(filename.toAscii().data(), "M.dat");
+	model->loadHDF5DataFile(filename.toLatin1().data(), "M.dat");
 	loadModel();
 #else
 	qDebug() << "HDF5 is disabled";
@@ -877,7 +885,7 @@ void PvizWidget::loadModel()
 			pointLabels->SetValue(pidx, point->label.c_str());
 			QString label = QString("[%1:%2] %3").arg(point->id).arg(cluster->id).arg(point->label.c_str());
 			//pointLabels->SetValue(pidx, QString("[%1:%2] ").arg(point->id).arg(cluster->id).toStdString().append(point->label).c_str());
-			pointLabels->SetValue(pidx, label.toAscii());
+			pointLabels->SetValue(pidx, label.toLatin1());
             pointShapes->SetValue(pidx, cluster->shape);
 		}
 	}
@@ -1678,7 +1686,7 @@ void PvizWidget::ConnectToActiveMQServer(QString brokerURI,
 		qDebug() << "ConnectToActiveMQServer ... " << brokerURI;
 		
         // Create a ConnectionFactory
-        ActiveMQConnectionFactory* connectionFactory = new ActiveMQConnectionFactory( std::string(brokerURI.toAscii().constData()) );
+        ActiveMQConnectionFactory* connectionFactory = new ActiveMQConnectionFactory( std::string(brokerURI.toLatin1().constData()) );
 		//new ActiveMQConnectionFactory( "tcp://156.56.104.176:61616?wireFormat.maxInactivityDuration=0" );
 		qDebug() << " connectionFactory ... created.";
 		
@@ -1702,14 +1710,14 @@ void PvizWidget::ConnectToActiveMQServer(QString brokerURI,
         
         // Listen first ..
         // Create a MessageConsumer from the Session to the Topic or Queue
-        listenTopic = session->createTopic( std::string(listenURI.toAscii().constData()) );
+        listenTopic = session->createTopic( std::string(listenURI.toLatin1().constData()) );
         //listenTopic = session->createTopic( destURI.toStdString() );
         consumer = session->createConsumer( listenTopic );
         consumer->setMessageListener( this );
         
         
         // Sending ..
-        sendTopic = session->createTopic( std::string(destURI.toAscii().constData()) );
+        sendTopic = session->createTopic( std::string(destURI.toLatin1().constData()) );
         
         // Create a MessageProducer from the Session to the Topic or Queue
         producer = session->createProducer( sendTopic );
@@ -3118,7 +3126,7 @@ int PvizWidget::SaveScreen(QString filename)
 	
 	//vtkSmartPointer<vtkPNGWriter> writer = vtkSmartPointer<vtkPNGWriter>::New();
 	VTK_CREATE(vtkPNGWriter, writer);
-	writer->SetFileName(filename.toAscii().data());
+	writer->SetFileName(filename.toLatin1().data());
 #if VTK_MAJOR_VERSION <= 5
 	writer->SetInput(windowToImageFilter->GetOutput());
 #else
@@ -3137,7 +3145,7 @@ int PvizWidget::SaveAsMovie(QString filename)
 #ifdef _WIN32
 	VTK_CREATE(vtkAVIWriter, w);
 	w->SetCompressorFourCC("MSVC");
-	w->SetFileName(filename.toAscii().data());
+	w->SetFileName(filename.toLatin1().data());
 #if VTK_MAJOR_VERSION <= 5
 	w->SetInput(windowToImageFilter->GetOutput());
 #else
@@ -3168,8 +3176,8 @@ int PvizWidget::SaveAsMovie(QString filename)
         renderer->GetActiveCamera()->Azimuth(-1);
         windowToImageFilter->Modified();
 
-        fname.sprintf("%s.%03d.png", fi.completeBaseName().toAscii().data(), i);
-        w->SetFileName(fname.toAscii().data());
+        fname.sprintf("%s.%03d.png", fi.completeBaseName().toLatin1().data(), i);
+        w->SetFileName(fname.toLatin1().data());
         w->SetInputConnection(windowToImageFilter->GetOutputPort());
         w->Write();
     }
@@ -4145,7 +4153,7 @@ QString PvizWidget::GetFileName()
 
 void PvizWidget::SetTitle(QString title)
 {
-    titleActor->SetInput(title.toAscii().data());
+    titleActor->SetInput(title.toLatin1().data());
     refresh();
 }
 

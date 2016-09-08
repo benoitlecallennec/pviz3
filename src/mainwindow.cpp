@@ -1,6 +1,9 @@
 #include <QtGui>
 #include <QDebug>
 #include <QTreeView>
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QMdiSubWindow>
 
 #include "mainwindow.h"
 #include "ui_MainWindow.h"
@@ -134,8 +137,9 @@ listenURI("topic2")
     activemq::library::ActiveMQCPP::initializeLibrary();
 #endif
     
-    QString location = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
-    QFileInfo info = QFileInfo(location + "/PVIZ3/pviz3.ini");
+    //QString location = QStandardPaths::standardLocations(QStandardPaths::DataLocation);
+    //QFileInfo info = QFileInfo("/PVIZ3/pviz3.ini");
+    QFileInfo info = QFileInfo("pviz3.ini");
     
     settings = new QSettings(info.absoluteFilePath(), QSettings::IniFormat);
     qDebug() << "INI file : " << QFileInfo(settings->fileName()).absoluteFilePath();
@@ -143,7 +147,7 @@ listenURI("topic2")
     ui->tpPreferences->setResizeMode(QtTreePropertyBrowser::Interactive);
     ui->tpPreferences->setSplitterPosition(120);
     
-    setAcceptDrops(TRUE);
+    setAcceptDrops(true);
     vtkMath::RandomSeed(time(NULL));
 }
 
@@ -495,7 +499,7 @@ void MainWindow::BuildTree(PvizWidget *pviz)
 	
 	//ui->tvTree->resizeColumnToContents(0); 
     //ui->tvTree->header()->setSortIndicatorShown(true); // optional
-    ui->tvTree->header()->setClickable(true);
+    ui->tvTree->header()->setSectionsClickable(true);
 }
 
 void MainWindow::RefreshTreeColor()
@@ -537,7 +541,7 @@ void MainWindow::featureValueChanged(QtProperty *property, const QVariant &value
 		}
 		else if (id == QLatin1String("title.color"))
 		{
-			child->SetTitleColor(qVariantValue<QColor>(value));
+			child->SetTitleColor(value.value<QColor>());
 		}
 		else if (id == QLatin1String("axes.visible"))
 		{
@@ -612,7 +616,7 @@ void MainWindow::featureValueChanged(QtProperty *property, const QVariant &value
         
 		else if (id == QLatin1String("background.color"))
 		{
-			child->SetBackgroundColor(qVariantValue<QColor>(value));
+			child->SetBackgroundColor(value.value<QColor>());
 		}
 		else if (id == QLatin1String("colormap.type"))
 		{
@@ -728,7 +732,7 @@ void MainWindow::featureValueChanged(QtProperty *property, const QVariant &value
 		}
 		else if (id == QLatin1String("default.color"))
 		{
-			child->SetDefaultColor(qVariantValue<QColor>(value));
+			child->SetDefaultColor(value.value<QColor>());
 		}
 		else if (id == QLatin1String("default.scale"))
 		{
@@ -808,13 +812,13 @@ void MainWindow::propertyValueChanged(QtProperty *property, const QVariant &valu
 
             if (id == QLatin1String("label")) 
             {
-                col2->setData(QString("%1").arg(qVariantValue<QString>(value)), Qt::DisplayRole);
-                child->SetClusterLabel(cid, std::string(qVariantValue<QString>(value).toAscii().data()));
+                col2->setData(QString("%1").arg(value.value<QString>()), Qt::DisplayRole);
+                child->SetClusterLabel(cid, std::string(value.value<QString>().toLatin1().data()));
             }            
             else if (id == QLatin1String("color")) 
             {
-                col1->setData(qVariantValue<QColor>(value), Qt::DecorationRole);
-                child->SetClusterColor(cid, qVariantValue<QColor>(value));
+                col1->setData(value.value<QColor>(), Qt::DecorationRole);
+                child->SetClusterColor(cid, value.value<QColor>());
                 
                 // PvizModel Update
                 //ui->pvizWidget->model->clusters[cid]->color.ui_color = qVariantValue<QColor>(value).rgb();
@@ -1281,7 +1285,7 @@ void MainWindow::buildFeatureTree_AddTitleFeature()
 	addFeature(root, property, QLatin1String("title.visible"));
     
 	property = vman2->addProperty(QVariant::Color, tr("Color"));
-	property->setValue(Qt::red);
+	property->setValue(QColor(Qt::red));
 	addFeature(root, property, QLatin1String("title.color"));	
     
     QtBrowserItem* item = ui->tpPreferences->addProperty(root);
@@ -1430,7 +1434,7 @@ void MainWindow::buildFeatureTree_AddBackgroundColorFeature()
     QtVariantProperty *property;
 	property = vman2->addProperty(QVariant::Color, tr("Background"));
 	//property->setValue(ui->pvizWidget->GetBackgroundColor());
-	property->setValue(Qt::black);
+	property->setValue(QColor(Qt::black));
 	
 	addFeature(NULL, property, QLatin1String("background.color"));
 	
@@ -2415,7 +2419,7 @@ void MainWindow::PickCenter()
 void MainWindow::UnpickCenter()
 {
     if (ui->actionPickCenter->isChecked())
-        ui->actionPickCenter->setChecked(FALSE);
+        ui->actionPickCenter->setChecked(false);
 }
 
 void MainWindow::About()

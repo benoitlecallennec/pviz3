@@ -18,6 +18,25 @@ using namespace std;
 
 #include "mainwindow.h"
 
+void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
+{
+    QByteArray localMsg = msg.toLocal8Bit();
+    switch (type) {
+    case QtDebugMsg:
+        fprintf(stderr, "Debug: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line, context.function);
+        break;
+    case QtWarningMsg:
+        fprintf(stderr, "Warning: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line, context.function);
+        break;
+    case QtCriticalMsg:
+        fprintf(stderr, "Critical: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line, context.function);
+        break;
+    case QtFatalMsg:
+        fprintf(stderr, "Fatal: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line, context.function);
+        abort();
+    }
+}
+
 void myMessageHandler(QtMsgType type, const char *msg)
 {
 	QString txt;
@@ -39,14 +58,15 @@ void myMessageHandler(QtMsgType type, const char *msg)
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    QApplication app(argc, argv);
+    //app.setAttribute(Qt::AA_UseHighDpiPixmaps);
 	//QCoreApplication::setAttribute (Qt::AA_NativeWindows);
 	QCoreApplication::setAttribute (Qt::AA_DontCreateNativeWidgetSiblings);
-	
+
 	//QFile outFile("pviz3.log");
 	//outFile.open(QIODevice::WriteOnly | QIODevice::Truncate);
 
-	
+
 	std::vector<std::string> input_files;
 	std::string directory_name;
     bool enableConnectToServer = false;
@@ -54,9 +74,10 @@ int main(int argc, char *argv[])
     bool enableFullscreen = false;
     int colormap = 13;
     // Using toStdString() cause an error. Instead, using toAscii()
-    std::string logfile = std::string(QDesktopServices::storageLocation(QDesktopServices::DataLocation).toAscii().data()) + "/PVIZ3/pviz3.log";
-    
-	try 
+    //std::string logfile = std::string(QStandardPaths::standardLocations(QStandardPaths::DataLocation).toLatin1().data()) + "/PVIZ3/pviz3.log";
+    std::string logfile = "pviz3.log";
+
+	try
 	{
         po::options_description desc("Allowed options");
         desc.add_options()
@@ -77,25 +98,25 @@ int main(int argc, char *argv[])
 		po::store(po::command_line_parser(argc, argv).
                   options(desc).positional(p).run(), vm);
         po::notify(vm);
-		
-        if (vm.count("help")) 
+
+        if (vm.count("help"))
         {
             cout << "Usage: options_description [options]\n";
             cout << desc;
             return 0;
         }
-        
-        if (vm.count("connect")) 
+
+        if (vm.count("connect"))
         {
             enableConnectToServer = true;
         }
-        
-        if (vm.count("tile")) 
+
+        if (vm.count("tile"))
         {
             enableTileWindows = true;
         }
-        
-        if (vm.count("fullscreen")) 
+
+        if (vm.count("fullscreen"))
         {
             enableFullscreen = true;
         }
@@ -108,47 +129,47 @@ int main(int argc, char *argv[])
 
     if (logfile != "-")
     {
-        QFileInfo info = QFileInfo(QString::fromAscii(logfile.c_str()));
+        QFileInfo info = QFileInfo(QString::fromLatin1(logfile.c_str()));
         qDebug() << "logfile ... " << info.absoluteFilePath();
-        
+
         //freopen(info.absoluteFilePath().toStdString().c_str(), "w", stderr);
-        freopen(info.absoluteFilePath().toAscii().constData(), "w", stderr);
+        freopen(info.absoluteFilePath().toLatin1().constData(), "w", stderr);
         setvbuf(stderr, NULL, _IONBF, 0);
     }
-    
-	qInstallMsgHandler(myMessageHandler);
+
+	qInstallMessageHandler(myMessageOutput);
 	qDebug() << QDateTime::currentDateTime().toString() << "... Started. ";
-    
+
     MainWindow w;
     w.show();
-    
+
     if (enableFullscreen)
         w.setWindowState(Qt::WindowFullScreen);
-	
-	for (std::vector<std::string>::iterator it = input_files.begin(); it < input_files.end(); it++) 
+
+	for (std::vector<std::string>::iterator it = input_files.begin(); it < input_files.end(); it++)
 	{
 		w.OpenDataFile(QString((*it).c_str()));
 	}
-    
+
     if (directory_name.length() > 0)
     {
         qDebug() << "Ready to open directory: " << QDir(QString(directory_name.c_str())).canonicalPath();
         w.OpenDirectory(QString(directory_name.c_str()));
     }
-    
-    if (enableConnectToServer) 
+
+    if (enableConnectToServer)
     {
         qDebug() << "Connect to server";
         w.ConnectToActiveMQServer();
     }
-    
+
     if (enableTileWindows)
         w.TileSubWindows();
-    
+
     w.SetColorMap(colormap);
-    
+
     //QString location = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
     //QFileInfo info = QFileInfo(location + "/PVIZ3/pviz3.ini");
-    
-    return a.exec();
+
+    return app.exec();
 }

@@ -1,17 +1,17 @@
 /****************************************************************************
-** 
+**
 ** Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
 ** All rights reserved.
 ** Contact: Nokia Corporation (qt-info@nokia.com)
-** 
+**
 ** This file is part of a Qt Solutions component.
 **
-** Commercial Usage  
+** Commercial Usage
 ** Licensees holding valid Qt Commercial licenses may use this file in
 ** accordance with the Qt Solutions Commercial License Agreement provided
 ** with the Software or, alternatively, in accordance with the terms
 ** contained in a written agreement between you and Nokia.
-** 
+**
 ** GNU Lesser General Public License Usage
 ** Alternatively, this file may be used under the terms of the GNU Lesser
 ** General Public License version 2.1 as published by the Free Software
@@ -19,29 +19,29 @@
 ** packaging of this file.  Please review the following information to
 ** ensure the GNU Lesser General Public License version 2.1 requirements
 ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
-** 
+**
 ** In addition, as a special exception, Nokia gives you certain
 ** additional rights. These rights are described in the Nokia Qt LGPL
 ** Exception version 1.1, included in the file LGPL_EXCEPTION.txt in this
 ** package.
-** 
-** GNU General Public License Usage 
+**
+** GNU General Public License Usage
 ** Alternatively, this file may be used under the terms of the GNU
 ** General Public License version 3.0 as published by the Free Software
 ** Foundation and appearing in the file LICENSE.GPL included in the
 ** packaging of this file.  Please review the following information to
 ** ensure the GNU General Public License version 3.0 requirements will be
 ** met: http://www.gnu.org/copyleft/gpl.html.
-** 
+**
 ** Please note Third Party Software included with Qt Solutions may impose
 ** additional restrictions and it is the user's responsibility to ensure
 ** that they have met the licensing requirements of the GPL, LGPL, or Qt
 ** Solutions Commercial license and the relevant license of the Third
 ** Party Software they are using.
-** 
+**
 ** If you are unsure which license is appropriate for your use, please
 ** contact Nokia at qt-info@nokia.com.
-** 
+**
 ****************************************************************************/
 
 
@@ -54,11 +54,11 @@
 #include <QtGui/QIcon>
 #include <QtCore/QMetaEnum>
 #include <QtGui/QFontDatabase>
-#include <QtGui/QStyleOption>
-#include <QtGui/QStyle>
-#include <QtGui/QApplication>
+#include <QStyleOption>
+#include <QStyle>
+#include <QApplication>
 #include <QtGui/QPainter>
-#include <QtGui/QLabel>
+#include <QLabel>
 
 #include <limits.h>
 #include <float.h>
@@ -198,7 +198,7 @@ static Value getData(const QMap<const QtProperty *, PrivateData> &propertyMap,
             const QtProperty *property, const Value &defaultValue = Value())
 {
     typedef QMap<const QtProperty *, PrivateData> PropertyToData;
-    typedef Q_TYPENAME PropertyToData::const_iterator PropertyToDataConstIterator;
+    typedef typename PropertyToData::const_iterator PropertyToDataConstIterator;
     const PropertyToDataConstIterator it = propertyMap.constFind(property);
     if (it == propertyMap.constEnd())
         return defaultValue;
@@ -234,7 +234,7 @@ static void setSimpleValue(QMap<const QtProperty *, Value> &propertyMap,
             QtProperty *property, const Value &val)
 {
     typedef QMap<const QtProperty *, Value> PropertyToData;
-    typedef Q_TYPENAME PropertyToData::iterator PropertyToDataIterator;
+    typedef typename PropertyToData::iterator PropertyToDataIterator;
     const PropertyToDataIterator it = propertyMap.find(property);
     if (it == propertyMap.end())
         return;
@@ -255,9 +255,9 @@ static void setValueInRange(PropertyManager *manager, PropertyManagerPrivate *ma
             QtProperty *property, const Value &val,
             void (PropertyManagerPrivate::*setSubPropertyValue)(QtProperty *, ValueChangeParameter))
 {
-    typedef Q_TYPENAME PropertyManagerPrivate::Data PrivateData;
+    typedef typename PropertyManagerPrivate::Data PrivateData;
     typedef QMap<const QtProperty *, PrivateData> PropertyToData;
-    typedef Q_TYPENAME PropertyToData::iterator PropertyToDataIterator;
+    typedef typename PropertyToData::iterator PropertyToDataIterator;
     const PropertyToDataIterator it = managerPrivate->m_values.find(property);
     if (it == managerPrivate->m_values.end())
         return;
@@ -290,9 +290,9 @@ static void setBorderValues(PropertyManager *manager, PropertyManagerPrivate *ma
             void (PropertyManagerPrivate::*setSubPropertyRange)(QtProperty *,
                     ValueChangeParameter, ValueChangeParameter, ValueChangeParameter))
 {
-    typedef Q_TYPENAME PropertyManagerPrivate::Data PrivateData;
+    typedef typename PropertyManagerPrivate::Data PrivateData;
     typedef QMap<const QtProperty *, PrivateData> PropertyToData;
-    typedef Q_TYPENAME PropertyToData::iterator PropertyToDataIterator;
+    typedef typename PropertyToData::iterator PropertyToDataIterator;
     const PropertyToDataIterator it = managerPrivate->m_values.find(property);
     if (it == managerPrivate->m_values.end())
         return;
@@ -335,7 +335,7 @@ static void setBorderValue(PropertyManager *manager, PropertyManagerPrivate *man
                     ValueChangeParameter, ValueChangeParameter, ValueChangeParameter))
 {
     typedef QMap<const QtProperty *, PrivateData> PropertyToData;
-    typedef Q_TYPENAME PropertyToData::iterator PropertyToDataIterator;
+    typedef typename PropertyToData::iterator PropertyToDataIterator;
     const PropertyToDataIterator it = managerPrivate->m_values.find(property);
     if (it == managerPrivate->m_values.end())
         return;
@@ -6426,5 +6426,5 @@ void QtCursorPropertyManager::uninitializeProperty(QtProperty *property)
 QT_END_NAMESPACE
 #endif
 
-#include "moc_qtpropertymanager.cxx"
+#include "moc_qtpropertymanager.cpp"
 #include "qtpropertymanager.moc"

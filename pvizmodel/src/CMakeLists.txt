@@ -1,5 +1,5 @@
 
-set(${CMAKE_PROJECT_NAME}_SRCS 
+set(${CMAKE_PROJECT_NAME}_SRCS
   pvizcomm.cpp pvizcomm.h
   pvizmodel.cpp pvizmodel.h
   pvizpoint.cpp pvizpoint.h
@@ -10,7 +10,7 @@ set(${CMAKE_PROJECT_NAME}_SRCS
 )
 
 ## Boost
-set(Boost_USE_STATIC_LIBS   ON)
+set(Boost_USE_STATIC_LIBS   OFF)
 set(Boost_USE_MULTITHREADED ON)
 find_package(Boost 1.44 REQUIRED COMPONENTS system signals filesystem iostreams)
 include_directories (${Boost_INCLUDE_DIRS})
@@ -24,7 +24,7 @@ if (PVIZMODEL_USE_HDF5)
   ## HDF5
   find_package(HDF5 REQUIRED)
   include_directories (${HDF5_INCLUDE_DIRS} ${HDF5_INCLUDE_DIRS}/cpp)
-  
+
   ## MPI
   find_package(MPI REQUIRED)
   include_directories (${MPI_INCLUDE_PATH})
@@ -38,7 +38,7 @@ if (PVIZMODEL_USE_HDF5)
 endif(PVIZMODEL_USE_HDF5)
 
 #-----------------------------------------------------------------------------
-# Option to enable PvizRPC client 
+# Option to enable PvizRPC client
 #-----------------------------------------------------------------------------
 option (PVIZRPC_CLIENT_ENABLE "Enable PvizRPC client" OFF)
 if (PVIZRPC_CLIENT_ENABLE)
@@ -48,7 +48,7 @@ if (PVIZRPC_CLIENT_ENABLE)
   find_path(Protobuf_INCLUDE_DIR google/protobuf/service.h $ENV{PROTOBUF_HOME}/include)
   find_library(Protobuf_LIBRARIES NAMES protobuf PATHS $ENV{PROTOBUF_HOME}/lib)
   include_directories(${Protobuf_INCLUDE_DIR})
-  
+
   ## Protorpc
   find_path(Protorpc_INCLUDE_DIR protorpc.pb.h $ENV{PROTORPC_HOME}/include)
   find_library(Protorpc_LIBRARIES NAMES protorpc PATHS $ENV{PROTORPC_HOME}/lib)
@@ -61,7 +61,7 @@ if (PVIZRPC_CLIENT_ENABLE)
   ## PvizRPC
   set(Pvizrpc_BASENAME pvizrpc)
   set(Pvizrpc_OUTFILES ${Pvizrpc_BASENAME}.pb.h ${Pvizrpc_BASENAME}.pb.cc)
-  
+
   add_custom_command(
     OUTPUT ${Pvizrpc_OUTFILES}
     COMMAND protoc ${Pvizrpc_BASENAME}.proto --cpp_out=${CMAKE_CURRENT_BINARY_DIR}
@@ -78,7 +78,7 @@ if (PVIZRPC_CLIENT_ENABLE)
     find_library(Protobuf_LIBRARIES NAMES protobuf PATHS $ENV{PROTOBUF_HOME}/lib)
     include_directories(${Protobuf_INCLUDE_DIR})
   ENDIF()
-  
+
   IF (WIN32)
     ## Protobuf
     find_path(Protobuf_INCLUDE_DIR google/protobuf/service.h $ENV{PROTOBUF_HOME}/include)
@@ -90,12 +90,12 @@ if (PVIZRPC_CLIENT_ENABLE)
 endif(PVIZRPC_CLIENT_ENABLE)
 
 # SHARED doesn't work in Windows
-add_library (pvizmodel STATIC 
+add_library (pvizmodel STATIC
   ${${CMAKE_PROJECT_NAME}_SRCS}
 )
 
 if (PVIZMODEL_USE_HDF5)
-target_link_libraries(pvizmodel 
+target_link_libraries(pvizmodel
   hdf5_cpp
   ${HDF5_LIBRARIES}
   ${MPI_LIBRARIES}
@@ -109,6 +109,6 @@ if (PVIZRPC_CLIENT_ENABLE)
   target_link_libraries (pvizmodel ${Boost_LIBRARIES})
 endif(PVIZRPC_CLIENT_ENABLE)
 
-target_link_libraries (pvizmodel 
+target_link_libraries (pvizmodel
   ${Boost_LIBRARIES}
   )

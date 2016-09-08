@@ -1,17 +1,17 @@
 /****************************************************************************
-** 
+**
 ** Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
 ** All rights reserved.
 ** Contact: Nokia Corporation (qt-info@nokia.com)
-** 
+**
 ** This file is part of a Qt Solutions component.
 **
-** Commercial Usage  
+** Commercial Usage
 ** Licensees holding valid Qt Commercial licenses may use this file in
 ** accordance with the Qt Solutions Commercial License Agreement provided
 ** with the Software or, alternatively, in accordance with the terms
 ** contained in a written agreement between you and Nokia.
-** 
+**
 ** GNU Lesser General Public License Usage
 ** Alternatively, this file may be used under the terms of the GNU Lesser
 ** General Public License version 2.1 as published by the Free Software
@@ -19,44 +19,44 @@
 ** packaging of this file.  Please review the following information to
 ** ensure the GNU Lesser General Public License version 2.1 requirements
 ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
-** 
+**
 ** In addition, as a special exception, Nokia gives you certain
 ** additional rights. These rights are described in the Nokia Qt LGPL
 ** Exception version 1.1, included in the file LGPL_EXCEPTION.txt in this
 ** package.
-** 
-** GNU General Public License Usage 
+**
+** GNU General Public License Usage
 ** Alternatively, this file may be used under the terms of the GNU
 ** General Public License version 3.0 as published by the Free Software
 ** Foundation and appearing in the file LICENSE.GPL included in the
 ** packaging of this file.  Please review the following information to
 ** ensure the GNU General Public License version 3.0 requirements will be
 ** met: http://www.gnu.org/copyleft/gpl.html.
-** 
+**
 ** Please note Third Party Software included with Qt Solutions may impose
 ** additional restrictions and it is the user's responsibility to ensure
 ** that they have met the licensing requirements of the GPL, LGPL, or Qt
 ** Solutions Commercial license and the relevant license of the Third
 ** Party Software they are using.
-** 
+**
 ** If you are unsure which license is appropriate for your use, please
 ** contact Nokia at qt-info@nokia.com.
-** 
+**
 ****************************************************************************/
 
 
 #include "qttreepropertybrowser.h"
-#include <QtCore/QSet>
-#include <QtGui/QIcon>
-#include <QtGui/QTreeWidget>
-#include <QtGui/QItemDelegate>
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QHeaderView>
-#include <QtGui/QPainter>
-#include <QtGui/QApplication>
-#include <QtGui/QFocusEvent>
-#include <QtGui/QStyle>
-#include <QtGui/QPalette>
+#include <QSet>
+#include <QIcon>
+#include <QTreeWidget>
+#include <QItemDelegate>
+#include <QHBoxLayout>
+#include <QHeaderView>
+#include <QPainter>
+#include <QApplication>
+#include <QFocusEvent>
+#include <QStyle>
+#include <QPalette>
 
 #if QT_VERSION >= 0x040400
 QT_BEGIN_NAMESPACE
@@ -447,16 +447,16 @@ void QtTreePropertyBrowserPrivate::init(QWidget *parent)
 
     m_treeWidget->setColumnCount(2);
     QStringList labels;
-    labels.append(QApplication::translate("QtTreePropertyBrowser", "Property", 0, QApplication::UnicodeUTF8));
-    labels.append(QApplication::translate("QtTreePropertyBrowser", "Value", 0, QApplication::UnicodeUTF8));
+    labels.append(QApplication::translate("QtTreePropertyBrowser", "Property", 0));
+    labels.append(QApplication::translate("QtTreePropertyBrowser", "Value", 0));
     m_treeWidget->setHeaderLabels(labels);
     m_treeWidget->setAlternatingRowColors(true);
     m_treeWidget->setEditTriggers(QAbstractItemView::EditKeyPressed);
     m_delegate = new QtPropertyEditorDelegate(parent);
     m_delegate->setEditorPrivate(this);
     m_treeWidget->setItemDelegate(m_delegate);
-    m_treeWidget->header()->setMovable(false);
-    m_treeWidget->header()->setResizeMode(QHeaderView::Stretch);
+    m_treeWidget->header()->setSectionsMovable(false);
+    m_treeWidget->header()->setSectionResizeMode(QHeaderView::Stretch);
 
     m_expandIcon = drawIndicatorIcon(q_ptr->palette(), q_ptr->style());
 
@@ -868,7 +868,7 @@ void QtTreePropertyBrowser::setResizeMode(QtTreePropertyBrowser::ResizeMode mode
         case QtTreePropertyBrowser::Stretch:
         default:                                      m = QHeaderView::Stretch;          break;
     }
-    d_ptr->m_treeWidget->header()->setResizeMode(m);
+    d_ptr->m_treeWidget->header()->setSectionResizeMode(m);
 }
 
 /*!
@@ -1047,5 +1047,5 @@ void QtTreePropertyBrowser::editItem(QtBrowserItem *item)
 QT_END_NAMESPACE
 #endif
 
-#include "moc_qttreepropertybrowser.cxx"
+#include "moc_qttreepropertybrowser.cpp"
 #include "qttreepropertybrowser.moc"

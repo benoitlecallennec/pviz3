@@ -9,13 +9,24 @@ if [ $# -lt 1 ]  ; then
 fi
 
 PVIZ3_APP=$1
-cd $PVIZ3_APP/Contents/MacOS
-LIBS=`otool -L pviz3 | sed '1d' | awk '{ print $1 }' | sed 's/@executable_path/./g'`
-for lib in $LIBS; do
-    #echo $lib
-    if ! [ -a $lib ]; then
-        echo $lib ... no
+pushd $PVIZ3_APP
+OBJS=`find ./ -name pviz3 -or -name "*.dylib" -type f -or -name "Qt*" -type f`
+for OBJ in $OBJS; do
+  echo "Reading ... $OBJ"
+  LIBS=`otool -L $OBJ | tail +2 | awk '{ print $1 }' | sed 's/@executable_path/./g'`
+  for LIB in $LIBS; do
+    if [ ${LIB:0:16} != "/System/Library/" ] && [ ${LIB:0:9} != "/usr/lib/" ]; then
+      LIBNAME=`basename $LIB`
+      ##echo "  "$LIBNAME
+      if ! [ -a ./Contents/Libraries/$LIBNAME ]; then
+        echo "  "$LIB ... no
+        cp $LIB ./Contents/Libraries/
+      fi
+    else
+      ##echo "  "$LIBNAME ... skip
+      continue
     fi
+  done
 done
-cd $OLDPWD
+popd
 echo "Done."

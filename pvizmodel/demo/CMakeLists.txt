@@ -12,7 +12,7 @@ add_executable (pvizmodeldemo demo.cpp)
 target_link_libraries (pvizmodeldemo pvizmodel)
 
 ## Boost
-set(Boost_USE_STATIC_LIBS   ON)
+set(Boost_USE_STATIC_LIBS   OFF)
 set(Boost_USE_MULTITHREADED ON)
 
 IF (APPLE OR UNIX)
@@ -31,5 +31,3 @@ find_path(Protobuf_INCLUDE_DIR google/protobuf/service.h $ENV{PROTOBUF_HOME}/inc
 find_library(Protobuf_LIBRARIES NAMES protobuf PATHS $ENV{PROTOBUF_HOME}/lib)
 include_directories(${Protobuf_INCLUDE_DIR})
 ENDIF ()
-
-
