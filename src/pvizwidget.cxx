@@ -620,7 +620,7 @@ int PvizWidget::SaveAsVTK(QString filename)
 #else
     pdw->SetInputData(plot);
 #endif
-	pdw->SetFileName(filename.toLatin1().data());
+	pdw->SetFileName(filename.toUtf8().data());
 	pdw->Write();
 	
 	return SUCCESS;
@@ -725,7 +725,7 @@ int PvizWidget::SaveAsXML(QString filename)
 {
     SaveToModel();
 	
-	model->saveXmlDataFile(filename.toLatin1().data());	
+	model->saveXmlDataFile(filename.toUtf8().data());	
 	
 	return SUCCESS;
 }
@@ -734,7 +734,7 @@ int PvizWidget::SaveAsTXT(QString filename)
 {
     SaveToModel();
 	
-	model->saveSimpleDataFile(filename.toLatin1().data());	
+	model->saveSimpleDataFile(filename.toUtf8().data());	
 	
 	return SUCCESS;
 }
@@ -742,21 +742,21 @@ int PvizWidget::SaveAsTXT(QString filename)
 void PvizWidget::LoadCompressedDataFile(QString filename)
 {
     fileName_ = filename;
-	model->loadCompressedDataFile(filename.toLatin1().data());
+	model->loadCompressedDataFile(filename.toUtf8().data());
 	loadModel();
 }
 
 void PvizWidget::LoadXmlDataFile(QString filename)
 {
     fileName_ = filename;
-	model->loadXmlDataFile(filename.toLatin1().data());	
+	model->loadXmlDataFile(filename.toUtf8().data());	
 	loadModel();
 }
 
 void PvizWidget::LoadSimpleDataFile(QString filename)
 {
     fileName_ = filename;
-	model->loadSimpleDataFile(filename.toLatin1().data());	
+	model->loadSimpleDataFile(filename.toUtf8().data());	
 	loadModel();
 }
 
@@ -765,7 +765,7 @@ void PvizWidget::ReloadSimpleDataFile(QString filename)
     PvizModel* model_ = new PvizModel();
     try
     {
-        model_->loadSimpleDataFile(filename.toLatin1().data());
+        model_->loadSimpleDataFile(filename.toUtf8().data());
     }
     catch (int e)
     {
@@ -805,7 +805,7 @@ void PvizWidget::LoadHDF5DataFile(QString filename)
 {
     fileName_ = filename;
 #ifdef PVIZMODEL_USE_HDF5
-	model->loadHDF5DataFile(filename.toLatin1().data(), "M.dat");
+	model->loadHDF5DataFile(filename.toUtf8().data(), "M.dat");
 	loadModel();
 #else
 	qDebug() << "HDF5 is disabled";
@@ -885,7 +885,7 @@ void PvizWidget::loadModel()
 			pointLabels->SetValue(pidx, point->label.c_str());
 			QString label = QString("[%1:%2] %3").arg(point->id).arg(cluster->id).arg(point->label.c_str());
 			//pointLabels->SetValue(pidx, QString("[%1:%2] ").arg(point->id).arg(cluster->id).toStdString().append(point->label).c_str());
-			pointLabels->SetValue(pidx, label.toLatin1());
+			pointLabels->SetValue(pidx, label.toUtf8());
             pointShapes->SetValue(pidx, cluster->shape);
 		}
 	}
@@ -995,12 +995,12 @@ void PvizWidget::loadModel()
     //titleActor->SetTextScaleModeToProp();
     titleActor->GetPositionCoordinate()->SetCoordinateSystemToNormalizedViewport();
     titleActor->GetPosition2Coordinate()->SetCoordinateSystemToNormalizedViewport();
-    titleActor->SetPosition ( 0.01, 0.99 );
+    titleActor->SetPosition ( 0.01, 0.95 );
     titleActor->SetPosition2 ( 0.99, 0.99 );
 
     titleActor->GetTextProperty()->SetColor ( 1.0, 0.0, 0.0 );
     titleActor->GetTextProperty()->SetJustificationToCentered();    
-    titleActor->GetTextProperty()->SetFontSize ( 12 );
+    titleActor->GetTextProperty()->SetFontSize ( 14 );
 
     titleActor->UseBorderAlignOn();
     if (GetTitle() == "")
@@ -1686,7 +1686,7 @@ void PvizWidget::ConnectToActiveMQServer(QString brokerURI,
 		qDebug() << "ConnectToActiveMQServer ... " << brokerURI;
 		
         // Create a ConnectionFactory
-        ActiveMQConnectionFactory* connectionFactory = new ActiveMQConnectionFactory( std::string(brokerURI.toLatin1().constData()) );
+        ActiveMQConnectionFactory* connectionFactory = new ActiveMQConnectionFactory( std::string(brokerURI.toUtf8().constData()) );
 		//new ActiveMQConnectionFactory( "tcp://156.56.104.176:61616?wireFormat.maxInactivityDuration=0" );
 		qDebug() << " connectionFactory ... created.";
 		
@@ -1710,14 +1710,14 @@ void PvizWidget::ConnectToActiveMQServer(QString brokerURI,
         
         // Listen first ..
         // Create a MessageConsumer from the Session to the Topic or Queue
-        listenTopic = session->createTopic( std::string(listenURI.toLatin1().constData()) );
+        listenTopic = session->createTopic( std::string(listenURI.toUtf8().constData()) );
         //listenTopic = session->createTopic( destURI.toStdString() );
         consumer = session->createConsumer( listenTopic );
         consumer->setMessageListener( this );
         
         
         // Sending ..
-        sendTopic = session->createTopic( std::string(destURI.toLatin1().constData()) );
+        sendTopic = session->createTopic( std::string(destURI.toUtf8().constData()) );
         
         // Create a MessageProducer from the Session to the Topic or Queue
         producer = session->createProducer( sendTopic );
@@ -3126,7 +3126,7 @@ int PvizWidget::SaveScreen(QString filename)
 	
 	//vtkSmartPointer<vtkPNGWriter> writer = vtkSmartPointer<vtkPNGWriter>::New();
 	VTK_CREATE(vtkPNGWriter, writer);
-	writer->SetFileName(filename.toLatin1().data());
+	writer->SetFileName(filename.toUtf8().data());
 #if VTK_MAJOR_VERSION <= 5
 	writer->SetInput(windowToImageFilter->GetOutput());
 #else
@@ -3145,7 +3145,7 @@ int PvizWidget::SaveAsMovie(QString filename)
 #ifdef _WIN32
 	VTK_CREATE(vtkAVIWriter, w);
 	w->SetCompressorFourCC("MSVC");
-	w->SetFileName(filename.toLatin1().data());
+	w->SetFileName(filename.toUtf8().data());
 #if VTK_MAJOR_VERSION <= 5
 	w->SetInput(windowToImageFilter->GetOutput());
 #else
@@ -3176,8 +3176,8 @@ int PvizWidget::SaveAsMovie(QString filename)
         renderer->GetActiveCamera()->Azimuth(-1);
         windowToImageFilter->Modified();
 
-        fname.sprintf("%s.%03d.png", fi.completeBaseName().toLatin1().data(), i);
-        w->SetFileName(fname.toLatin1().data());
+        fname.sprintf("%s.%03d.png", fi.completeBaseName().toUtf8().data(), i);
+        w->SetFileName(fname.toUtf8().data());
         w->SetInputConnection(windowToImageFilter->GetOutputPort());
         w->Write();
     }
@@ -4153,7 +4153,7 @@ QString PvizWidget::GetFileName()
 
 void PvizWidget::SetTitle(QString title)
 {
-    titleActor->SetInput(title.toLatin1().data());
+    titleActor->SetInput(title.toUtf8().data());
     refresh();
 }
 

@@ -137,9 +137,13 @@ listenURI("topic2")
     activemq::library::ActiveMQCPP::initializeLibrary();
 #endif
     
-    //QString location = QStandardPaths::standardLocations(QStandardPaths::DataLocation);
-    //QFileInfo info = QFileInfo("/PVIZ3/pviz3.ini");
-    QFileInfo info = QFileInfo("pviz3.ini");
+    QString location = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+    
+    QDir dir(location);
+    if (!dir.exists())
+        dir.mkpath(location);
+    
+    QFileInfo info = QFileInfo(dir.absoluteFilePath("pviz3.ini"));
     
     settings = new QSettings(info.absoluteFilePath(), QSettings::IniFormat);
     qDebug() << "INI file : " << QFileInfo(settings->fileName()).absoluteFilePath();
@@ -813,7 +817,7 @@ void MainWindow::propertyValueChanged(QtProperty *property, const QVariant &valu
             if (id == QLatin1String("label")) 
             {
                 col2->setData(QString("%1").arg(value.value<QString>()), Qt::DisplayRole);
-                child->SetClusterLabel(cid, std::string(value.value<QString>().toLatin1().data()));
+                child->SetClusterLabel(cid, std::string(value.value<QString>().toUtf8().data()));
             }            
             else if (id == QLatin1String("color")) 
             {
