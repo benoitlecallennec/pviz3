@@ -11,8 +11,9 @@ FIND_PACKAGE(VTK REQUIRED)
 INCLUDE(${VTK_USE_FILE}) # include UseVTK.cmake
 ##message(VTK_RUNTIME_LIBRARY_DIRS ${VTK_RUNTIME_LIBRARY_DIRS})
 
-set(Boost_USE_STATIC_LIBS   OFF)
+set(Boost_USE_STATIC_LIBS   ON)
 set(Boost_USE_MULTITHREADED ON)
+add_definitions(-DBOOST_ALL_NO_LIB)
 
 IF (APPLE OR UNIX)
   find_package(Boost 1.44 REQUIRED COMPONENTS system signals filesystem iostreams program_options)
@@ -20,6 +21,11 @@ ELSE ()
   find_package(Boost 1.44 REQUIRED COMPONENTS system signals filesystem iostreams program_options zlib)
 ENDIF ()
 include_directories (${Boost_INCLUDE_DIRS})
+
+find_package( ZLIB REQUIRED )
+if ( ZLIB_FOUND )
+  include_directories( ${ZLIB_INCLUDE_DIRS} )
+endif( ZLIB_FOUND )
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 #set(CMAKE_AUTOMOC ON)
@@ -61,8 +67,11 @@ SET(SRCS
   aboutdialog.cpp
   helpdialog.cpp
   #message.pb.cc message.pb.h
-  osxHelper.mm
   )
+
+IF (APPLE)
+  LIST (APPEND SRCS osxHelper.mm)
+ENDIF()
 
 SET(UIS
   UI/MainWindow.ui
@@ -86,15 +95,15 @@ QT5_WRAP_UI(UI_SRCS ${UIS})
 QT5_WRAP_CPP(MOC_SRCS ${HDRS})
 QT5_ADD_RESOURCES(RC_SRCS ${RSCS})
 
-##-IF(Q_WS_WIN)
-##-  SET(SRCS ${SRCS} CMakeSetup.rc)
-##-ENDIF(Q_WS_WIN)
-
-SET(SRCS ${SRCS} Icons/pviz.icns)
-SET(MACOSX_BUNDLE_ICON_FILE pviz.icns)
-SET(MACOSX_BUNDLE_BUNDLE_NAME PlotViz)
-SET_SOURCE_FILES_PROPERTIES(Icons/pviz.icns PROPERTIES
-  MACOSX_PACKAGE_LOCATION Resources)
+IF(WIN32)
+  SET(SRCS ${SRCS} CMakeSetup.rc)
+ELSE (APPLE)
+  SET(SRCS ${SRCS} Icons/pviz.icns)
+  SET(MACOSX_BUNDLE_ICON_FILE pviz.icns)
+  SET(MACOSX_BUNDLE_BUNDLE_NAME PlotViz)
+  SET_SOURCE_FILES_PROPERTIES(Icons/pviz.icns PROPERTIES
+    MACOSX_PACKAGE_LOCATION Resources)
+ENDIF()
 
 SOURCE_GROUP("Resources" FILES
   ${UIS}
@@ -123,6 +132,7 @@ TARGET_LINK_LIBRARIES(pviz3
   ##nbclient
   ##${QT_LIBRARIES}
   ${Boost_LIBRARIES}
+  ${ZLIB_LIBRARIES}
   ##${Protobuf_LIBRARIES}
   ${VTK_LIBRARIES}
   Qt5::Core
@@ -131,7 +141,9 @@ TARGET_LINK_LIBRARIES(pviz3
   Qt5::Concurrent
   )
 
-set_target_properties(pviz3 PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Resources/Info.plist)
+IF (APPLE)
+  set_target_properties(pviz3 PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Resources/Info.plist)
+ENDIF()
 
 FIND_PACKAGE(Git)
 IF(GIT_FOUND)
@@ -153,59 +165,111 @@ INSTALL(TARGETS pviz3
   BUNDLE DESTINATION .
   )
 
-FILE(GLOB VTK_REDIST_FILES ${VTK_RUNTIME_LIBRARY_DIRS}/*.dylib)
-SET(VTK_REDIST_DIR pviz3.app/Contents/Frameworks)
-SET(QT_REDIST_DIR pviz3.app/Contents/Frameworks)
-SET(QT_REDIST_PLUGINS_DIR pviz3.app/Contents/PlugIns)
-SET(QT_REDIST_RESOURCES_DIR pviz3.app/Contents/Resources)
+IF (APPLE)
+  FILE(GLOB VTK_REDIST_FILES ${VTK_RUNTIME_LIBRARY_DIRS}/*.dylib)
+  SET(VTK_REDIST_DIR pviz3.app/Contents/Frameworks)
+  SET(QT_REDIST_DIR pviz3.app/Contents/Frameworks)
+  SET(QT_REDIST_PLUGINS_DIR pviz3.app/Contents/PlugIns)
+  SET(QT_REDIST_RESOURCES_DIR pviz3.app/Contents/Resources)
+
+  INSTALL(FILES ${VTK_REDIST_FILES} DESTINATION ${VTK_REDIST_DIR})
+  ##INSTALL(FILES ${Boost_LIBRARIES} DESTINATION ${VTK_REDIST_DIR})
+
+  ## We will use macdeployqt
+  ##-FOREACH(QT_MODULE Qt5::Core Qt5::Widgets Qt5::Gui Qt5::Concurrent)
+  ##-  get_target_property(QT_MODULE_PATH ${QT_MODULE} LOCATION)
+  ##-  get_filename_component(QT_MODULE_ABS_PATH ${QT_MODULE_PATH} REALPATH)
+  ##-  INSTALL(FILES ${QT_MODULE_ABS_PATH} DESTINATION ${QT_REDIST_DIR})
+  ##-ENDFOREACH()  
+ELSE (WIN32)
+  IF (CMAKE_CXX_SIZEOF_DATA_PTR MATCHES "8")
+    SET(WIN_REDIST_DIR "C:/Program Files (x86)/Microsoft Visual Studio 10.0/VC/redist/x64")
+  ELSE ()
+    SET(WIN_REDIST_DIR "C:/Program Files (x86)/Microsoft Visual Studio 10.0/VC/redist/x86")
+  ENDIF ()
+
+  ##-SET(QT_DLLS Qt5::Core Qt5::Widgets Qt5::Gui Qt5::Concurrent)
+  ##-LIST(APPEND QT_DLLS ${Qt5Widgets_PLUGINS})
+  ##-LIST(APPEND QT_DLLS ${Qt5Gui_PLUGINS})
+  ##-LIST(APPEND QT_DLLS ${Qt5Core_PLUGINS})
+  ##-foreach(_DLL ${QT_DLLS})
+  ##-  get_target_property(_LOC ${_DLL} LOCATION)
+  ##-  LIST(APPEND QT_REDIST_FILES ${_LOC})
+  ##-  message("QT ${_DLL} is at location ${_LOC}")
+  ##-endforeach()
+  ##-INSTALL(FILES ${QT_REDIST_FILES} DESTINATION bin)
+
+  FILE(GLOB VTK_REDIST_FILES ${VTK_RUNTIME_LIBRARY_DIRS}/*.dll)
+  FILE(GLOB WIN_REDIST_FILES ${WIN_REDIST_DIR}/Microsoft.VC100.CRT/*.dll ${WIN_REDIST_DIR}/Microsoft.VC100.OpenMP/*.dll)
   
-INSTALL(FILES ${VTK_REDIST_FILES} DESTINATION ${VTK_REDIST_DIR})
-INSTALL(FILES ${Boost_LIBRARIES} DESTINATION ${VTK_REDIST_DIR})
+  INSTALL(FILES ${VTK_REDIST_FILES} DESTINATION bin)
+  INSTALL(FILES ${WIN_REDIST_FILES} DESTINATION bin)
+ENDIF()
   
-## We will use macdeployqt
-##-FOREACH(QT_MODULE Qt5::Core Qt5::Widgets Qt5::Gui Qt5::Concurrent)
-##-  get_target_property(QT_MODULE_PATH ${QT_MODULE} LOCATION)
-##-  get_filename_component(QT_MODULE_ABS_PATH ${QT_MODULE_PATH} REALPATH)
-##-  INSTALL(FILES ${QT_MODULE_ABS_PATH} DESTINATION ${QT_REDIST_DIR})
-##-ENDFOREACH()
-
-foreach(plugin ${Qt5Gui_PLUGINS})
-  get_target_property(_loc ${plugin} LOCATION)
-  get_filename_component(_dir ${_loc} DIRECTORY)
-  get_filename_component(_dirname ${_dir} NAME)
-  INSTALL(FILES ${_loc} DESTINATION ${QT_REDIST_PLUGINS_DIR}/${_dirname})
-endforeach()
-
-INSTALL(CODE "EXECUTE_PROCESS(COMMAND which macdeployqt)")
-INSTALL(CODE "EXECUTE_PROCESS(COMMAND echo macdeployqt ${CMAKE_INSTALL_PREFIX}/pviz3.app)")
-INSTALL(CODE "EXECUTE_PROCESS(COMMAND macdeployqt ${CMAKE_INSTALL_PREFIX}/pviz3.app)")
-INSTALL(CODE "EXECUTE_PROCESS(COMMAND chmod -R g+rX,o+rX ${CMAKE_INSTALL_PREFIX}/pviz3.app)")
-INSTALL(CODE "EXECUTE_PROCESS(COMMAND find ${CMAKE_INSTALL_PREFIX}/pviz3.app -type l -exec chmod -h g+rX,o+rX {} \;)")
-
-INSTALL(CODE "EXECUTE_PROCESS(COMMAND chmod -R g+rX,o+rX _CPack_Packages)")
-INSTALL(CODE "EXECUTE_PROCESS(COMMAND find _CPack_Packages -type l -exec chmod -h g+rX,o+rX {} \;)")
-
-## Run macdeployqt before cpack-ing
-## First, find location
-execute_process(COMMAND find ${PROJECT_BINARY_DIR}/_CPack_Packages -name "pviz3.app"
-  OUTPUT_VARIABLE _cpack_dirs)
-separate_arguments (_cpack_dirs UNIX_COMMAND ${_cpack_dirs})
-
-## Then, run macdeployqt
-FOREACH(_dir ${_cpack_dirs})
-  INSTALL(CODE "EXECUTE_PROCESS(COMMAND echo macdeployqt ${_dir})")
-  INSTALL(CODE "EXECUTE_PROCESS(COMMAND macdeployqt ${_dir})")
-ENDFOREACH()
+IF (APPLE)
+  INSTALL(CODE "EXECUTE_PROCESS(COMMAND which macdeployqt)")
+  INSTALL(CODE "EXECUTE_PROCESS(COMMAND echo macdeployqt ${CMAKE_INSTALL_PREFIX}/pviz3.app)")
+  INSTALL(CODE "EXECUTE_PROCESS(COMMAND macdeployqt ${CMAKE_INSTALL_PREFIX}/pviz3.app)")
+  INSTALL(CODE "EXECUTE_PROCESS(COMMAND chmod -R g+rX,o+rX ${CMAKE_INSTALL_PREFIX}/pviz3.app)")
+  INSTALL(CODE "EXECUTE_PROCESS(COMMAND find ${CMAKE_INSTALL_PREFIX}/pviz3.app -type l -exec chmod -h g+rX,o+rX {} \;)")
+  
+  INSTALL(CODE "EXECUTE_PROCESS(COMMAND chmod -R g+rX,o+rX _CPack_Packages)")
+  INSTALL(CODE "EXECUTE_PROCESS(COMMAND find _CPack_Packages -type l -exec chmod -h g+rX,o+rX {} \;)")
+  
+  ## Run macdeployqt before cpack-ing
+  ## First, find location
+  execute_process(COMMAND find ${PROJECT_BINARY_DIR}/_CPack_Packages -name "pviz3.app"
+    OUTPUT_VARIABLE _cpack_dirs)
+  separate_arguments (_cpack_dirs UNIX_COMMAND ${_cpack_dirs})
+  
+  ## Then, run macdeployqt
+  FOREACH(_dir ${_cpack_dirs})
+    INSTALL(CODE "EXECUTE_PROCESS(COMMAND echo macdeployqt ${_dir})")
+    INSTALL(CODE "EXECUTE_PROCESS(COMMAND macdeployqt ${_dir})")
+  ENDFOREACH()
+ELSE (WIN32)
+  INSTALL(CODE "EXECUTE_PROCESS(COMMAND windeployqt ${CMAKE_INSTALL_PREFIX}/bin/pviz3.exe)")  
+ENDIF()
 
 SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "PlotViz")
 SET(CPACK_PACKAGE_VENDOR "SALSA")
 ## Causing error with DragNDrop (2016/08)
-#SET(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/LICENSE.txt")
+SET(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/LICENSE.txt")
 SET(CPACK_PACKAGE_VERSION_MAJOR ${PVIZ3_VERSION_MAJOR})
 SET(CPACK_PACKAGE_VERSION_MINOR ${PVIZ3_VERSION_MINOR})
 SET(CPACK_PACKAGE_VERSION_PATCH ${PVIZ3_VERSION_PATCH})
 
-SET(CPACK_GENERATOR "DragNDrop")
+IF (WIN32)
+  # There is a bug in NSI that does not handle full unix paths properly. Make
+  # sure there is at least one set of four (4) backlasshes.
+  ##message("${PROJECT_SOURCE_DIR}\\\\src\\\\Icons\\\\pviz.ico")
+  SET(CPACK_GENERATOR "NSIS")
+  SET(CPACK_PACKAGE_INSTALL_DIRECTORY "PVIZ3")
+  SET(CPACK_NSIS_MUI_ICON "${PROJECT_SOURCE_DIR}\\\\src\\\\Icons\\\\pviz.ico")
+  SET(CPACK_NSIS_MUI_UNIICON  "${PROJECT_SOURCE_DIR}\\\\src\\\\Icons\\\\pviz.ico")
+  SET(CPACK_PACKAGE_ICON "${PROJECT_SOURCE_DIR}\\\\etc\\\\pviz_installer_header.bmp")
+  SET(CPACK_NSIS_INSTALLED_ICON_NAME "bin\\\\pviz3.exe")
+  SET(CPACK_NSIS_DISPLAY_NAME "PVIZ3")
+  SET(CPACK_NSIS_HELP_LINK "http://salsahpc.indiana.edu/pviz3")
+  SET(CPACK_NSIS_URL_INFO_ABOUT "http://salsahpc.indiana.edu/pviz3")
+  SET(CPACK_NSIS_CONTACT "jychoi@indiana.edu")
+  SET(CPACK_NSIS_MODIFY_PATH ON)
+
+  # File types association:
+  SET(CPACK_NSIS_DEFINES "
+    !include ${PROJECT_SOURCE_DIR}/CMakeModules\\\\packaging\\\\FileAssociation.nsh
+    ")
+  
+  SET(CPACK_NSIS_EXTRA_INSTALL_COMMANDS "
+    \\\${registerExtension} \\\"\\\$INSTDIR\\\\bin\\\\pviz3.exe\\\"	\\\".pviz\\\" \\\"PlotViz Data File\\\"
+    ")
+
+  SET(CPACK_NSIS_EXTRA_UNINSTALL_COMMANDS "
+    \\\${unregisterExtension} \\\".pviz\\\" \\\"PlotViz Data File\\\"
+    ")
+ELSE (APPLE)
+  SET(CPACK_GENERATOR "DragNDrop")
+ENDIF()
 SET(CPACK_PACKAGE_EXECUTABLES pviz3 Pviz3)
 INCLUDE(CPack)
 

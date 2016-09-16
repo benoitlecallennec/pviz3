@@ -12,8 +12,9 @@ add_executable (pvizmodeldemo demo.cpp)
 target_link_libraries (pvizmodeldemo pvizmodel)
 
 ## Boost
-set(Boost_USE_STATIC_LIBS   OFF)
+set(Boost_USE_STATIC_LIBS   ON)
 set(Boost_USE_MULTITHREADED ON)
+add_definitions(-DBOOST_ALL_NO_LIB)
 
 IF (APPLE OR UNIX)
   find_package(Boost 1.44 REQUIRED COMPONENTS system signals filesystem iostreams)
