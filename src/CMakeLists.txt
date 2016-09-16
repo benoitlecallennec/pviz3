@@ -196,17 +196,6 @@ ELSE (WIN32)
     SET(WIN_REDIST_DIR "C:/Program Files (x86)/Microsoft Visual Studio 10.0/VC/redist/x86")
   ENDIF ()
 
-  ##-SET(QT_DLLS Qt5::Core Qt5::Widgets Qt5::Gui Qt5::Concurrent)
-  ##-LIST(APPEND QT_DLLS ${Qt5Widgets_PLUGINS})
-  ##-LIST(APPEND QT_DLLS ${Qt5Gui_PLUGINS})
-  ##-LIST(APPEND QT_DLLS ${Qt5Core_PLUGINS})
-  ##-foreach(_DLL ${QT_DLLS})
-  ##-  get_target_property(_LOC ${_DLL} LOCATION)
-  ##-  LIST(APPEND QT_REDIST_FILES ${_LOC})
-  ##-  message("QT ${_DLL} is at location ${_LOC}")
-  ##-endforeach()
-  ##-INSTALL(FILES ${QT_REDIST_FILES} DESTINATION bin)
-
   FILE(GLOB VTK_REDIST_FILES ${VTK_RUNTIME_LIBRARY_DIRS}/*.dll)
   FILE(GLOB WIN_REDIST_FILES ${WIN_REDIST_DIR}/Microsoft.VC100.CRT/*.dll ${WIN_REDIST_DIR}/Microsoft.VC100.OpenMP/*.dll)
   
@@ -236,7 +225,32 @@ IF (APPLE)
     INSTALL(CODE "EXECUTE_PROCESS(COMMAND macdeployqt ${_dir})")
   ENDFOREACH()
 ELSE (WIN32)
-  INSTALL(CODE "EXECUTE_PROCESS(COMMAND windeployqt ${CMAKE_INSTALL_PREFIX}/bin/pviz3.exe)")  
+  ##-INSTALL(CODE "EXECUTE_PROCESS(COMMAND windeployqt ${CMAKE_INSTALL_PREFIX}/bin/pviz3.exe)")
+  ##-
+  ##-execute_process(COMMAND cmd.exe /c "cd _CPack_Packages & dir pviz3.exe /s /b"
+  ##-  OUTPUT_VARIABLE _cpack_dirs)
+  ##-separate_arguments (_cpack_dirs WINDOWS_COMMAND ${_cpack_dirs})
+  ##-
+  ##-## Then, run windeployqt
+  ##-FOREACH(_dir ${_cpack_dirs})
+  ##-  ##INSTALL(CODE "EXECUTE_PROCESS(COMMAND echo windeployqt ${_dir})")
+  ##-  INSTALL(CODE "EXECUTE_PROCESS(COMMAND windeployqt ${_dir})")
+  ##-ENDFOREACH()
+
+  SET(QT_DLLS Qt5::Core Qt5::Widgets Qt5::Gui Qt5::Concurrent)
+  LIST(APPEND QT_DLLS ${Qt5Widgets_PLUGINS})
+  LIST(APPEND QT_DLLS ${Qt5Gui_PLUGINS})
+  LIST(APPEND QT_DLLS ${Qt5Core_PLUGINS})
+  foreach(_DLL ${QT_DLLS})
+    get_target_property(_LOC ${_DLL} LOCATION)
+    LIST(APPEND QT_REDIST_FILES ${_LOC})
+    message("${_DLL} is at location ${_LOC}")
+  endforeach()
+  INSTALL(FILES ${QT_REDIST_FILES} DESTINATION bin)
+
+  INSTALL(FILES ${Qt5Core_DIR}/../../../bin/icuin52.dll DESTINATION bin)
+  INSTALL(FILES ${Qt5Core_DIR}/../../../bin/icuuc52.dll DESTINATION bin)
+  INSTALL(FILES ${Qt5Core_DIR}/../../../bin/icudt52.dll DESTINATION bin)
 ENDIF()
 
 SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "PlotViz")
