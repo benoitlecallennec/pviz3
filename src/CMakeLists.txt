@@ -165,30 +165,13 @@ INSTALL(TARGETS pviz3
   BUNDLE DESTINATION .
   )
 
+## Deployment
 IF (APPLE)
-  FILE(GLOB VTK_REDIST_FILES ${VTK_RUNTIME_LIBRARY_DIRS}/*.dylib)
-  SET(VTK_REDIST_DIR pviz3.app/Contents/Frameworks)
-  SET(QT_REDIST_DIR pviz3.app/Contents/Frameworks)
-  SET(QT_REDIST_PLUGINS_DIR pviz3.app/Contents/PlugIns)
-  SET(QT_REDIST_RESOURCES_DIR pviz3.app/Contents/Resources)
-
-  INSTALL(FILES ${VTK_REDIST_FILES} DESTINATION ${VTK_REDIST_DIR})
-  ##INSTALL(FILES ${Boost_LIBRARIES} DESTINATION ${VTK_REDIST_DIR})
-
-  ## We will use macdeployqt
-  ##-FOREACH(QT_MODULE Qt5::Core Qt5::Widgets Qt5::Gui Qt5::Concurrent)
-  ##-  get_target_property(QT_MODULE_PATH ${QT_MODULE} LOCATION)
-  ##-  get_filename_component(QT_MODULE_ABS_PATH ${QT_MODULE_PATH} REALPATH)
-  ##-  INSTALL(FILES ${QT_MODULE_ABS_PATH} DESTINATION ${QT_REDIST_DIR})
-  ##-ENDFOREACH()
-
-  ## macdeployqt (5.3.2) is not working well. We copy manually
-  foreach(plugin ${Qt5Gui_PLUGINS} ${Qt5Core_PLUGINS})
-    get_target_property(_loc ${plugin} LOCATION)
-    get_filename_component(_dir ${_loc} DIRECTORY)
-    get_filename_component(_dirname ${_dir} NAME)
-    INSTALL(FILES ${_loc} DESTINATION ${QT_REDIST_PLUGINS_DIR}/${_dirname})
-  endforeach()
+  ## Use macdeployqt for OSX
+  ADD_CUSTOM_COMMAND(TARGET pviz3 COMMAND echo Run macdeployqt:)
+  ADD_CUSTOM_COMMAND(TARGET pviz3 COMMAND which macdeployqt)
+  ADD_CUSTOM_COMMAND(TARGET pviz3 COMMAND echo macdeployqt ARGS ${CMAKE_CURRENT_BINARY_DIR}/pviz3.app)
+  ADD_CUSTOM_COMMAND(TARGET pviz3 COMMAND macdeployqt ARGS ${CMAKE_CURRENT_BINARY_DIR}/pviz3.app)
 ELSE (WIN32)
   IF (CMAKE_CXX_SIZEOF_DATA_PTR MATCHES "8")
     SET(WIN_REDIST_DIR "C:/Program Files (x86)/Microsoft Visual Studio 10.0/VC/redist/x64")
@@ -201,42 +184,7 @@ ELSE (WIN32)
   
   INSTALL(FILES ${VTK_REDIST_FILES} DESTINATION bin)
   INSTALL(FILES ${WIN_REDIST_FILES} DESTINATION bin)
-ENDIF()
   
-IF (APPLE)
-  INSTALL(CODE "EXECUTE_PROCESS(COMMAND which macdeployqt)")
-  INSTALL(CODE "EXECUTE_PROCESS(COMMAND echo macdeployqt ${CMAKE_INSTALL_PREFIX}/pviz3.app)")
-  INSTALL(CODE "EXECUTE_PROCESS(COMMAND macdeployqt ${CMAKE_INSTALL_PREFIX}/pviz3.app)")
-  INSTALL(CODE "EXECUTE_PROCESS(COMMAND chmod -R g+rX,o+rX ${CMAKE_INSTALL_PREFIX}/pviz3.app)")
-  INSTALL(CODE "EXECUTE_PROCESS(COMMAND find ${CMAKE_INSTALL_PREFIX}/pviz3.app -type l -exec chmod -h g+rX,o+rX {} \;)")
-  
-  INSTALL(CODE "EXECUTE_PROCESS(COMMAND chmod -R g+rX,o+rX _CPack_Packages)")
-  INSTALL(CODE "EXECUTE_PROCESS(COMMAND find _CPack_Packages -type l -exec chmod -h g+rX,o+rX {} \;)")
-  
-  ## Run macdeployqt before cpack-ing
-  ## First, find location
-  execute_process(COMMAND find ${PROJECT_BINARY_DIR}/_CPack_Packages -name "pviz3.app"
-    OUTPUT_VARIABLE _cpack_dirs)
-  separate_arguments (_cpack_dirs UNIX_COMMAND ${_cpack_dirs})
-  
-  ## Then, run macdeployqt
-  FOREACH(_dir ${_cpack_dirs})
-    INSTALL(CODE "EXECUTE_PROCESS(COMMAND echo macdeployqt ${_dir})")
-    INSTALL(CODE "EXECUTE_PROCESS(COMMAND macdeployqt ${_dir})")
-  ENDFOREACH()
-ELSE (WIN32)
-  ##-INSTALL(CODE "EXECUTE_PROCESS(COMMAND windeployqt ${CMAKE_INSTALL_PREFIX}/bin/pviz3.exe)")
-  ##-
-  ##-execute_process(COMMAND cmd.exe /c "cd _CPack_Packages & dir pviz3.exe /s /b"
-  ##-  OUTPUT_VARIABLE _cpack_dirs)
-  ##-separate_arguments (_cpack_dirs WINDOWS_COMMAND ${_cpack_dirs})
-  ##-
-  ##-## Then, run windeployqt
-  ##-FOREACH(_dir ${_cpack_dirs})
-  ##-  ##INSTALL(CODE "EXECUTE_PROCESS(COMMAND echo windeployqt ${_dir})")
-  ##-  INSTALL(CODE "EXECUTE_PROCESS(COMMAND windeployqt ${_dir})")
-  ##-ENDFOREACH()
-
   message(STATUS "Found the following QT libraries")
   SET(QT_DLLS Qt5::Core Qt5::Widgets Qt5::Gui Qt5::Concurrent)
   foreach(_DLL ${QT_DLLS})
