@@ -1,0 +1,1488 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plotviz>
+	<plot>
+		<title>Solvent</title>
+		<pointsize>2</pointsize>
+		<glyph>
+			<visible>1</visible>
+			<scale>14</scale>
+		</glyph>
+		<camera>
+			<focusmode>0</focusmode>
+			<focus x="0" y="0" z="0"/>
+		</camera>
+	</plot>
+	<clusters>
+		<cluster>
+			<key>7</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="167" g="97" b="62" a="255"/>
+			<size>1</size>
+			<shape>6</shape>
+		</cluster>
+		<cluster>
+			<key>1</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="255" g="0" b="0" a="255"/>
+			<size>1</size>
+			<shape>6</shape>
+		</cluster>
+		<cluster>
+			<key>14</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="132" g="132" b="0" a="255"/>
+			<size>1</size>
+			<shape>6</shape>
+		</cluster>
+		<cluster>
+			<key>11</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="211" g="255" b="149" a="255"/>
+			<size>1</size>
+			<shape>6</shape>
+		</cluster>
+		<cluster>
+			<key>16</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="255" g="237" b="255" a="255"/>
+			<size>1</size>
+			<shape>6</shape>
+		</cluster>
+		<cluster>
+			<key>2</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="0" g="255" b="0" a="255"/>
+			<size>1</size>
+			<shape>6</shape>
+		</cluster>
+		<cluster>
+			<key>12</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="185" g="79" b="255" a="255"/>
+			<size>1</size>
+			<shape>6</shape>
+		</cluster>
+		<cluster>
+			<key>19</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="0" g="53" b="193" a="255"/>
+			<size>1</size>
+			<shape>6</shape>
+		</cluster>
+		<cluster>
+			<key>15</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="0" g="255" b="149" a="255"/>
+			<size>1</size>
+			<shape>6</shape>
+		</cluster>
+		<cluster>
+			<key>3</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="255" g="26" b="185" a="255"/>
+			<size>1</size>
+			<shape>6</shape>
+		</cluster>
+		<cluster>
+			<key>21</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="158" g="114" b="141" a="255"/>
+			<size>1</size>
+			<shape>6</shape>
+		</cluster>
+		<cluster>
+			<key>13</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="229" g="26" b="88" a="255"/>
+			<size>1</size>
+			<shape>6</shape>
+		</cluster>
+		<cluster>
+			<key>9</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="62" g="123" b="141" a="255"/>
+			<size>1</size>
+			<shape>6</shape>
+		</cluster>
+		<cluster>
+			<key>6</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="0" g="141" b="70" a="255"/>
+			<size>1</size>
+			<shape>6</shape>
+		</cluster>
+		<cluster>
+			<key>10</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="237" g="167" b="255" a="255"/>
+			<size>1</size>
+			<shape>6</shape>
+		</cluster>
+		<cluster>
+			<key>4</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="255" g="211" b="0" a="255"/>
+			<size>1</size>
+			<shape>6</shape>
+		</cluster>
+		<cluster>
+			<key>5</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="0" g="132" b="246" a="255"/>
+			<size>1</size>
+			<shape>6</shape>
+		</cluster>
+		<cluster>
+			<key>8</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="0" g="255" b="246" a="255"/>
+			<size>1</size>
+			<shape>6</shape>
+		</cluster>
+		<cluster>
+			<key>17</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="246" g="132" b="18" a="255"/>
+			<size>1</size>
+			<shape>6</shape>
+		</cluster>
+		<cluster>
+			<key>18</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="202" g="255" b="0" a="255"/>
+			<size>1</size>
+			<shape>6</shape>
+		</cluster>
+		<cluster>
+			<key>20</key>
+			<label/>
+			<visible>1</visible>
+			<default>0</default>
+			<color r="255" g="202" b="132" a="255"/>
+			<size>1</size>
+			<shape>6</shape>
+		</cluster>
+	</clusters>
+	<points>
+		<point>
+			<key>10008</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.9772339463233948" y="0.579404890537262" z="0.5522757172584534"/>
+		</point>
+		<point>
+			<key>1049</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.1111109629273415" y="0.9999299049377441" z="0.999971330165863"/>
+		</point>
+		<point>
+			<key>1140</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.7732469439506531" y="0.557749330997467" z="0.4949270188808441"/>
+		</point>
+		<point>
+			<key>11575</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.9938648343086243" y="0.5570839047431946" z="0.5458347201347351"/>
+		</point>
+		<point>
+			<key>240</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.7674334049224854" y="0.7880363464355469" z="0.1109404787421227"/>
+		</point>
+		<point>
+			<key>241</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.9999831318855286" y="0.5518895387649536" z="0.09859257191419601"/>
+		</point>
+		<point>
+			<key>244</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.778886079788208" y="0.9988722801208496" z="-0.1717226505279541"/>
+		</point>
+		<point>
+			<key>335</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.7777072191238403" y="0.7778485417366028" z="-0.1086139008402824"/>
+		</point>
+		<point>
+			<key>342</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.7777625918388367" y="0.7777922749519348" z="-0.1108007207512856"/>
+		</point>
+		<point>
+			<key>6054</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.7778939008712769" y="0.9998632073402405" z="-0.5502364635467529"/>
+		</point>
+		<point>
+			<key>7002</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.7747509479522705" y="0.5664324760437012" z="0.5055776238441467"/>
+		</point>
+		<point>
+			<key>7047</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.1111111119389534" y="1" z="1"/>
+		</point>
+		<point>
+			<key>7150</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.3330174386501312" y="0.9999998211860657" z="0.03161203488707542"/>
+		</point>
+		<point>
+			<key>7237</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.6953365206718445" y="0.5599480867385864" z="0.4268272817134857"/>
+		</point>
+		<point>
+			<key>7238</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.7802733182907104" y="0.5576834082603455" z="0.7731491923332214"/>
+		</point>
+		<point>
+			<key>7239</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.9935866594314575" y="0.558491051197052" z="0.5589461922645569"/>
+		</point>
+		<point>
+			<key>7247</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.5789241194725037" y="0.5559127926826477" z="0.5320430397987366"/>
+		</point>
+		<point>
+			<key>7366</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.5566539764404297" y="0.5557488799095154" z="0.5526813268661499"/>
+		</point>
+		<point>
+			<key>7406</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.5703737139701843" y="0.5551471710205078" z="0.5400526523590088"/>
+		</point>
+		<point>
+			<key>7410</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.6437271237373352" y="0.6928379535675049" z="0.123216025531292"/>
+		</point>
+		<point>
+			<key>7463</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.5570260286331177" y="0.5524033308029175" z="0.5494476556777954"/>
+		</point>
+		<point>
+			<key>7500</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.7804052233695984" y="0.3289778530597687" z="0.5536125898361206"/>
+		</point>
+		<point>
+			<key>7503</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.9995313882827759" y="0.3333459794521332" z="0.556504487991333"/>
+		</point>
+		<point>
+			<key>7505</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.8685131669044495" y="0.6109768152236938" z="0.380870521068573"/>
+		</point>
+		<point>
+			<key>7515</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.1111379340291023" y="0.7791405320167542" z="0.9983241558074951"/>
+		</point>
+		<point>
+			<key>7519</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.5137340426445007" y="0.9326141476631165" z="-0.1081232726573944"/>
+		</point>
+		<point>
+			<key>7583</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.5603521466255188" y="0.9952067732810974" z="-0.111898846924305"/>
+		</point>
+		<point>
+			<key>7674</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.3333092629909515" y="0.9999590516090393" z="-0.3403290510177612"/>
+		</point>
+		<point>
+			<key>7705</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.9999819397926331" y="0.08489692211151123" z="0.3332690596580505"/>
+		</point>
+		<point>
+			<key>7809</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.7127137780189514" y="0.552811861038208" z="0.4032831192016602"/>
+		</point>
+		<point>
+			<key>7854</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.1161437705159187" y="-0.6756049990653992" z="0.8529617786407471"/>
+		</point>
+		<point>
+			<key>7929</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.7127137780189514" y="0.552811861038208" z="0.4032831192016602"/>
+		</point>
+		<point>
+			<key>7936</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.11111119389534" y="0.8662124276161194" z="0.9496073722839355"/>
+		</point>
+		<point>
+			<key>7937</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.1111093461513519" y="0.8323400020599365" z="0.9531388878822327"/>
+		</point>
+		<point>
+			<key>7947</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.5860142111778259" y="0.5547628402709961" z="0.5251125693321228"/>
+		</point>
+		<point>
+			<key>7961</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.9900479316711426" y="0.5620154142379761" z="0.5283923149108887"/>
+		</point>
+		<point>
+			<key>7963</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.1111123338341713" y="0.9997845888137817" z="0.9999561309814453"/>
+		</point>
+		<point>
+			<key>7964</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.9954330325126648" y="0.557802677154541" z="0.5568543076515198"/>
+		</point>
+		<point>
+			<key>7969</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.9996181130409241" y="0.555907130241394" z="0.1132081598043442"/>
+		</point>
+		<point>
+			<key>7970</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.1111123338341713" y="0.9997845888137817" z="0.9999561309814453"/>
+		</point>
+		<point>
+			<key>7975</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.1111096441745758" y="0.9999237060546875" z="0.9999948143959045"/>
+		</point>
+		<point>
+			<key>8008</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.3710305690765381" y="-0.739934504032135" z="0.5556011199951172"/>
+		</point>
+		<point>
+			<key>8030</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.9999865293502808" y="0.5547777414321899" z="-0.1334845274686813"/>
+		</point>
+		<point>
+			<key>8404</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-1" y="0.5552182197570801" z="0.1110579743981361"/>
+		</point>
+		<point>
+			<key>8680</key>
+			<clusterkey>7</clusterkey>
+			<label/>
+			<location x="-0.7777319550514221" y="0.1128231510519981" z="0.5551259517669678"/>
+		</point>
+		<point>
+			<key>10027</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="-0.5560352206230164" y="-0.9995109438896179" z="-0.1117144972085953"/>
+		</point>
+		<point>
+			<key>10899</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="-0.1103116571903229" y="-0.9999992847442627" z="0.5578004717826843"/>
+		</point>
+		<point>
+			<key>10907</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="0.1416758000850677" y="-0.7424454092979431" z="0.5544219613075256"/>
+		</point>
+		<point>
+			<key>10962</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="-0.2966183423995972" y="-0.9997977614402771" z="0.373090922832489"/>
+		</point>
+		<point>
+			<key>10977</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="-0.5620439052581787" y="-0.993389904499054" z="0.1110513806343079"/>
+		</point>
+		<point>
+			<key>10992</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="-0.5564024448394775" y="-0.9991516470909119" z="-0.07970297336578369"/>
+		</point>
+		<point>
+			<key>11</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="0.208199754357338" y="-0.9996756315231323" z="0.7790842652320862"/>
+		</point>
+		<point>
+			<key>11594</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="-0.3590883910655975" y="-0.755351185798645" z="-0.109536737203598"/>
+		</point>
+		<point>
+			<key>11597</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="-0.7718632817268372" y="-0.3417241275310516" z="0.3325839340686798"/>
+		</point>
+		<point>
+			<key>12335</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="-0.5699251890182495" y="-0.985510528087616" z="0.1111026555299759"/>
+		</point>
+		<point>
+			<key>12732</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="-0.2028386741876602" y="-0.9178091883659363" z="0.2943890988826752"/>
+		</point>
+		<point>
+			<key>16628</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="-0.9997840523719788" y="-0.1111362129449844" z="-0.3314074277877808"/>
+		</point>
+		<point>
+			<key>23424235</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="0.3343562483787537" y="-0.9999995827674866" z="0.9996446371078491"/>
+		</point>
+		<point>
+			<key>3024</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="0.3279935717582703" y="-0.982602059841156" z="0.7951817512512207"/>
+		</point>
+		<point>
+			<key>31373</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="0.5556297898292542" y="-0.7777844071388245" z="0.9999761581420898"/>
+		</point>
+		<point>
+			<key>3283</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="0.9975773692131042" y="-0.111086793243885" z="-0.3357229232788086"/>
+		</point>
+		<point>
+			<key>33643</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="-0.1111676841974258" y="-0.9999974966049194" z="0.555815577507019"/>
+		</point>
+		<point>
+			<key>356</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="-0.5460755228996277" y="-0.7863574624061584" z="-0.333676815032959"/>
+		</point>
+		<point>
+			<key>5326161</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="-0.6005865335464478" y="-0.2881563305854797" z="0.4791792929172516"/>
+		</point>
+		<point>
+			<key>5558</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="0.5559134483337402" y="-0.778590977191925" z="0.999001145362854"/>
+		</point>
+		<point>
+			<key>5943</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="0.768856406211853" y="-0.7781317234039307" z="0.9995518326759338"/>
+		</point>
+		<point>
+			<key>6212</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="0.5649142265319824" y="-0.7789233922958374" z="0.9987963438034058"/>
+		</point>
+		<point>
+			<key>6278</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="0.5562414526939392" y="-0.7783482670783997" z="0.9987995624542236"/>
+		</point>
+		<point>
+			<key>6328</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="0.4325453341007233" y="-0.6404179930686951" z="0.9212501049041748"/>
+		</point>
+		<point>
+			<key>6332</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="0.1109100580215454" y="-0.994710385799408" z="0.781785786151886"/>
+		</point>
+		<point>
+			<key>6340</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="0.1108482927083969" y="-0.9957006573677063" z="0.7813515663146973"/>
+		</point>
+		<point>
+			<key>6343</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="-0.1085875779390335" y="-0.7805782556533813" z="0.7749884128570557"/>
+		</point>
+		<point>
+			<key>6344</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="0.3329917788505554" y="-0.9894184470176697" z="0.7890045642852783"/>
+		</point>
+		<point>
+			<key>6346</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="0.3155644237995148" y="-0.9773117303848267" z="0.8004829287528992"/>
+		</point>
+		<point>
+			<key>6358</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="0.5449654459953308" y="-0.7722633481025696" z="0.7823114395141602"/>
+		</point>
+		<point>
+			<key>6365</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="0.5497227907180786" y="-0.7778983116149902" z="0.9976816177368164"/>
+		</point>
+		<point>
+			<key>6366</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="0.5556173324584961" y="-0.7777866125106812" z="0.9999778270721436"/>
+		</point>
+		<point>
+			<key>638186</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="0.5497749447822571" y="-0.77753084897995" z="0.9998065829277039"/>
+		</point>
+		<point>
+			<key>6555</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="0.11027492582798" y="-0.7856066226959229" z="0.7689504027366638"/>
+		</point>
+		<point>
+			<key>6563</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="0.1314975172281265" y="-0.992078959941864" z="0.5634267926216125"/>
+		</point>
+		<point>
+			<key>6574</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="0.3334302008152008" y="-0.9997691512107849" z="0.989849865436554"/>
+		</point>
+		<point>
+			<key>6575</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="0.5556297898292542" y="-0.7777844071388245" z="0.9999761581420898"/>
+		</point>
+		<point>
+			<key>7044</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="-1" y="0.1111112833023071" z="-0.7764367461204529"/>
+		</point>
+		<point>
+			<key>7839</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="0.12298833578825" y="-0.9993418455123901" z="0.7784622311592102"/>
+		</point>
+		<point>
+			<key>7840</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="-0.1111063659191132" y="-0.9999975562095642" z="0.555655300617218"/>
+		</point>
+		<point>
+			<key>7892</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="-0.3832179605960846" y="-0.712218165397644" z="0.1450596451759338"/>
+		</point>
+		<point>
+			<key>7907</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="0.02380191721022129" y="-0.637927770614624" z="0.5418577790260315"/>
+		</point>
+		<point>
+			<key>7962</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="-0.9999999403953552" y="-0.1110010147094727" z="-0.3381181061267853"/>
+		</point>
+		<point>
+			<key>8003</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="-0.3528367280960083" y="-0.7589871287345886" z="0.1641971915960312"/>
+		</point>
+		<point>
+			<key>8004</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="-0.7754039168357849" y="-0.3353890180587769" z="0.3347931504249573"/>
+		</point>
+		<point>
+			<key>8005</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="-0.1780330389738083" y="-0.9999907612800598" z="0.4900239706039429"/>
+		</point>
+		<point>
+			<key>8057</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="-0.5686234831809998" y="-0.9863529205322266" z="0.1110907644033432"/>
+		</point>
+		<point>
+			<key>8058</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="-0.5576794743537903" y="-0.7753816246986389" z="-0.1103442907333374"/>
+		</point>
+		<point>
+			<key>8078</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="-1" y="0.3328474164009094" z="-0.5449129939079285"/>
+		</point>
+		<point>
+			<key>8141</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="-0.5460755228996277" y="-0.7863574624061584" z="-0.333676815032959"/>
+		</point>
+		<point>
+			<key>8900</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="-0.5525821447372437" y="-0.780109167098999" z="-0.1386992037296295"/>
+		</point>
+		<point>
+			<key>9253</key>
+			<clusterkey>1</clusterkey>
+			<label/>
+			<location x="-0.9999998807907104" y="0.3333413600921631" z="-0.4923632740974426"/>
+		</point>
+		<point>
+			<key>1030</key>
+			<clusterkey>14</clusterkey>
+			<label/>
+			<location x="0.9992522597312927" y="-0.7785285711288452" z="-0.3333337604999542"/>
+		</point>
+		<point>
+			<key>174</key>
+			<clusterkey>14</clusterkey>
+			<label/>
+			<location x="0.9999992847442627" y="-0.9998996257781982" z="-0.3245764970779419"/>
+		</point>
+		<point>
+			<key>753</key>
+			<clusterkey>14</clusterkey>
+			<label/>
+			<location x="1" y="-0.9999986886978149" z="-0.3283728063106537"/>
+		</point>
+		<point>
+			<key>1031</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.611047625541687" y="-0.9959146976470947" z="-0.5041083097457886"/>
+		</point>
+		<point>
+			<key>10405</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="-0.1152493581175804" y="-0.6858492493629456" z="-0.6416272521018982"/>
+		</point>
+		<point>
+			<key>11124</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.7891425490379333" y="-0.1086308732628822" z="-0.3209800124168396"/>
+		</point>
+		<point>
+			<key>11251</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.5573738813400269" y="-0.3513913154602051" z="0.5407048463821411"/>
+		</point>
+		<point>
+			<key>11583</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="-0.09595777094364166" y="-0.7167441844940186" z="-0.3869267106056213"/>
+		</point>
+		<point>
+			<key>12348</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.3724618256092072" y="-0.106341540813446" z="-0.960926353931427"/>
+		</point>
+		<point>
+			<key>12375</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.5528028607368469" y="-0.09935504943132401" z="-0.9844169020652771"/>
+		</point>
+		<point>
+			<key>13387</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.778328537940979" y="0.9994462728500366" z="0.333350658416748"/>
+		</point>
+		<point>
+			<key>15413</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.7778036594390869" y="-0.3439445793628693" z="0.3349547982215881"/>
+		</point>
+		<point>
+			<key>180</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.6093903779983521" y="-0.4313673079013824" z="0.5372899174690247"/>
+		</point>
+		<point>
+			<key>20083</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.1115921139717102" y="-0.8333865404129028" z="-0.7318634986877441"/>
+		</point>
+		<point>
+			<key>22386</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.3336551487445831" y="-0.9176860451698303" z="-0.4157269299030304"/>
+		</point>
+		<point>
+			<key>261</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.1132110878825188" y="-0.9999220371246338" z="0.08402898907661438"/>
+		</point>
+		<point>
+			<key>263</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.5555800795555115" y="-0.9991344809532166" z="-0.5569335222244263"/>
+		</point>
+		<point>
+			<key>31246</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="-0.1228804290294647" y="-0.6879249811172485" z="-0.6091816425323486"/>
+		</point>
+		<point>
+			<key>31260</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.5683327317237854" y="-0.7993420958518982" z="-0.5267779231071472"/>
+		</point>
+		<point>
+			<key>31272</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.5592803359031677" y="-0.1024783998727798" z="-0.7743715643882751"/>
+		</point>
+		<point>
+			<key>31374</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.7773043513298035" y="0.1126540377736092" z="0.7774006724357605"/>
+		</point>
+		<point>
+			<key>3776</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.7770898938179016" y="-0.5560381412506104" z="0.3327259719371796"/>
+		</point>
+		<point>
+			<key>527</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.3932041227817535" y="-0.8288840651512146" z="0.2766036987304688"/>
+		</point>
+		<point>
+			<key>6276</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.3375079035758972" y="-0.9982791543006897" z="-0.7870092988014221"/>
+		</point>
+		<point>
+			<key>6386</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.7773586511611938" y="-0.5555567741394043" z="0.3333179652690887"/>
+		</point>
+		<point>
+			<key>6560</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.7843597531318665" y="-0.7712788581848145" z="-0.1113070175051689"/>
+		</point>
+		<point>
+			<key>6568</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.5554247498512268" y="-0.7816060781478882" z="-0.2540135085582733"/>
+		</point>
+		<point>
+			<key>6569</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.2025194317102432" y="-0.7772817015647888" z="0.08090038597583771"/>
+		</point>
+		<point>
+			<key>702</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.8838925361633301" y="-0.8938657641410828" z="-0.1111114993691444"/>
+		</point>
+		<point>
+			<key>7288</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.211533859372139" y="-0.7767804861068726" z="0.07285449653863907"/>
+		</point>
+		<point>
+			<key>7298</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="-0.9993703365325928" y="0.5559151172637939" z="-0.7780222296714783"/>
+		</point>
+		<point>
+			<key>7301</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="-0.3484940230846405" y="0.5552499294281006" z="-0.9999999403953552"/>
+		</point>
+		<point>
+			<key>7766</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.9995160102844238" y="0.09440792351961136" z="-0.3338165283203125"/>
+		</point>
+		<point>
+			<key>7852</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="-0.5562548041343689" y="-0.7769763469696045" z="0.7778525948524475"/>
+		</point>
+		<point>
+			<key>7858</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.9997124075889587" y="-0.9994719624519348" z="0.1080217212438583"/>
+		</point>
+		<point>
+			<key>7895</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.05161665007472038" y="-0.7723542451858521" z="-0.2199898064136505"/>
+		</point>
+		<point>
+			<key>7909</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.3749312460422516" y="-0.5564074516296387" z="0.1381127536296844"/>
+		</point>
+		<point>
+			<key>7912</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.2943513989448547" y="-0.1216012239456177" z="0.9999769330024719"/>
+		</point>
+		<point>
+			<key>7914</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.7628863453865051" y="-0.364350289106369" z="0.3331884443759918"/>
+		</point>
+		<point>
+			<key>7915</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.77764892578125" y="-0.2616764605045319" z="0.129648357629776"/>
+		</point>
+		<point>
+			<key>7966</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="-0.9999882578849792" y="0.555555522441864" z="-0.7777895331382751"/>
+		</point>
+		<point>
+			<key>7967</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="-0.7828652262687683" y="0.3449040353298187" z="-0.7731991410255432"/>
+		</point>
+		<point>
+			<key>7991</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.5550335645675659" y="-0.7799011468887329" z="-0.5541035532951355"/>
+		</point>
+		<point>
+			<key>7997</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.5592803359031677" y="-0.1024783998727798" z="-0.7743715643882751"/>
+		</point>
+		<point>
+			<key>8007</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="-0.5580290555953979" y="-0.7755351066589355" z="0.7775428891181946"/>
+		</point>
+		<point>
+			<key>8021</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="-0.5318085551261902" y="-0.5782024264335632" z="0.7779154181480408"/>
+		</point>
+		<point>
+			<key>8028</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="-0.5553742647171021" y="0.7780911326408386" z="-0.9996866583824158"/>
+		</point>
+		<point>
+			<key>8038</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.7788761258125305" y="-0.05622187256813049" z="-0.3326064348220825"/>
+		</point>
+		<point>
+			<key>8051</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="-0.1136751845479012" y="-0.6381892561912537" z="-0.5264165997505188"/>
+		</point>
+		<point>
+			<key>8060</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="-0.7685147523880005" y="-0.7870409488677979" z="0.5555170774459839"/>
+		</point>
+		<point>
+			<key>8063</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.1072854474186897" y="-0.9992727041244507" z="-0.09639923274517059"/>
+		</point>
+		<point>
+			<key>8071</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.9132478833198547" y="-0.1112106367945671" z="-0.4243816733360291"/>
+		</point>
+		<point>
+			<key>8093</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="-0.1157576143741608" y="-0.648709237575531" z="-0.679646909236908"/>
+		</point>
+		<point>
+			<key>8103</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.3333333432674408" y="-0.9995167255401611" z="-0.997590184211731"/>
+		</point>
+		<point>
+			<key>8114</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.3289730548858643" y="-0.1434267908334732" z="-1"/>
+		</point>
+		<point>
+			<key>8129</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.3333333432674408" y="-0.999987781047821" z="-0.9999935030937195"/>
+		</point>
+		<point>
+			<key>8133</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.5555586218833923" y="-0.5556219816207886" z="-1"/>
+		</point>
+		<point>
+			<key>81531</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="-0.3335729241371155" y="-0.5554377436637878" z="0.7775285243988037"/>
+		</point>
+		<point>
+			<key>8174</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.3333333432674408" y="-0.999987781047821" z="-0.9999935030937195"/>
+		</point>
+		<point>
+			<key>8452</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="-0.7776523232460022" y="0.5544373989105225" z="-0.7659106850624084"/>
+		</point>
+		<point>
+			<key>8471</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="-0.3382077515125275" y="-0.5556153059005737" z="0.7745033502578735"/>
+		</point>
+		<point>
+			<key>8857</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.9941219091415405" y="-0.106962576508522" z="-0.3386132717132568"/>
+		</point>
+		<point>
+			<key>8892</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.3333325386047363" y="-0.7793594598770142" z="-0.7762840390205383"/>
+		</point>
+		<point>
+			<key>8902</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="-0.7614615559577942" y="-0.7940436601638794" z="0.3336312770843506"/>
+		</point>
+		<point>
+			<key>8909</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.330394446849823" y="-0.1638927757740021" z="-1"/>
+		</point>
+		<point>
+			<key>8914</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.3333333432674408" y="-0.999987781047821" z="-0.9999935030937195"/>
+		</point>
+		<point>
+			<key>957</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="0.3333333432674408" y="-0.999987781047821" z="-0.9999935030937195"/>
+		</point>
+		<point>
+			<key>9609</key>
+			<clusterkey>11</clusterkey>
+			<label/>
+			<location x="-0.1414331197738647" y="-0.7764686346054077" z="0.5556607842445374"/>
+		</point>
+		<point>
+			<key>1032</key>
+			<clusterkey>16</clusterkey>
+			<label/>
+			<location x="0.845047652721405" y="-0.7108325958251953" z="-0.1112561821937561"/>
+		</point>
+		<point>
+			<key>176</key>
+			<clusterkey>16</clusterkey>
+			<label/>
+			<location x="0.9999814629554749" y="-0.554861307144165" z="0.3112767040729523"/>
+		</point>
+		<point>
+			<key>264</key>
+			<clusterkey>16</clusterkey>
+			<label/>
+			<location x="0.5806856751441956" y="-0.8774012327194214" z="-0.4291832447052002"/>
+		</point>
+		<point>
+			<key>27867</key>
+			<clusterkey>16</clusterkey>
+			<label/>
+			<location x="-0.1250096708536148" y="0.1884145587682724" z="-0.7777049541473389"/>
+		</point>
+		<point>
+			<key>31254</key>
+			<clusterkey>16</clusterkey>
+			<label/>
+			<location x="0.9956986308097839" y="-0.1110732480883598" z="0.7792400121688843"/>
+		</point>
+		<point>
+			<key>31275</key>
+			<clusterkey>16</clusterkey>
+			<label/>
+			<location x="-0.3333693444728851" y="0.9996702671051025" z="-0.9991496801376343"/>
+		</point>
+		<point>
+			<key>679</key>
+			<clusterkey>16</clusterkey>
+			<label/>
+			<location x="0.835074782371521" y="-0.1127057150006294" z="0.7181779146194458"/>
+		</point>
+		<point>
+			<key>7865</key>
+			<clusterkey>16</clusterkey>
+			<label/>
+			<location x="0.9999998807907104" y="-0.3331839442253113" z="0.3211333453655243"/>
+		</point>
+		<point>
+			<key>8020</key>
+			<clusterkey>16</clusterkey>
+			<label/>
+			<location x="0.9999979138374329" y="-0.1109267324209213" z="-0.314814031124115"/>
+		</point>
+		<point>
+			<key>8025</key>
+			<clusterkey>16</clusterkey>
+			<label/>
+			<location x="0.9999998807907104" y="-0.1128844693303108" z="-0.3325534760951996"/>
+		</point>
+		<point>
+			<key>8083</key>
+			<clusterkey>16</clusterkey>
+			<label/>
+			<location x="-0.5555555820465088" y="1" z="-1"/>
+		</point>
+		<point>
+			<key>11006</key>
+			<clusterkey>2</clusterkey>
+			<label/>
+			<location x="-0.5460755228996277" y="-0.7863574624061584" z="-0.333676815032959"/>
+		</point>
+		<point>
+			<key>11007</key>
+			<clusterkey>2</clusterkey>
+			<label/>
+			<location x="-0.5561642646789551" y="-0.9993913173675537" z="-0.1110651642084122"/>
+		</point>
+		<point>
+			<key>12391</key>
+			<clusterkey>2</clusterkey>
+			<label/>
+			<location x="-0.5460755228996277" y="-0.7863574624061584" z="-0.333676815032959"/>
+		</point>
+		<point>
+			<key>12232</key>
+			<clusterkey>12</clusterkey>
+			<label/>
+			<location x="0.4159550666809082" y="-0.5505425333976746" z="0.7806326746940613"/>
+		</point>
+		<point>
+			<key>14257</key>
+			<clusterkey>19</clusterkey>
+			<label/>
+			<location x="-0.5460755228996277" y="-0.7863574624061584" z="-0.333676815032959"/>
+		</point>
+		<point>
+			<key>15600</key>
+			<clusterkey>19</clusterkey>
+			<label/>
+			<location x="-0.5460755228996277" y="-0.7863574624061584" z="-0.333676815032959"/>
+		</point>
+		<point>
+			<key>8140</key>
+			<clusterkey>19</clusterkey>
+			<label/>
+			<location x="-0.5561700463294983" y="-0.9993848204612732" z="-0.1110938191413879"/>
+		</point>
+		<point>
+			<key>8182</key>
+			<clusterkey>19</clusterkey>
+			<label/>
+			<location x="-0.5460755228996277" y="-0.7863574624061584" z="-0.333676815032959"/>
+		</point>
+		<point>
+			<key>284</key>
+			<clusterkey>15</clusterkey>
+			<label/>
+			<location x="0.9999924302101135" y="-0.5567899942398071" z="0.3332466185092926"/>
+		</point>
+		<point>
+			<key>713</key>
+			<clusterkey>15</clusterkey>
+			<label/>
+			<location x="0.9690458178520203" y="-0.1134407296776772" z="0.8090596199035645"/>
+		</point>
+		<point>
+			<key>31347</key>
+			<clusterkey>3</clusterkey>
+			<label/>
+			<location x="-0.555548369884491" y="0.7780242562294006" z="-0.999753475189209"/>
+		</point>
+		<point>
+			<key>398</key>
+			<clusterkey>3</clusterkey>
+			<label/>
+			<location x="0.9998675584793091" y="0.5411487221717834" z="0.7820112109184265"/>
+		</point>
+		<point>
+			<key>6228</key>
+			<clusterkey>3</clusterkey>
+			<label/>
+			<location x="0.7786434888839722" y="0.1109829917550087" z="0.7769836783409119"/>
+		</point>
+		<point>
+			<key>6375</key>
+			<clusterkey>3</clusterkey>
+			<label/>
+			<location x="0.9999998807907104" y="0.336618572473526" z="0.9967101812362671"/>
+		</point>
+		<point>
+			<key>6587</key>
+			<clusterkey>3</clusterkey>
+			<label/>
+			<location x="0.9999760389328003" y="0.7778151035308838" z="0.5555654168128967"/>
+		</point>
+		<point>
+			<key>7362</key>
+			<clusterkey>3</clusterkey>
+			<label/>
+			<location x="-0.555454432964325" y="0.999824047088623" z="-0.3334466814994812"/>
+		</point>
+		<point>
+			<key>7903</key>
+			<clusterkey>3</clusterkey>
+			<label/>
+			<location x="1" y="0.9996625781059265" z="0.5555555820465088"/>
+		</point>
+		<point>
+			<key>31357</key>
+			<clusterkey>21</clusterkey>
+			<label/>
+			<location x="0.999322772026062" y="0.1141916885972023" z="-0.5527690052986145"/>
+		</point>
+		<point>
+			<key>3301</key>
+			<clusterkey>13</clusterkey>
+			<label/>
+			<location x="-0.33380988240242" y="-0.7772716283798218" z="1"/>
+		</point>
+		<point>
+			<key>6115</key>
+			<clusterkey>9</clusterkey>
+			<label/>
+			<location x="-0.1177626550197601" y="0.7834810614585876" z="0.9977195262908936"/>
+		</point>
+		<point>
+			<key>6342</key>
+			<clusterkey>6</clusterkey>
+			<label/>
+			<location x="0.3284484148025513" y="-0.552681565284729" z="0.9999032020568848"/>
+		</point>
+		<point>
+			<key>6348</key>
+			<clusterkey>10</clusterkey>
+			<label/>
+			<location x="0.5357320308685303" y="-0.629059910774231" z="0.9262628555297852"/>
+		</point>
+		<point>
+			<key>6409</key>
+			<clusterkey>4</clusterkey>
+			<label/>
+			<location x="1" y="-1" z="0.3332695066928864"/>
+		</point>
+		<point>
+			<key>6422</key>
+			<clusterkey>4</clusterkey>
+			<label/>
+			<location x="1" y="-0.7777786254882812" z="0.5555500388145447"/>
+		</point>
+		<point>
+			<key>6944</key>
+			<clusterkey>5</clusterkey>
+			<label/>
+			<location x="0.3333332240581512" y="1" z="1"/>
+		</point>
+		<point>
+			<key>7416</key>
+			<clusterkey>5</clusterkey>
+			<label/>
+			<location x="0.3333333432674408" y="1" z="1"/>
+		</point>
+		<point>
+			<key>7368</key>
+			<clusterkey>8</clusterkey>
+			<label/>
+			<location x="-0.8447439670562744" y="0.7225888967514038" z="0.5943657159805298"/>
+		</point>
+		<point>
+			<key>9805</key>
+			<clusterkey>8</clusterkey>
+			<label/>
+			<location x="-0.9665505886077881" y="0.5876895785331726" z="0.5568020343780518"/>
+		</point>
+		<point>
+			<key>9906</key>
+			<clusterkey>8</clusterkey>
+			<label/>
+			<location x="-0.7821959257125854" y="0.7842732071876526" z="0.7662510275840759"/>
+		</point>
+		<point>
+			<key>8019</key>
+			<clusterkey>17</clusterkey>
+			<label/>
+			<location x="0.9967557191848755" y="-0.5555623173713684" z="-0.5587888956069946"/>
+		</point>
+		<point>
+			<key>8076</key>
+			<clusterkey>17</clusterkey>
+			<label/>
+			<location x="0.556574821472168" y="-0.5551829934120178" z="-0.9999899864196777"/>
+		</point>
+		<point>
+			<key>8105</key>
+			<clusterkey>17</clusterkey>
+			<label/>
+			<location x="0.9941450357437134" y="-0.9999999403953552" z="-0.3391878008842468"/>
+		</point>
+		<point>
+			<key>887</key>
+			<clusterkey>18</clusterkey>
+			<label/>
+			<location x="0.9898653030395508" y="-0.5657413005828857" z="0.3333408832550049"/>
+		</point>
+		<point>
+			<key>9386</key>
+			<clusterkey>20</clusterkey>
+			<label/>
+			<location x="0.7784013152122498" y="-0.7776238322257996" z="0.9992196559906006"/>
+		</point>
+		<point>
+			<key>9387</key>
+			<clusterkey>20</clusterkey>
+			<label/>
+			<location x="0.7764286994934082" y="-0.7780969738960266" z="0.998188853263855"/>
+		</point>
+		<point>
+			<key>9553</key>
+			<clusterkey>20</clusterkey>
+			<label/>
+			<location x="0.7764286994934082" y="-0.7780969738960266" z="0.998188853263855"/>
+		</point>
+		<point>
+			<key>9639</key>
+			<clusterkey>20</clusterkey>
+			<label/>
+			<location x="0.7764286994934082" y="-0.7780969738960266" z="0.998188853263855"/>
+		</point>
+	</points>
+	<edges/>
+</plotviz>
+
