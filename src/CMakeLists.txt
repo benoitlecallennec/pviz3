@@ -139,6 +139,7 @@ TARGET_LINK_LIBRARIES(pviz3
   Qt5::Widgets
   Qt5::Gui
   Qt5::Concurrent
+  Qt5::OpenGL
   )
 
 IF (APPLE)
@@ -170,12 +171,11 @@ IF (APPLE)
   ## Use macdeployqt for OSX
   ADD_CUSTOM_COMMAND(TARGET pviz3 COMMAND echo Run macdeployqt:)
   ADD_CUSTOM_COMMAND(TARGET pviz3 COMMAND which macdeployqt)
-  ADD_CUSTOM_COMMAND(TARGET pviz3 COMMAND echo macdeployqt ARGS ${CMAKE_CURRENT_BINARY_DIR}/pviz3.app)
-  ADD_CUSTOM_COMMAND(TARGET pviz3 COMMAND macdeployqt ARGS ${CMAKE_CURRENT_BINARY_DIR}/pviz3.app)
+  ADD_CUSTOM_COMMAND(TARGET pviz3 COMMAND echo macdeployqt ARGS ${CMAKE_CURRENT_BINARY_DIR}/pviz3.app -libpath=${VTK_INSTALL_PREFIX}/lib)
+  ADD_CUSTOM_COMMAND(TARGET pviz3 COMMAND macdeployqt ARGS ${CMAKE_CURRENT_BINARY_DIR}/pviz3.app -libpath=${VTK_INSTALL_PREFIX}/lib)
 
   INSTALL(DIRECTORY ${PROJECT_SOURCE_DIR}/data DESTINATION .
-    PATTERN "*.txt"
-    PATTERN "*.pviz")
+    PATTERN ".*" EXCLUDE)
 ELSE (WIN32)
   IF (CMAKE_CXX_SIZEOF_DATA_PTR MATCHES "8")
     SET(WIN_REDIST_DIR "C:/Program Files (x86)/Microsoft Visual Studio 10.0/VC/redist/x64")
@@ -190,7 +190,7 @@ ELSE (WIN32)
   INSTALL(FILES ${WIN_REDIST_FILES} DESTINATION bin)
   
   message(STATUS "Found the following QT libraries")
-  SET(QT_DLLS Qt5::Core Qt5::Widgets Qt5::Gui Qt5::Concurrent)
+  SET(QT_DLLS Qt5::Core Qt5::Widgets Qt5::Gui Qt5::Concurrent Qt5::OpenGL)
   foreach(_DLL ${QT_DLLS})
     get_target_property(_LOC ${_DLL} LOCATION)
     LIST(APPEND QT_REDIST_FILES ${_LOC})
