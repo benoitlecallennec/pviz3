@@ -10,7 +10,7 @@ set(${CMAKE_PROJECT_NAME}_SRCS
 )
 
 ## Boost
-set(Boost_USE_STATIC_LIBS   OFF)
+set(Boost_USE_STATIC_LIBS   ON)
 set(Boost_USE_MULTITHREADED ON)
 add_definitions(-DBOOST_ALL_NO_LIB)
 find_package(Boost 1.44 REQUIRED COMPONENTS system signals filesystem iostreams)
@@ -56,7 +56,7 @@ if (PVIZRPC_CLIENT_ENABLE)
   include_directories(${Protorpc_INCLUDE_DIR})
 
   ## Boost
-  find_package(Boost 1.44 COMPONENTS system signals filesystem iostreams zlib)
+  find_package(Boost 1.44 COMPONENTS system signals filesystem iostreams)
   include_directories (${Boost_INCLUDE_DIRS})
 
   ## PvizRPC

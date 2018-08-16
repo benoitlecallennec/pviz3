@@ -20,11 +20,19 @@ IF (APPLE OR UNIX)
   find_package(Boost 1.44 REQUIRED COMPONENTS system signals filesystem iostreams)
   target_link_libraries (pvizmodeldemo z)
 ELSE ()
-  find_package(Boost 1.44 REQUIRED COMPONENTS system signals filesystem iostreams zlib)
+  find_package(Boost 1.44 REQUIRED COMPONENTS system signals filesystem iostreams)
 ENDIF ()
 include_directories (${Boost_INCLUDE_DIRS})
 
-target_link_libraries (pvizmodeldemo ${Boost_LIBRARIES})
+find_package( ZLIB REQUIRED )
+if ( ZLIB_FOUND )
+  include_directories( ${ZLIB_INCLUDE_DIRS} )
+endif( ZLIB_FOUND )
+
+target_link_libraries (pvizmodeldemo
+  ${Boost_LIBRARIES}
+  ${ZLIB_LIBRARIES}
+  )
 
 ## Protobuf
 IF (PVIZRPC_CLIENT_ENABLE)

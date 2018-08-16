@@ -432,7 +432,7 @@ void PvizModel::saveXmlDataFile(const char* filename)
 	 */
 	
 	streambuf *psbuf, *backup;
-	ofstream filestr;
+	std::ofstream filestr;
 	filestr.open (filename, std::ios::trunc);
 	
 	backup = std::cout.rdbuf();     // back up cout's streambuf
@@ -1213,7 +1213,7 @@ void PvizModel::loadCompressedDataFile(const char* filename)
 {
     using namespace boost::filesystem;
     
-    ifstream file(filename, ios_base::in | ios_base::binary);
+    std::ifstream file(filename, ios_base::in | ios_base::binary);
     filtering_streambuf<input> in;
     in.push(gzip_decompressor());
     in.push(file);
@@ -1225,7 +1225,7 @@ void PvizModel::loadCompressedDataFile(const char* filename)
     
     cout << "decompress ... " << newpath << endl;
     
-    ofstream out(newpath.native().c_str(), ios_base::out | ios_base::binary);
+    std::ofstream out(newpath.native().c_str(), ios_base::out | ios_base::binary);
     boost::iostreams::copy(in, out);
     
     file.close();
@@ -1262,7 +1262,7 @@ void PvizModel::loadSimpleDataFile(const char* filename)
 {
     using namespace boost::filesystem;
 
-    ifstream file(filename, ios_base::in | ios_base::binary);
+    std::ifstream file(filename, ios_base::in | ios_base::binary);
     title = basename(filename);
     
     /*
@@ -1279,7 +1279,7 @@ void PvizModel::loadSimpleDataFile(const char* filename)
         newpath /= filename_;
         cout << "decompress ... " << newpath << endl;
         
-        ofstream out(newpath.native().c_str(), ios_base::out | ios_base::binary);
+        std::ofstream out(newpath.native().c_str(), ios_base::out | ios_base::binary);
         boost::iostreams::copy(in, out);
         
         file.close();
