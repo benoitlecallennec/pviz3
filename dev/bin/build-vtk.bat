@@ -1,32 +1,48 @@
-@ECHO off
+@echo off
 
-REM ========================================
-REM Check/Get/Set Env Variables
-REM ========================================
-CALL build-comm.bat %*
-IF ERRORLEVEL 1 GOTO :EOF
+if "%PVIZ3DEV_HOME%" == "" (
+	echo PVIZ3DEV_HOME environment variable is not set.
+	echo It needs to point to the root of pviz3 source directory.
+	echo E.g., set PVIZ3DEV_HOME=%USERPROFILE%\pviz3
+	exit /b 1
+)
+
+call %PVIZ3DEV_HOME%\dev\bin\build-comm.bat %*
+if ERRORLEVEL 1 exit /b 1
 
 REM ========================================
 REM Main
 REM ========================================
 
-IF NOT EXIST %PVIZ3DEV_VTK_WORKDIR% (
-	mkdir %PVIZ3DEV_VTK_WORKDIR%
-)
-cd %PVIZ3DEV_VTK_WORKDIR%
-
-IF NOT EXIST %PVIZ3DEV_VTK_SRC_DIR% (
-    7z x -o%PVIZ3DEV_VTK_SRC_DIR% %PVIZ3DEV_WORKSPACE%\Tools\vtk-%PVIZ3DEV_VTK_VER%.zip
-	REM move vtk-%PVIZ3DEV_VTK_VER% %PVIZ3DEV_VTK_SRC_DIR%
+if not exist %SRCDIR%\VTK-%VTK_VER% (
+    7za x %PVIZ3DEV_ARCHIVEDIR%\VTK-%VTK_VER%.zip -o%SRCDIR%
 )
 
-IF NOT EXIST %PVIZ3DEV_VTK_BUILD_DIR% (
-    mkdir %PVIZ3DEV_VTK_BUILD_DIR%
+cd %BUILDIR%
+set WORKDIR=%BUILDIR%\VTK-%VTK_VER%-QT-%QT_VER%
+echo.
+echo --- Building VTK 
+echo --- WORKDIR: %WORKDIR%
+echo.
+
+if exist %WORKDIR% rmdir /S /Q %WORKDIR%
+mkdir %WORKDIR% & cd %WORKDIR%
+
+cmake -G "NMake Makefiles" ^
+  -DCMAKE_BUILD_TYPE=Release ^
+  -DVTK_QT_VERSION=5 ^
+  -DQT_QMAKE_EXECUTABLE:PATH="%QT_ROOT%\bin\qmake.exe" ^
+  -DVTK_Group_Qt=OFF ^
+  -DModule_vtkGUISupportQt=ON ^
+  -DModule_vtkGUISupportQtOpenGL=ON ^
+  -DCMAKE_PREFIX_PATH:PATH="%QT_ROOT%\lib\cmake" ^
+  -DBUILD_SHARED_LIBS=ON ^
+  -DCMAKE_INSTALL_PREFIX=%VTK_PREFIX% ^
+  %SRCDIR%\VTK-%VTK_VER%
+
+where jom
+if %ERRORLEVEL% EQU 0 (
+  jom install
+) else (
+  nmake install
 )
-cd %PVIZ3DEV_VTK_BUILD_DIR%
-
-REM -DCMAKE_PREFIX_PATH:PATH=%PVIZ3DEV_QT_DIR% 
-cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE:STRING=%PVIZ3DEV_TYPE% -DBUILD_SHARED_LIBS:BOOL=ON -DVTK_USE_QT:BOOL=ON -DVTK_USE_QVTK_QTOPENGL:BOOL=OFF -DCMAKE_INSTALL_PREFIX=%PVIZ3DEV_VTK_DIR% -DCMAKE_PREFIX_PATH:PATH=%PVIZ3DEV_QT_DIR% %PVIZ3DEV_VTK_SRC_DIR%
-
-nmake
-nmake install

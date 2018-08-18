@@ -1,55 +1,42 @@
-@ECHO off
+@echo off
 
-REM ========================================
-REM Check/Get/Set Env Variables
-REM ========================================
-IF "%PVIZ3DEV_HOME%" == "" (
-	ECHO PVIZ3DEV_HOME environment variable is not defined correctly. 
-	EXIT /b 1
+if "%PVIZ3DEV_HOME%" == "" (
+	echo PVIZ3DEV_HOME environment variable is not set.
+	echo It needs to point to the root of pviz3 source directory.
+	echo E.g., set PVIZ3DEV_HOME=%USERPROFILE%\pviz3
+	exit /b 1
 )
 
-CALL %PVIZ3DEV_HOME%\bin\build-comm.bat %*
-IF ERRORLEVEL 1 GOTO :EOF
+call %PVIZ3DEV_HOME%\dev\bin\build-comm.bat %*
+if ERRORLEVEL 1 exit /b 1
 
-REM ========================================
-REM Main
-REM ========================================
-
-FOR /F "tokens=1,2 delims=." %%i in ("%PVIZ3DEV_BOOST_VER%") do SET PVIZ3DEV_BOOST_VER_SHORT=%%i_%%j
-echo %PVIZ3DEV_BOOST_VER_SHORT%
-REM move %PVIZ3DEV_BOOST_DIR%\include\boost-%PVIZ3DEV_BOOST_VER_SHORT%
-REM GOTO :EOF
-
-IF NOT EXIST %PVIZ3DEV_BOOST_WORKDIR% (
-	mkdir %PVIZ3DEV_BOOST_WORKDIR%
-)
-cd %PVIZ3DEV_BOOST_WORKDIR%
-
-IF NOT EXIST %PVIZ3DEV_BOOST_SRC_DIR% (
-	7z x %PVIZ3DEV_WORKSPACE%\Tools\boost_%PVIZ3DEV_BOOST_VER:.=_%.zip
-	move boost_%PVIZ3DEV_BOOST_VER:.=_% %PVIZ3DEV_BOOST_SRC_DIR%
+if not exist %SRCDIR%\boost_%BOOST_VER% (
+	7za x %PVIZ3DEV_ARCHIVEDIR%\boost_%BOOST_VER%.zip -o%SRCDIR%
 )
 
-IF NOT EXIST %PVIZ3DEV_BOOST_BUILD_DIR% (
-    mkdir %PVIZ3DEV_BOOST_BUILD_DIR%
+cd %BUILDIR%
+set WORKDIR=%BUILDIR%\boost_%BOOST_VER%
+echo.
+echo --- Building BOOST
+echo --- WORKDIR: %WORKDIR%
+echo.
+
+if exist %WORKDIR% rmdir /S /Q %WORKDIR%
+mkdir %WORKDIR% & cd %WORKDIR%
+
+cd %SRCDIR%\boost_%BOOST_VER%
+if not exist b2.exe (
+	call bootstrap.bat
 )
 
-cd %PVIZ3DEV_BOOST_SRC_DIR%
-CALL bootstrap.bat 
-
-REM --build-type=complete ^
-
-
-bjam ^
---prefix=%PVIZ3DEV_BOOST_DIR% ^
---build-dir=%PVIZ3DEV_BOOST_BUILD_DIR% ^
--sZLIB_SOURCE="C:\pviz3dev_ws\zlib-1.2.7" ^
-toolset=msvc ^
-address-model=64 ^
-install
-
-FOR /F "tokens=1,2 delims=." %%i in ("%PVIZ3DEV_BOOST_VER%") do SET PVIZ3DEV_BOOST_VER_SHORT=%%i_%%j
-cd %PVIZ3DEV_BOOST_DIR%\include
-move boost-%PVIZ3DEV_BOOST_VER_SHORT%\boost .
-rmdir boost-%PVIZ3DEV_BOOST_VER_SHORT%
-
+.\b2 ^
+	address-model=64 ^
+	threading=multi ^
+	link=static ^
+	--toolset=msvc ^
+	--build-dir=%WORKDIR% ^
+	--prefix=%BOOST_PREFIX% ^
+	-s ZLIB_INCLUDE="%ZLIB_PREFIX%\include" ^
+	-s ZLIB_LIBPATH="%ZLIB_PREFIX%\lib" ^
+	-s ZLIB_BINARY=zlib ^
+	-j4 install
