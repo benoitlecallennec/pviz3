@@ -54,7 +54,7 @@ if not exist %PVIZ3DEV_WORKSPACE% mkdir %PVIZ3DEV_WORKSPACE%
 if not exist %BUILDIR% mkdir %BUILDIR%
 if not exist %SRCDIR% mkdir %SRCDIR%
 
-set PATH=%QT_ROOT%\bin;%PVIZ3DEV_HOME%\dev\bin;%PATH%
+set PATH=%QT_ROOT%\bin;%PVIZ3DEV_HOME%\dev\win;%PATH%
 echo ========================================
 echo PVIZ3DEV_HOME=%PVIZ3DEV_HOME%
 echo PVIZ3DEV_WORKSPACE=%PVIZ3DEV_WORKSPACE%

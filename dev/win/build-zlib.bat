@@ -7,7 +7,7 @@ if "%PVIZ3DEV_HOME%" == "" (
 	exit /b 1
 )
 
-call %PVIZ3DEV_HOME%\dev\bin\build-comm.bat %*
+call %PVIZ3DEV_HOME%\dev\win\build-comm.bat %*
 if ERRORLEVEL 1 exit /b 1
 
 rem ========================================
