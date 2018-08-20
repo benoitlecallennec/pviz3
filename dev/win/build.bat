@@ -47,7 +47,7 @@ set ARCH=msvc2017_64
 set QT_VER=5.11.1
 set VTK_VER=6.3.0
 set BOOST_VER=1_68_0
-set ZLIB_VER=1.2.8
+set ZLIB_VER=1.2.11
 
 if "%~1" == "" goto MAIN
 :GETOPTS
